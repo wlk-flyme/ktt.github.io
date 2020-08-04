@@ -1,0 +1,475 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>SSH学习 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="SSH学习"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> SSH学习</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>SSH 服务在进行数据传输前，会先进行<code>密钥</code><strong>交换和协商</strong>确认。完成后再对后续数据进行加密传输，以提高安全性。本文先对 SSH 服务所采用的<code>非对称加密</code>技术进行简要介绍，然后对 SSH 连接过程中的相关交互，及关联文件进行说明。 </p>
+<a id="more"></a>
+
+<h1 id="非对称加密技术"><a href="#非对称加密技术" class="headerlink" title="非对称加密技术"></a><center>非对称加密技术</center></h1><p>SSH 服务基于<strong>非对称加密</strong>（<strong>public-key cryptography</strong>，也称<strong>公开密钥加密</strong>）技术实现数据加密传输。该技术会生成一对数学相关的密钥，其中一个用于对数据进行加密，而且只能用于加密，而另一个只能用于解密。使用加密密钥加密后的数据，只能用对应的解密密钥才能解密。而且，只知道其中一个密钥，无法计算出另一个。因此，如果公开了一对密钥中的一个，并不会危害到另一个的秘密性质。通常把公开的密钥称为<strong>公钥</strong>（public key），而不公开的密钥称为<strong>私钥</strong>（private key）。</p>
+<p>如果公开的是解密密钥，该场景用于客户端验证持有私钥一方发布的数据或文件的完整性、准确性，以防止数据篡改。相应的密钥称为<strong>数字签名（数字证书）</strong>。如果公开的是加密密钥，该场景用于客户给私钥所有者上传数据，称为<strong>公开密钥加密。</strong> SSH 服务基于该场景实现。</p>
+<p>与<strong>对称密钥加密</strong>相比，非对称加密的优点在于不存在共享的通用密钥。由于解密用的私钥无需发送给任何用户，所以可以避免密钥被劫持或篡改。而加密用的公钥即便被劫持或篡改，如果没有与其匹配的私钥，也无法解密数据。所以，截获的公钥是没有任何用处的。</p>
+<p>当前，SSH主要采用 <code>RSA 算法（协议 V2 默认算法）和 </code>DSA 算法（协议 V1 仅支持该算法）来实现非对称加密技术。</p>
+<h1 id="连接交互过程"><a href="#连接交互过程" class="headerlink" title="连接交互过程"></a><center>连接交互过程</center></h1><p>SSH 服务建立连接时的相关交互过程，如下 图所示</p>
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/1.png"></p>
+<p>连接过程中的相关交互步骤，详细说明如下。 </p>
+<blockquote>
+<p>1.服务端准备阶段</p>
+<p>2.非对称加密协商</p>
+<p>3.后续数据交互过程</p>
+</blockquote>
+<br>
+
+<h2 id="服务端准备阶段"><a href="#服务端准备阶段" class="headerlink" title="服务端准备阶段"></a>服务端准备阶段</h2><p>服务端在每次启动 SSH 服务时，都会自动检查<code>/etc/ssh/</code>目录下相关密钥文件的有效性。如果相关文件检查发现异常，则会导致服务启动失败，并抛出相应错误信息。 如果文件相关不存在，则会自动重新创建。</p>
+<p>默认创建的相关文件及用途说明如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ll &#x2F;etc&#x2F;ssh&#x2F;</span><br><span class="line">-rw-------. 1 root root 125811 Aug 13  2015 moduli            → 用于 DH-GEX 算法</span><br><span class="line">-rw-r--r--. 1 root root   2047 Aug 13  2015 ssh_config            → SSH 客户端配置文件</span><br><span class="line">-rw-------. 1 root root   3879 Aug 13  2015 sshd_config            → SSH 服务配置文件</span><br><span class="line">-rw-------. 1 root root    672 May 20 14:22 ssh_host_dsa_key        → DSA 算法私钥</span><br><span class="line">-rw-r--r--. 1 root root    590 May 20 14:22 ssh_host_dsa_key.pub            → DSA 算法公钥</span><br><span class="line">-rw-------. 1 root root    963 May 20 14:22 ssh_host_key            → SSH V1 版RSA 算法私钥</span><br><span class="line">-rw-r--r--. 1 root root    627 May 20 14:22 ssh_host_key.pub        → SSH V1 版 RSA 算法公钥</span><br><span class="line">-rw-------. 1 root root   1675 May 20 14:22 ssh_host_rsa_key        → SSH V2 版 RSA 算法私钥</span><br><span class="line">-rw-r--r--. 1 root root    382 May 20 14:22 ssh_host_rsa_key.pub            → SSH V2 版 RSA 算法公钥</span><br></pre></td></tr></table></figure>
+
+<h2 id="非对称加密协商"><a href="#非对称加密协商" class="headerlink" title="非对称加密协商"></a>非对称加密协商</h2><p>服务端 SSH 服务正常运行后，客户端连接时，进行如下交互： </p>
+<blockquote>
+<p>**1:**客户端向服务端发送连接请求。 </p>
+<p> 客户端通过 SSH 工具连接服务端。相关信息通过明文发送。 </p>
+<p>**2:**服务端返回公钥信息：  根据客户端所使用的服务协议版本及算法设置，返回相应公钥信息。比如，默认情况下，客户端通过 SSH V2 版协议，基于 RSA 算法建立连接，则服务端将 <code>ssh_host_rsa_key.pub </code>文件中的内容返回客户端。相关信息通过明文发送。 </p>
+<p>**3:**客户端对服务端公钥信息进行比对和确认：  客户端接收到服务端公钥信息后，会进行如下比对，并让用户对相关信息进行确认。 </p>
+<li>如果是首次连接服务端，客户端会收到类似如下信息，让用户确认公钥指纹的有效性： </li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &#39;192.168.0.1 (192.168.0.1)&#39; can&#39;t be established.</span><br><span class="line">RSA key fingerprint is c2:49:d9:43:74:d5:ed:bc:28:9b:d2:7b:63:94:cf:bc.</span><br><span class="line">Are you sure you want to continue connecting (yes&#x2F;no)?</span><br></pre></td></tr></table></figure>
+
+<p>如果用户输入 no ，则连接中断并报错（Host key verification failed）。</p>
+<li>如果用户输入 yes，则会将相应的公钥信息，保存到`当前用户家目录`下` .ssh` 目录内的` known_hosts `文件中。 比如 </li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat ~&#x2F;.ssh&#x2F;known_hosts</span><br><span class="line"></span><br><span class="line">IP 明文显示：</span><br><span class="line">192.168.0.1 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3sdlboGEgY9buZpkPuygPw0NxAvmxYd0mc3fo2MgP+JqgFC9&#x2F;9ZXOgDXKJrjE2HKBieJZSPKGncIh+zLxTvmykeJQBXv7i1GiUjW+H3VY69Ge3AdGfCd+XF+Cvi1e+j18zhHnjSzvIBoNpT5cBWWNbw7mNHCwTb0sHAVUkWR4Ck&#x2F;LM5&#x2F;rQ09A+m6BLfZJL8CRNGxKTbyINi6o812S+Cy64WqDs1nTpIXp2Bkcpjclb36bFSs9Z&#x2F;tWNuJl7A&#x2F;&#x2F;7HNtxMgFGBnE07Ykvvy8s06DUmkyFy8GcXGBpnfdg9utLodfQLFQnKflCQZ110BpQaCWlWPjU9dc4w3XLJ&#x2F;XQOP4w&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">IP 做了加密处理：</span><br><span class="line">|1|3efXAZ4sNHcUcHamBy4gDriblc8&#x3D;|8idBhLq9aLl2sfh4KswMsk4sPFI&#x3D; ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwS4DE3hok8RCkxYlTxsexNrNa62e05UGSkoP7ie26DDWjG1Aoc74cCsE4is9p7lEfFUYYlAzeYhPqE&#x2F;yGf5YxRZUOU2IeFI4cEqo8YZr7edVYpgAq2f2J0zMwk1syenD12lmUPkYA4mMB6it3jxXR5k+H0HZh9YA7mRXkiTjlkAMWirBcnUvtKYRv9LRIr3ikUiPy2gfZO291Ae9zuTsWwEtHQxIpiBgk3vwF2gCUFlX9y&#x2F;&#x2F;IsMjdQq5prk7x3BjXhUorqgJO1gt1VHW8Xxx9Oe50YF1hi9DuE6VXwyh4xfHTmauRQybwsYafdA3HxrA2od6x9l19D9EH7xHAjDa5w&#x3D;&#x3D;</span><br></pre></td></tr></table></figure>
+
+<li>如果服务端因重装系统等因素导致公钥指纹出现变化，则会直接导致连接失败（报错Host key verification failed），则需要删除已保存的条目后再重新连接 </li>
+
+<li>如果之前已经成功连接，而且公钥指纹对比一致，则会继续下一步操作。  </li>
+
+<p>**4:**客户端生成临时密钥对：  服务端公钥校验及确认后，客户端会生成一对临时密钥用于客户端加密。该密钥对不会存储到文件，而是记录在内存中。每次连接都会重新生成临时密钥对。 </p>
+<p>**5:**客户端发送公钥信息：  客户端向服务端，发送前述生成的临时密钥对中的公钥信息。相关信息通过明文发送。 </p>
+</blockquote>
+<p>至此，服务端及客户端都拥有对方的公钥和自身的私钥，所以称为<strong>非对称加密。</strong> </p>
+<h2 id="后续数据交互过程"><a href="#后续数据交互过程" class="headerlink" title="后续数据交互过程"></a>后续数据交互过程</h2><p>后续登录校验及正常的数据传输，都会通过双向加密方式进行。相关交互说明如下： </p>
+<blockquote>
+<p>**1:**如果服务端需要发送数据给客户端： </p>
+<p>(1)服务端使用所持有的客户端公钥，对需要传输的数据进行加密，再发送给客户端。 </p>
+<p>(2)客户端收到信息后，使用所持有的自身私钥解密后获取数据。 </p>
+<p>**2:**反之，如果客户端需要发送数据给服务端，也是类似的流程： </p>
+<p>(1)客户端使用所持有的服务端公钥，对需要传输的数据进行加密，再发送给服务端。 </p>
+<p>(2)服务端收到信息后，使用所持有的自身私钥解密后获取数据。 </p>
+</blockquote>
+<h1 id="服务器安装SSH"><a href="#服务器安装SSH" class="headerlink" title="服务器安装SSH"></a><center>服务器安装SSH</center></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">安装： yum isntall openssh-server</span><br><span class="line">启动： service sshd start</span><br><span class="line">设置开机运行： chkconfig sshd on</span><br><span class="line">查看进程： ps -ef | grep ssh</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>centos在安装的时候已经默认将客户端和服务端都安装好，可以你之前安装的过程，或者使用<code>yum install openssh-sclients</code>查看</p>
+</blockquote>
+<h1 id="客户端安装SSH"><a href="#客户端安装SSH" class="headerlink" title="客户端安装SSH"></a><center>客户端安装SSH</center></h1><p>在客户端安装有三种：<code>xshell</code>、<code>putty</code>、<code>secureCRT</code></p>
+<blockquote>
+<p>xshell下载链接： <a target="_blank" rel="noopener" href="http://dlsw.baidu.com/sw-search-sp/soft/7b/15201/Xshell_5.0.0.37_setup.1459931786.exe">http://dlsw.baidu.com/sw-search-sp/soft/7b/15201/Xshell_5.0.0.37_setup.1459931786.exe</a></p>
+</blockquote>
+<p>在windows下的xshell中 使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@192.168.1.115 # 连接到服务器（用户名 + 账号）</span><br></pre></td></tr></table></figure>
+
+<p>如果不成功， 我们尝试<code>ping</code>一下其ip地址，看看能不能访问这个ip地址</p>
+<p>回到服务器端，使用<code>ifconfig</code>命令，你可能会发现ip地址变了</p>
+<blockquote>
+<p>解释：重启电脑或者重启虚拟机这个ip地址会发生改变的，因为我们是使用<code>桥接</code>方式的</p>
+</blockquote>
+<h1 id="ssh-config"><a href="#ssh-config" class="headerlink" title="ssh config "></a><center>ssh config </center></h1><blockquote>
+<p>config为了方便我们批量管理多个ssh</p>
+<p>config存放在 <code>~/.ssh/config</code></p>
+<p>config配置语法</p>
+</blockquote>
+<h2 id="SSH-config关键字"><a href="#SSH-config关键字" class="headerlink" title="SSH config关键字"></a>SSH config关键字</h2><table>
+<thead>
+<tr>
+<th align="center">关键字</th>
+<th align="center">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Host</td>
+<td align="center">别名</td>
+</tr>
+<tr>
+<td align="center">HostName</td>
+<td align="center">主机名</td>
+</tr>
+<tr>
+<td align="center">Port</td>
+<td align="center">端口</td>
+</tr>
+<tr>
+<td align="center">User</td>
+<td align="center">用户名</td>
+</tr>
+<tr>
+<td align="center">IdentityFile</td>
+<td align="center">密钥文件路径</td>
+</tr>
+</tbody></table>
+<h2 id="创建一个SSH连接"><a href="#创建一个SSH连接" class="headerlink" title="创建一个SSH连接"></a>创建一个SSH连接</h2><p>在家目录下新建一个文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.ssh&#x2F;</span><br><span class="line">touch config</span><br><span class="line">vim config</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/%E5%9B%BE%E7%89%8734.png"></p>
+<p>写入内容</p>
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/%E5%9B%BE%E7%89%8735.png"></p>
+<blockquote>
+<p>此时可以通过<code>Host</code>名称wlk登录，不需要写入ip和端口等等信息了</p>
+</blockquote>
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/%E5%9B%BE%E7%89%8736.png"></p>
+<blockquote>
+<p>只需要别名就可以连接成功了</p>
+<p>如果是多个用户我们可以 在写个这样的 内容 host “wuliekun” 后面一样的，那么也可以连接成功</p>
+</blockquote>
+<br>
+
+<h1 id="SSH安全免密码登录：ssh-key"><a href="#SSH安全免密码登录：ssh-key" class="headerlink" title="SSH安全免密码登录：ssh key"></a><center>SSH安全免密码登录：ssh key</center></h1><blockquote>
+<p>ssh key 使用非对称加密方法生成公钥和私钥</p>
+<p>私钥存放在本地<code>~/.ssh</code>目录</p>
+<p>公钥可以对外公开，放在服务器的<code>~/.ssh/authorized_keys</code></p>
+</blockquote>
+<h2 id="Windows平台生成ssh-key"><a href="#Windows平台生成ssh-key" class="headerlink" title="Windows平台生成ssh key"></a>Windows平台生成ssh key</h2><p>点击<code>xshell</code>菜单栏中<code>工具</code>下的<code>用户秘钥管理者</code></p>
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/%E5%9B%BE%E7%89%8737.png"></p>
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/%E5%9B%BE%E7%89%8738.png"></p>
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/39.png"></p>
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/Snipaste_2018-05-13_15-42-20.png"></p>
+<blockquote>
+<p>然后将其保存放在桌面上</p>
+</blockquote>
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/40.png"></p>
+<h2 id="Linux平台生成ssh-key"><a href="#Linux平台生成ssh-key" class="headerlink" title="Linux平台生成ssh key"></a>Linux平台生成ssh key</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">ssh-keygen -t dsa</span><br></pre></td></tr></table></figure>
+
+<p>进入到家目录下的<code>/.ssh</code></p>
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/41.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/42.png"></p>
+<p>我们使用<code>ls -al</code>在<code>/.ssh</code>目录下看看有没有新增这些文件</p>
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/43.png"></p>
+<h3 id="如何使用秘钥"><a href="#如何使用秘钥" class="headerlink" title="如何使用秘钥"></a>如何使用秘钥</h3><li>新建会话</li>
+
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/44.png"></p>
+<li>用户身份验证</li>
+
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/45.png"></p>
+<li>连接</li>
+
+<p>发现连接出错</p>
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/46.png"></p>
+<blockquote>
+<p>原因：公钥可以对外公开，放在服务器的<code>~/.ssh/authorized_keys</code></p>
+<p>而目录下却没有这个authorized_keys.</p>
+<p>所以需要创建一个</p>
+</blockquote>
+<li>创建authorized_keys</li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch authorized_keys</span><br><span class="line">vim authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>将windows下的公钥写入到<code>authorized_keys</code>中</p>
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/47.png"></p>
+<p>ok了</p>
+<h1 id="SSH安全端口"><a href="#SSH安全端口" class="headerlink" title="SSH安全端口"></a><center>SSH安全端口</center></h1><blockquote>
+<p>1:<code>端口安全</code>是指尽量避免服务器的远程连接端被不法分子知道，为此而改变默认服务端口号的操作</p>
+<p>2:如何改变ssh服务端口</p>
+<li>修改` /etc/ssh/sshd_config`配置</li>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;ssh&#x2F;sshd-config</span><br></pre></td></tr></table></figure>
+
+<li>修改文件</li>
+
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/%E5%9B%BE%E7%89%8739.png"></p>
+<li>重新启动服务</li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service sshd restart</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/%E5%9B%BE%E7%89%8740.png"></p>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2018/05/13/SSH%E5%AD%A6%E4%B9%A0/" class="leancloud-visitors view" data-flag-title="SSH学习">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2018/05/13/Linux各目录了解知多少/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/05/13/须知道的服务器Linux知识/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-05-13 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/CentOS/">CentOS<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Linux/">Linux<span>7</span></a></li> <li><a href="/tags/SSH/">SSH<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

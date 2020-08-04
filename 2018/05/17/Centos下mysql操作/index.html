@@ -1,0 +1,381 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Centos下mysql操作 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Centos下mysql操作"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Centos下mysql操作</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="Mysql安装及链接"><a href="#Mysql安装及链接" class="headerlink" title=" Mysql安装及链接"></a><center> Mysql安装及链接</center></h1><p>Centos7默认安装的是mariadb数据库，所以先将这个数据库删除</p>
+<a id="more"></a>
+
+<p><img src="/2018/05/17/Centos%E4%B8%8Bmysql%E6%93%8D%E4%BD%9C/%E5%9B%BE%E7%89%871.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum remove mariadb-libs.x86_64</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装mysql"><a href="#安装mysql" class="headerlink" title="安装mysql"></a>安装mysql</h2><table>
+<thead>
+<tr>
+<th align="center">下载mysql源</th>
+<th align="center"><a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/repo/yum">https://dev.mysql.com/downloads/repo/yum</a>,</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">安装源</td>
+<td align="center">yum localinstall mysql57-community-release-el7-8.noarch.rpm</td>
+</tr>
+<tr>
+<td align="center">安装mysql</td>
+<td align="center">yum install mysql-community-server</td>
+</tr>
+<tr>
+<td align="center">默认密码</td>
+<td align="center">cat /etc/log/mysqld.log | grep “password”</td>
+</tr>
+</tbody></table>
+<p><img src="/2018/05/17/Centos%E4%B8%8Bmysql%E6%93%8D%E4%BD%9C/%E5%9B%BE%E7%89%872.png"></p>
+<h2 id="登录mysql与密码修改"><a href="#登录mysql与密码修改" class="headerlink" title="登录mysql与密码修改"></a>登录mysql与密码修改</h2><p>登录命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br><span class="line">Enter password:</span><br></pre></td></tr></table></figure>
+
+<p>密码重置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET PASSWORD &#x3D; PASSWORD(‘123456’)；</span><br></pre></td></tr></table></figure>
+
+<p>此时会报错，主要原因是我们的密码过于简单了，没法通过。</p>
+<p><img src="/2018/05/17/Centos%E4%B8%8Bmysql%E6%93%8D%E4%BD%9C/%E5%9B%BE%E7%89%873.png"></p>
+<blockquote>
+<p>问题解决如下：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set global validate_password_policy&#x3D;0; </span><br><span class="line">set global validate_password_mixed_case_count&#x3D;2;</span><br></pre></td></tr></table></figure>
+
+<p>退出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">quit</span><br><span class="line">或者</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+<h1 id="远程登录"><a href="#远程登录" class="headerlink" title="远程登录"></a><center>远程登录</center></h1><h2 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 首先要已经登录了mysql</span><br><span class="line">show databases;</span><br><span class="line">use mysql;</span><br><span class="line">show tables;</span><br><span class="line">select * from user \G;  # \G会以人性化的方式展现数据</span><br><span class="line">select Host,User from user \G;</span><br><span class="line">update user set host &#x3D; &#39;%&#39; where Host &#x3D; &quot;localhost&quot; and User &#x3D; &quot;root&quot;;</span><br><span class="line">select Host,User from user \G;  # 再次使用这个命令会发现数据发生了变化</span><br></pre></td></tr></table></figure>
+
+<p>我把我操作的结果展示一下</p>
+<p><img src="/2018/05/17/Centos%E4%B8%8Bmysql%E6%93%8D%E4%BD%9C/%E5%9B%BE%E7%89%874.png"></p>
+<p><img src="/2018/05/17/Centos%E4%B8%8Bmysql%E6%93%8D%E4%BD%9C/%E5%9B%BE%E7%89%875.png"></p>
+<p><img src="/2018/05/17/Centos%E4%B8%8Bmysql%E6%93%8D%E4%BD%9C/%E5%9B%BE%E7%89%876.png"></p>
+<p><img src="/2018/05/17/Centos%E4%B8%8Bmysql%E6%93%8D%E4%BD%9C/%E5%9B%BE%E7%89%877.png"></p>
+<br>
+
+<h2 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 刷新权限</span><br><span class="line">flush privileges;</span><br><span class="line">或者</span><br><span class="line">sudo service mysqld restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="步骤三"><a href="#步骤三" class="headerlink" title="步骤三"></a>步骤三</h2><p>如果这个时候还是无法连接，那么可能是防火墙没有关闭，因为防火墙开启的时候，会把我们的端口屏蔽了 ，于是关闭防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> sudo service firewalld stop</span><br></pre></td></tr></table></figure>
+
+<h1 id="开启genelog"><a href="#开启genelog" class="headerlink" title="开启genelog"></a><center>开启genelog</center></h1><h2 id="设置文件位置并开启genelog"><a href="#设置文件位置并开启genelog" class="headerlink" title="设置文件位置并开启genelog"></a>设置文件位置并开启genelog</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 设置文件位置</span><br><span class="line">set global general log file&#x3D;&quot;tmp&#x2F;general.log&quot; </span><br><span class="line"># 开启general</span><br><span class="line">set global general_log&#x3D;on;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果出现无法打开文件这样的错误，一般 是权限原因</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su -root</span><br></pre></td></tr></table></figure>
+
+<p>问题就解决了</p>
+</blockquote>
+<p><img src="/2018/05/17/Centos%E4%B8%8Bmysql%E6%93%8D%E4%BD%9C/%E5%9B%BE%E7%89%878.png"></p>
+<h2 id="新建用户"><a href="#新建用户" class="headerlink" title="新建用户"></a>新建用户</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user &#39;ktt&#39;@&#39;%&#39; identified by &#39;123456&#39;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/17/Centos%E4%B8%8Bmysql%E6%93%8D%E4%BD%9C/%E5%9B%BE%E7%89%879.png"></p>
+<blockquote>
+<p>新建的用户ktt数据非常少的，如果你想展现更多的数据，需要赋予权限</p>
+</blockquote>
+<h2 id="权限赋予"><a href="#权限赋予" class="headerlink" title="权限赋予"></a>权限赋予</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to &#39;ktt&#39;@&#39;%&#39; identified by &#39;123456&#39; with grant option;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/17/Centos%E4%B8%8Bmysql%E6%93%8D%E4%BD%9C/%E5%9B%BE%E7%89%8710.png"></p>
+<p><img src="/2018/05/17/Centos%E4%B8%8Bmysql%E6%93%8D%E4%BD%9C/%E5%9B%BE%E7%89%8711.png"></p>
+<h2 id="部分权限"><a href="#部分权限" class="headerlink" title="部分权限"></a>部分权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant insert, select on *.* to &#39;ktt&#39;@&#39;%&#39; identified by &#39;123456&#39; with grant option;</span><br></pre></td></tr></table></figure>
+
+<h2 id="权限收回"><a href="#权限收回" class="headerlink" title="权限收回"></a>权限收回</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">revoke all privileges on *.* FROM ktt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="密码找回"><a href="#密码找回" class="headerlink" title="密码找回"></a>密码找回</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;my.conf  # 在这个文件里面添加安全验证跳过语句</span><br><span class="line">skip-grant-tables;</span><br><span class="line">use mysql;</span><br><span class="line">update user set authentication_string&#x3D;password(&#39;456789&#39;) where user&#x3D;&#39;root&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>重新启动mysql服务，再次登录时候返现不需要密码就可以登录了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo service mysqld restart</span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2018/05/17/Centos%E4%B8%8Bmysql%E6%93%8D%E4%BD%9C/" class="leancloud-visitors view" data-flag-title="Centos下mysql操作">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2018/05/18/阿里云域名绑定/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/05/16/Linux下python虚拟环境配置/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-05-17 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/mysql/">mysql<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/mysql/">mysql<span>1</span></a></li> <li><a href="/tags/Centos/">Centos<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

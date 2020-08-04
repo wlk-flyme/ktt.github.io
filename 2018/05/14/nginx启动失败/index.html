@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>nginx启动失败 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="nginx启动失败"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> nginx启动失败</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p><strong>个人总结一下自己在启动nginx时候出现启动失败的原因</strong></p>
+<a id="more"></a>
+
+
+
+<p>下面是我个人遇到启动失败解决的方法：</p>
+<blockquote>
+<p><strong>1：</strong>开始是因为 apache占用了端口，无法启动nginx ，但是关闭apache关闭后任然无法启动nginx（继续思考）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep httpd  #显示active</span><br><span class="line">service httpd stop   </span><br><span class="line">sudo service nginx start  # 仍然失败</span><br></pre></td></tr></table></figure>
+
+<p><strong>2：</strong>以为是防火墙的原因，关闭后任然无法解决（现实中这个常常是问题的原因）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service firewalld status  # 显示active</span><br><span class="line">servcie firewalld stop</span><br><span class="line">sudo service nginx start  # 仍然失败</span><br></pre></td></tr></table></figure>
+
+<p><strong>3：</strong>考虑到<code>配置文件</code>的问题，nginx 默认的配置文件，没有动过，但是我新增加了wlk和laravel配置文件，也许是这个问题，把这两个文件删除了，重新启动nginx，果然成功了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;nginx</span><br><span class="line">cd conf.d&#x2F;</span><br><span class="line">rm wlk.conf</span><br><span class="line">rm laravel.conf</span><br><span class="line">service nginx start</span><br><span class="line">ps -ef | grep nginx # 显示active</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p><strong>再次访问：</strong>成功</p>
+<p><img src="/2018/05/14/nginx%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/%E5%9B%BE%E7%89%871.png"></p>
+<blockquote>
+<p>记得在windows下的hosts文件中添加上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.115  laravel.imooc.test</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p><strong>重新解决一下为什么我自己写的配置文件导致启动失败，想想一下是不是配置文件内容有问题</strong></p>
+<p><img src="/2018/05/14/nginx%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/%E5%9B%BE%E7%89%872.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service nginx start</span><br></pre></td></tr></table></figure>
+
+<p>这个时候启动nginx失败了。</p>
+<blockquote>
+<p>此刻我们需要查看日志文件帮助我们解决问题</p>
+</blockquote>
+<p><img src="/2018/05/14/nginx%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/%E5%9B%BE%E7%89%873.png"></p>
+<p>图中的红色解释了原因，果然是配置文件出了问题。</p>
+<blockquote>
+<p>我们查看有哪些日志文件</p>
+</blockquote>
+<p><img src="/2018/05/14/nginx%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/%E5%9B%BE%E7%89%874.png"></p>
+<blockquote>
+<p>现在我们根据日志文件的说明进行修改,并重新启动</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim nginx.conf</span><br><span class="line">sudo servcie nginx start</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2018/05/14/nginx%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/%E5%9B%BE%E7%89%875.png"></p>
+<p><img src="/2018/05/14/nginx%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/%E5%9B%BE%E7%89%876.png"></p>
+<blockquote>
+<p>此时问题解决，也多了一个access_laravel.log在nginx下。</p>
+</blockquote>
+<p><img src="/2018/05/14/nginx%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/%E5%9B%BE%E7%89%878.png"></p>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2018/05/14/nginx%E5%90%AF%E5%8A%A8%E5%A4%B1%E8%B4%A5/" class="leancloud-visitors view" data-flag-title="nginx启动失败">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2018/05/14/阿里云ECS服务器无法通过公网ip地址访问/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/05/13/Apache基础了解/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-05-14 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Linux/">Linux<span>13</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Linux/">Linux<span>7</span></a></li> <li><a href="/tags/nginx/">nginx<span>3</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>公有ip和私有ip | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="公有ip和私有ip"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> 公有ip和私有ip</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <li>IP地址是为了区分网络中不同主机所分配的一个地址，通过IP地址可以访问到每一台主机。</li>
+
+<a id="more"></a>
+
+<li>IP地址分为`公有地址`和`私有地址`，公有地址由Internet NIC负责（比如中国互联网信息中心[http://ip.cnnic.cn/](http://link.zhihu.com/?target=http%3A//ip.cnnic.cn/)），`公有IP地址`分配给`注册并向NIC提出申请的组织机构`使用，公有地址IP可以直接访问internet，大家可以打开电脑或者手机的浏览器，登录百度，搜索“IP地址查询”，就可以看到目前电脑正在使用的公有IP地址。`私有地址`主要有`A`、`B`、`C`三类，属于局域网范畴内，也就是所谓的`内网IP`。内网IP只能在**局域网**内被访问，出了局域网是无法访问internet的，安卓4.0以上版本的用户在连上WIFI或者蜂窝数据的情况下，可以打开设定-关于设备-状态中，会看到IP地址为`192.168.x.xxx`或者`10.0.xxx.xxx`，这些IP地址都属于`私有`IP地址。</li>
+
+<li>`DHCP协议`，即**动态主机配置协议**，会通过**协议算法**分配给一台主机一个IP地址，简单说就是**动态分配**，比如我们的设备连入无线路由器，那么无线路由器通过DHCP协议就会自动给设备分配一个http://192.168.xxx.xxx的私有IP地址。**通过这个私有IP地址，路由器可以在网络层中分辨出谁是谁**。注：这里的网络层说的是OSI七层结构中的网络层。</li>
+
+<li>`NAT协议` ，也就是**网络地址转换协议**。通过这个协议，我们可以让处于内网中的`多个`设备的**内网IP**对应到`一个`**公有地址IP**上去，从而实现对internet的访问。可以说NAT协议是对目前ipv4地址日渐枯竭起到一个缓解作用。</li>
+
+<p><strong>接下来就是主题了：</strong></p>
+<li>pv4地址是很有限的，如今家家户户都拥有多台可联网设备，给每台设备都分配一个固定的公有IP地址是很不现实的。因此我们可以采用这样的办法：首先建立一个内网，这个内网可大可小，小的可以是一台我们家里常用的无线路由器所形成的局域网，大了可以是某个片区内的“局域网”（比如多个住宅小区形成的一个内网）。对于这样的内网，我们并不需要分配给其稀缺的公有地址IP，只需要用私有地址IP就行了（比如上面提到的[http://10.0.xxx.xxx](http://link.zhihu.com/?target=http%3A//10.0.xxx.xxx)），而一些网关设备，或者说运营商的设备由于数量并不是太多，因此可以分配一个公网IP地址，然后我们电脑所使用的内网IP地址通过NAT协议套用上一个公网地址IP，这样就可以实现一个稀缺的公网IP地址+多个内网IP地址来访问Internet了。其中DHCP协议则负责内网和公有IP地址的分配。 </li>
+
+<li>  那么从物理链路拓扑上讲，交换机和路由器又有什么区别的？</li>
+
+
+
+<p>交换机工作于<code>数据链路层</code>，用来隔离冲突域，连接的所有设备同属于一个广播域（子网），负责子网内部通信。<br>路由器工作于<code>网络层</code>，用来隔离广播域（子网），连接的设备分属不同子网，工作范围是多个子网之间，负责网络与网络之间通信。<br>-—————————————————–<br>举个例子：<br>家用宽带路由器，其实是交换机和路由器的结合体，有两个网络层接口，一个连接运营商网络，物理上也就是wan口，IP地址由运营商分配。另一个连接家庭网络，没有物理接口，IP地址由自己通过路由器管理界面配置，一般默认是192.168.1.1<br>那另外几个Lan口干什么用的？这就是交换机接口，和家庭网络接口相连，负责家庭网络内部通信。</p>
+<p>私有网段,有A,B,C三个地址段：</p>
+<p>10.0.0.0–10.255.255.255</p>
+<p>172.16.0.0–172.31.255.255<br>192.168.0.0–192.168.255.255</p>
+<li></li>
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2018/05/13/%E5%85%AC%E6%9C%89ip%E5%92%8C%E7%A7%81%E6%9C%89ip/" class="leancloud-visitors view" data-flag-title="公有ip和私有ip">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2018/05/13/CentOS-Nginx的基本操作/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/05/12/Python中的元类-MetaClass/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-05-13 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/IP/">IP<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/网络/">网络<span>1</span></a></li> <li><a href="/tags/IP/">IP<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

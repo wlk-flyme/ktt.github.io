@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>python虚拟环境 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="python虚拟环境"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> python虚拟环境</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>当我们用python开发应用程序时，可能每次开发需要的pyhon版本不同以及不同的库，用来虚拟环境可以隔开这些版本，每个版本的环境不相互冲突</p>
+<a id="more"></a>
+
+<h1 id="virtualenv的安装和使用"><a href="#virtualenv的安装和使用" class="headerlink" title="virtualenv的安装和使用"></a>virtualenv的安装和使用</h1><h2 id="一：查看你的系统中是否安装了virtualenv"><a href="#一：查看你的系统中是否安装了virtualenv" class="headerlink" title="一：查看你的系统中是否安装了virtualenv"></a>一：查看你的系统中是否安装了virtualenv</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv  --verison</span><br></pre></td></tr></table></figure>
+
+<h2 id="二：-虚拟环境的安装："><a href="#二：-虚拟环境的安装：" class="headerlink" title="二： 虚拟环境的安装："></a>二： 虚拟环境的安装：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install virtualenv</span><br></pre></td></tr></table></figure>
+
+<h2 id="三：虚拟环境的创建"><a href="#三：虚拟环境的创建" class="headerlink" title="三：虚拟环境的创建"></a>三：虚拟环境的创建</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtualenv venv（venv是虚拟环境的名称）      会在当前所在的目录进行创建</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/1.png"></p>
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/2.png"></p>
+<h2 id="四：进入虚拟环境"><a href="#四：进入虚拟环境" class="headerlink" title="四：进入虚拟环境"></a>四：进入虚拟环境</h2><p>进入虚拟环境目录，然后执行启动文件<code>activate.bat</code></p>
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/3.png"></p>
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/4.png"></p>
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/5.png"></p>
+<h2 id="五：退出虚拟环境"><a href="#五：退出虚拟环境" class="headerlink" title="五：退出虚拟环境"></a>五：退出虚拟环境</h2><p>使用的<code>deactivate.bat</code>来退出虚拟环境 </p>
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/7.png"></p>
+<h2 id="六：如何穿件制定版本的虚拟环境？"><a href="#六：如何穿件制定版本的虚拟环境？" class="headerlink" title="六：如何穿件制定版本的虚拟环境？"></a>六：如何穿件制定版本的虚拟环境？</h2><p>笔者系统安装了两个不同版本的Python，刚才笔者安装的是默认的版本3.4，现在来安装指定版本3.6 </p>
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/8.png"></p>
+<p>使用命令<code>  virtualenv -p Python版本的路径 虚拟环境名称</code>，示例</p>
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/9.png"></p>
+<p>我们来验证一下是否真的是版本3.6 </p>
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/10e.png"></p>
+<h2 id="七：删除虚拟环境："><a href="#七：删除虚拟环境：" class="headerlink" title="七：删除虚拟环境："></a>七：删除虚拟环境：</h2><p>直接删除目录即可：<code>rmvirtualenv  环境名称 </code></p>
+<p>**==思考：==**我们发现每次运行虚拟环境都要，cd进入虚拟环境目录，然后activate启动虚拟环境，还是比较麻烦的，有没有一种简化的方法呢？答案是有的 </p>
+<h1 id="安装virtualenvwrapper"><a href="#安装virtualenvwrapper" class="headerlink" title="安装virtualenvwrapper"></a>安装virtualenvwrapper</h1><h2 id="一：windows下的安装"><a href="#一：windows下的安装" class="headerlink" title="一：windows下的安装"></a>一：windows下的安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install virtualenvwrapper-win  (注意后面有-win，如果是pip install virtualenvwrapper在windows是无法使用的）</span><br></pre></td></tr></table></figure>
+
+<h2 id="二：创建虚拟环境"><a href="#二：创建虚拟环境" class="headerlink" title="二：创建虚拟环境"></a>二：创建虚拟环境</h2><p>默认创建的虚拟环境位于：C：\Users\username\env,可以通过work_home来定制通过计算机–&gt;属性–&gt;高级系统设置–&gt;环境变量–&gt;在系统变量中新建“变量名”：WORKON_HOME,变量值：“你自定义的路径”。示例 </p>
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/11.png"></p>
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/12.png"></p>
+<p> 执行命令创建第一个虚拟环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv 环境名称</span><br></pre></td></tr></table></figure>
+
+<p>创建后，会自动激活环境，注意看Shell提示符的改变: </p>
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/13.png"></p>
+<h2 id="三：通过virtualenvwrapper安装指定版本的python命令："><a href="#三：通过virtualenvwrapper安装指定版本的python命令：" class="headerlink" title="三：通过virtualenvwrapper安装指定版本的python命令："></a>三：通过virtualenvwrapper安装指定版本的python命令：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv --python&#x3D;C:\Python36\python.exe（Python路径） test（虚拟环境名称） </span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/14.png"></p>
+<h2 id="四：退出虚拟环境"><a href="#四：退出虚拟环境" class="headerlink" title="四：退出虚拟环境"></a>四：退出虚拟环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deactivate </span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/15.png"></p>
+<h2 id="五：列出所有虚拟环境"><a href="#五：列出所有虚拟环境" class="headerlink" title="五：列出所有虚拟环境"></a>五：列出所有虚拟环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsvirtualenv </span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/16.png"></p>
+<h2 id="六：快速进入虚拟环境"><a href="#六：快速进入虚拟环境" class="headerlink" title="六：快速进入虚拟环境"></a>六：快速进入虚拟环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">workon  虚拟环境名称 </span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/17.png"></p>
+<h2 id="七：列出安装包以及安装包详细信息"><a href="#七：列出安装包以及安装包详细信息" class="headerlink" title="七：列出安装包以及安装包详细信息"></a>七：列出安装包以及安装包详细信息</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip list</span><br><span class="line">pip show 安装包名称 </span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/18.png"></p>
+<h2 id="八：删除虚拟环境"><a href="#八：删除虚拟环境" class="headerlink" title="八：删除虚拟环境"></a>八：删除虚拟环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rmvirtualenv 虚拟环境名称 </span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/19.png"></p>
+<h1 id="查看Python以及安装包库的安装路径"><a href="#查看Python以及安装包库的安装路径" class="headerlink" title="查看Python以及安装包库的安装路径"></a>查看Python以及安装包库的安装路径</h1><p>当我们需要查看Python 安装位置或者第三方的位置的时候，记不清原来安装的位置，可以使用下面的命令来查看 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> 进入python            </span><br><span class="line"> import sys             </span><br><span class="line"> sys.path </span><br></pre></td></tr></table></figure>
+
+<p>则会打印出你当前版本安装包的位置        </p>
+<p>例如                </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import sys                 </span><br><span class="line">module &#x3D; sys.path                 </span><br><span class="line">for i in module:                         </span><br><span class="line">    print(i) </span><br></pre></td></tr></table></figure>
+
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2018/05/09/python%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/" class="leancloud-visitors view" data-flag-title="python虚拟环境">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2018/05/09/Python开发错误集/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/05/09/hexo自定义/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-05-09 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Python/">Python<span>5</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Python/">Python<span>5</span></a></li> <li><a href="/tags/虚拟环境/">虚拟环境<span>2</span></a></li> <li><a href="/tags/virtualenv/">virtualenv<span>1</span></a></li> <li><a href="/tags/virtualenvwrapper/">virtualenvwrapper<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

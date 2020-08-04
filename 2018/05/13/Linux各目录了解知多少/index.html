@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Linux各目录了解知多少 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Linux各目录了解知多少"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Linux各目录了解知多少</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="常见目录说明"><a href="#常见目录说明" class="headerlink" title="常见目录说明"></a><center>常见目录说明</center></h1><a id="more"></a>
+
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th align="center">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/bin</td>
+<td align="center">存放二进制可执行文件(<code>ls,cat,mkdir</code>等)，常用命令一般都在这里。</td>
+</tr>
+<tr>
+<td>/etc</td>
+<td align="center">存放系统管理和配置文件</td>
+</tr>
+<tr>
+<td>/home</td>
+<td align="center">存放所有用户文件的根目录，是用户主目录的基点，比如用户user 的主目录就是<code>/home/user</code>，可以用<code>~user</code>表示</td>
+</tr>
+<tr>
+<td>/usr</td>
+<td align="center">用于存放系统应用程序，比较重要的目录<code>/usr/local</code> 本地系统管理员软件安装目录（安装系统级的应用）。这是最庞大的目录，要用到的应用程序和文件几乎都在这个目录。    /usr/bin:众多的应用程序                                                             /usr/sbin:超级用户的一些管理程序                                         /usr/man:帮助文档                                                                    /usr/src:源代码，linux内核的源代码就放在/usr/src/linux里  /usr/include ：linux下开发和编译应用程序所需要的头文件  / usr/local/bin: 本地增加的命令                                                   /usr/local/lib: 本地增加的库</td>
+</tr>
+<tr>
+<td>/opt</td>
+<td align="center">额外安装的可选应用程序包所放置的位置。一般情况下，我们可以把tomcat等都安装到这里。</td>
+</tr>
+<tr>
+<td>/proc</td>
+<td align="center">虚拟文件系统目录，是系统内存的映射。可直接访问这个目录来获取系统信息。</td>
+</tr>
+<tr>
+<td>/sbin</td>
+<td align="center">存放二进制可执行文件，只有<code>root</code>才能访问。这里存放的是系统管理员使用的系统级别的管理命令和程序。如ifconfig等</td>
+</tr>
+<tr>
+<td>/dev</td>
+<td align="center">用于存放设备文件。</td>
+</tr>
+<tr>
+<td>/mnt</td>
+<td align="center">系统管理员安装临时文件系统的安装点，系统提供这个目录是让用户临时挂载其他的文件系统。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">/lib</th>
+<th align="center">存放跟文件系统中的程序运行所需要的共享库及内核模块。共享库又叫动态链接共享库，作用类似windows里的.dll文件，存放了根文件系统程序运行所需的共享文件。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">/tmp</td>
+<td align="center">用于存放各种临时文件，是公用的临时文件存储点。</td>
+</tr>
+<tr>
+<td align="center">/lost+found</td>
+<td align="center">这个目录平时是空的，系统非正常关机而留下“无家可归”的文件（windows下叫什么.chk）就在这里</td>
+</tr>
+<tr>
+<td align="center">/var</td>
+<td align="center">用于存放运行时需要改变数据的文件，也是某些大文件的溢出区，比方说各种服务的日志文件（系统启动日志等。）等。</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h1 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a><center>详细说明</center></h1><h2 id="etc文件系统"><a href="#etc文件系统" class="headerlink" title="/etc文件系统"></a>/etc文件系统</h2><p>/etc 目录包含各种系统配置文件，下面说明其中的一些。其他的你应该知道它们属于哪个程序，并阅读该程序的m a n页。许多网络配置文件也在/etc 中。 </p>
+<p>1. <code>/etc/rc</code>或<code>/etc/rc.d</code>或<code>/etc/rc?.d </code> 启动、或改变运行级时运行的脚本或脚本的目录。<br>2. <code>/etc/passwd</code>  用户数据库，其中的域给出了用户名、真实姓名、用户起始目录、加密口令和用户的其  他信息。<br>3. <code>/etc/fdprm</code>  软盘参数表，用以说明不同的软盘格式。可用<code>setfdprm </code>进行设置。更多的信息见s e t f d p r m  的帮助页。<br>4. <code>/etc/fstab </code> 指定启动时需要自动安装的文件系统列表。也包括用<code>swapon -a</code>启用的s w a p区的信息。<br>5. <code>/etc/group  </code>类似/etc/passwd ，但说明的不是用户信息而是组的信息。包括组的各种数据。<br>6. <code>/etc/inittab</code>:  init 的配置文件。<br>7. <code>/etc/issue</code>  包括用户在登录提示符前的输出信息。通常包括系统的一段短说明或欢迎信息。具体内容由系统管理员确定。<br>8. <code>/etc/magic</code> : “f i l e”的配置文件。包含不同文件格式的说明，“f i l e”基于它猜测文件类型。<br>9. <code>/etc/motd</code>:  m o t d是message of the day的缩写，用户成功登录后自动输出。内容由系统管理员确定。常用于通告信息，如计划关机时间的警告等。<br>10. <code>/etc/mtab </code>: 当前安装的文件系统列表。由脚本( s c r i t p )初始化，并由<code>mount</code> 命令自动更新。当需要一个当前安装的文件系统的列表时使用(例如df 命令)。<br>11. <code>/etc/shadow</code> : 在安装了影子( s h a d o w )口令软件的系统上的影子口令文件。影子口令文件将/ e t c / p a s s wd文件中的加密口令移动到/ e t c / s h a d o w中，而后者只对超级用户( r o o t)可读。这使破译口令更困难，以此增加系统的安全性。<br>12. <code>/etc/login.defs</code>：  l o g i n命令的配置文件。<br>13. <code>/etc/printcap</code>  :类似/etc/termcap ，但针对打印机。语法不同。<br>14. <code>/etc/profile </code>、<code>/ e t c / c s h . l o g i n</code>、<code>/etc/csh.cshrc  </code>登录或启动时b o u r n e或c shells执行的文件。这允许系统管理员为所有用户建立全局缺省环境。<br>15. <code>/etc/securetty </code> :确认安全终端，即哪个终端允许超级用户( r o o t )登录。一般只列出虚拟控制台，这样就不可能(至少很困难)通过调制解调器( m o d e m )或网络闯入系统并得到超级用户特权。<br>16. <code>/etc/shells </code> :列出可以使用的s h e l l。chsh 命令允许用户在本文件指定范围内改变登录的s h e l l。提供一台机器f t p服务的服务进程ftpd 检查用户s h e l l是否列在/etc/shells 文件中，如果不是，将不允许该用户登录。<br>17. <code>/etc/termcap</code> : 终端性能数据库。说明不同的终端用什么“转义序列”控制。写程序时不直接输出转义序列(这样只能工作于特定品牌的终端)，而是从/etc/termcap 中查找要做的工作的正确序列。  这样，多数的程序可以在多数终端上运行。 </p>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2018/05/13/Linux%E5%90%84%E7%9B%AE%E5%BD%95%E4%BA%86%E8%A7%A3%E7%9F%A5%E5%A4%9A%E5%B0%91/" class="leancloud-visitors view" data-flag-title="Linux各目录了解知多少">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2018/05/13/Apache基础了解/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/05/13/SSH学习/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-05-13 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Linux/">Linux<span>13</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Linux目录结构/">Linux目录结构<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

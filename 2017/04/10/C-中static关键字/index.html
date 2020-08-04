@@ -1,0 +1,406 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>C++中static关键字 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="C++中static关键字"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> C++中static关键字</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="C-的static有两种用法："><a href="#C-的static有两种用法：" class="headerlink" title="C++的static有两种用法："></a>C++的static有两种用法：</h2><p>面向过程程序设计中的static和面向对象程序设计中的static。前者应用于普通变量和函数，不涉及类；后者主要说明static在类中的作用<a id="more"></a></p>
+<h2 id="static的内部机制："><a href="#static的内部机制：" class="headerlink" title="static的内部机制："></a>static的内部机制：</h2><p>​     静态数据成员要在程序一开始运行时就必须存在。因为函数在程序运行中被调用，所以静态数据成员不能在任何函数内分配空间和初始化。</p>
+<pre><code> 这样，它的空间分配有三个可能的地方，`一`是作为类的外部接口的头文件，那里有类声明；`二`是类定义的内部实现，那里有类的成员函数定义；`三`是应用程序的main（）函数前的全局数据声明和定义处。</code></pre>
+<p>​    静态数据成员要实际地分配空间，故不能在类的声明中定义（只能声明数据成员）。<code>类声明只声明一个类的“尺寸和规格”</code>，<code>并不进行实际的内存分配</code>，所以在类声明中写成定义是错误的。它也不能在头文件中类声明的外部定义，因为那会造成在多个使用该类的源文件中，对其重复定义。</p>
+<p>​    static被引入以告知编译器，将变量存储在程序的<code>静态存储区</code>而非栈上空间，静态数据成员按定义出现的<code>先后顺序依次初始化</code>，注意静态成员嵌套时，要<code>保证所嵌套的成员已经初始化</code>了。消除时的顺序是初始化的<code>反顺序</code>。</p>
+<h1 id="1-面向过程设计中的static"><a href="#1-面向过程设计中的static" class="headerlink" title="1  面向过程设计中的static"></a>1  面向过程设计中的static</h1><h2 id="1-1-静态全局变量"><a href="#1-1-静态全局变量" class="headerlink" title="1.1  静态全局变量"></a>1.1  静态全局变量</h2><p>​    在全局变量前，加上关键字static，该变量就被定义成为一个静态全局变量。我们先举一个静态全局变量的例子，如下：</p>
+<p> <img src="/2017/04/10/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97%5C%E9%9D%99%E6%80%81%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F.png" alt="静态全局变量"></p>
+<h3 id="静态全局变量有如下特点："><a href="#静态全局变量有如下特点：" class="headerlink" title="静态全局变量有如下特点："></a>静态全局变量有如下特点：</h3><ul>
+<li>1.该变量在全局数据区分配内存； </li>
+<li>2.未经初始化的静态全局变量会被程序自动初始化为0（自动变量的值是随机的，除非它被显式初始化），如下图所示：</li>
+</ul>
+<p><img src="/2017/04/10/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97%5C%E9%9D%99%E6%80%81%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E4%B8%8D%E5%88%9D%E5%A7%8B%E5%8C%96.png" alt="静态全局变量不初始化"></p>
+<ul>
+<li>3.静态全局变量在声明它的整个文件都是可见的，而在文件之外是不可见的；</li>
+</ul>
+<p>​    静态变量都在全局数据区分配内存，包括后面将要提到的静态局部变量。对于一个完整的程序，在内存中的分布情况如下：</p>
+<p><code> 代码区</code> ：</p>
+<p><code>全局数据区（静态区）</code>：全局变量和静态变量的存储是放在一块的，初始化的全局变量和静态变量在一块区域，未初始化的全局变量和未初始化的静态变量在相邻的另一块区域。程序结束释放。</p>
+<p><code>堆区</code>：程序员分配并释放的区域，像malloc(c),new(c++)</p>
+<p><code>栈区</code>：由编译器自动分配释放，像局部变量，函数参数，都是在栈区。会随着作用于退出而释放空间。</p>
+<h3 id="定义静态全局变量还有以下好处："><a href="#定义静态全局变量还有以下好处：" class="headerlink" title="定义静态全局变量还有以下好处："></a>定义静态全局变量还有以下好处：</h3><ul>
+<li>1.静态全局变量不能被其它文件所用；</li>
+<li>2.其它文件中可以定义相同名字的变量，不会发生冲突；  </li>
+</ul>
+<h2 id="1-2-静态局部变量"><a href="#1-2-静态局部变量" class="headerlink" title="1.2  静态局部变量"></a>1.2  静态局部变量</h2><p>在局部变量前，加上关键字static，该变量就被定义成为一个静态局部变量。 我们先举一个静态局部变量的例子，如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">void fn();</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    fn();</span><br><span class="line">    fn();</span><br><span class="line">    fn();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void fn() &#123;</span><br><span class="line">    static int n &#x3D; 10;</span><br><span class="line">    n++;</span><br><span class="line">    cout &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> <img src="/2017/04/10/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97%5C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F.png" alt="局部变量"></p>
+<p>​    通常，在函数体内定义了一个变量，每当程序运行到该语句时都会给该局部变量分配<code>栈内存</code>。但随着系统**<em>退出函数体，系统就会收回栈内存**</em>，局部变量也相应失效。但有时候我们<strong>想要在两次调用之间对变量的值进行保存</strong>。通常的想法是：<code>定义一个全局变量去实现</code>。但是这样一来，变量就不在属于函数体了，不再受函数的控制，给程序的维护带来不便。</p>
+<p>​    <strong><code>然而静态局部变量正好解决了 这个问题</code>**。静态局部变量保存在<code>全局数据区</code>,而不是保存栈中（前面说过：</strong>栈内的一般会随着函数的退出而释放空间**），<code>每次的值保持到下一次调用</code>（这是我们需要掌握的），直到下次赋新值。</p>
+<h3 id="静态局部变量有以下的特点："><a href="#静态局部变量有以下的特点：" class="headerlink" title="静态局部变量有以下的特点："></a>静态局部变量有以下的特点：</h3><ul>
+<li>1.该变量在全局数据区分配内存；</li>
+<li>2.静态局部变量在程序执行到该对象的声明处时被首次初始化，即<strong>以后的函数调用不再进行初始化</strong>，也就是你第二次调用的时候，不会继续初始化，而会直接跳过 </li>
+<li>3.静态局部变量一般在声明处初始化，如果没有显式初始化，会被程序自动初始化为0（如下图所展示）；</li>
+<li>4.它始终驻留在全局数据区，<strong>直到程序运行结束</strong>。但<strong>其作用域为局部作用域</strong>，当定义它的函数或语句块结束时，其作用域随之结束；</li>
+</ul>
+<h2 id="1-3-静态函数"><a href="#1-3-静态函数" class="headerlink" title="1.3    静态函数"></a>1.3    静态函数</h2><p>​    在函数的返回类型前加上static关键字,函数即被定义为静态函数。静态函数与普通函数不同，它只能在声明它的文件当中可见，不能被其它文件使用。<br>静态函数的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream.h&gt;</span><br><span class="line">static void fn();&#x2F;&#x2F;声明静态函数</span><br><span class="line">void main()</span><br><span class="line">&#123;</span><br><span class="line"> 　　fn();</span><br><span class="line">&#125;</span><br><span class="line">void fn()&#x2F;&#x2F;定义静态函数</span><br><span class="line">&#123;</span><br><span class="line"> 　　int n&#x3D;10;</span><br><span class="line"> 　　cout&lt;&lt;n&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义静态函数的好处："><a href="#定义静态函数的好处：" class="headerlink" title="定义静态函数的好处："></a>定义静态函数的好处：</h3><ul>
+<li>1.静态函数不能被其它文件所用； </li>
+</ul>
+<ul>
+<li>2.其它文件中可以定义相同名字的函数，不会发生冲突；</li>
+</ul>
+<h1 id="二：面向对象的static关键（类中的static关键字）"><a href="#二：面向对象的static关键（类中的static关键字）" class="headerlink" title="二：面向对象的static关键（类中的static关键字）"></a>二：面向对象的static关键（类中的static关键字）</h1><h2 id="2-1静态数据成员"><a href="#2-1静态数据成员" class="headerlink" title="2.1静态数据成员"></a>2.1静态数据成员</h2><p>在类内数据成员的声明前加上关键字static，该数据成员就是类内的静态数据成员。先举一个静态数据成员的例子。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">class Myclass &#123;</span><br><span class="line">public:</span><br><span class="line">    Myclass(int a, int b, int c);</span><br><span class="line">    void GetSum();</span><br><span class="line">private:</span><br><span class="line">    int a, b, c;</span><br><span class="line">    static int Sum;&#x2F;&#x2F;声明一个静态数据成员</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int Myclass::Sum &#x3D; 0;&#x2F;&#x2F;定义并初始化静态数据成员</span><br><span class="line"></span><br><span class="line">Myclass::Myclass(int a, int b, int c) &#123;</span><br><span class="line">    this-&gt;a &#x3D; a;</span><br><span class="line">    this-&gt;b &#x3D; b;</span><br><span class="line">    this-&gt;c &#x3D; c;</span><br><span class="line">    Sum+&#x3D; a + b + c;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Myclass::GetSum() &#123;</span><br><span class="line">    cout &lt;&lt; &quot;Sum&#x3D;&quot; &lt;&lt; Sum &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    Myclass M(1, 2, 3);</span><br><span class="line">    M.GetSum();</span><br><span class="line">    Myclass N(4, 5, 6);</span><br><span class="line">    N.GetSum();</span><br><span class="line">    M.GetSum();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​                    给出运行的截图</p>
+<p> <img src="/2017/04/10/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97%5CC++%E9%9D%99%E6%80%81%E6%95%B0%E6%8D%AE%E6%88%90%E5%91%98.png" alt="C++静态数据成员"></p>
+<hr>
+<h3 id="可以看出，静态数据成员有以下特点："><a href="#可以看出，静态数据成员有以下特点：" class="headerlink" title="可以看出，静态数据成员有以下特点："></a>可以看出，静态数据成员有以下特点：</h3><ul>
+<li><p><strong>1</strong>.对于<strong>非静态数据成员，每个类对象都有自己的拷贝</strong>。而静态数据成员被当作是类的成员。无论这个类的对象被定义了多少个，<strong>静态数据成员在程序中也只有一份拷贝</strong>，由该类型的所有对象共享访问。也就是说，静态数据成员是该类的所有对象所共有的。对该类的多个对象来说，静态数据成员只分配一次内存，供所有对象共用。所以，静态数据成员的值对每个对象都是一样的，它的值可以更新； </p>
+</li>
+<li><p>**2.**静态数据成员存储在全局数据区。静态数据成员定义时要分配空间，所以不能在类声明中定义。在上述中，语句int Myclass::Sum=0;是定义静态数据成员； </p>
+<ul>
+<li><p><code>注意：</code>由于静态成员声明于类中，操作于其外，所以对其取地址操作，就多少有些特殊，变量地址是指向其数据类型的指针 ，函数地址类型是一个“nonmember函数指针”。</p>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p><strong>3</strong>.静态数据成员和普通数据成员一样遵从public,protected,private访问规则； </p>
+</li>
+<li><p><strong>4.**因为静态数据成员在全局数据区分配内存，属于本类的所有对象</strong>共享<strong>，所以，它</strong>不属于特定的类对象**，在没有产生类对象时其作用域就可见，即在<code>没有产生类的实例时，我们就可以操作它</code>； </p>
+</li>
+<li><p>**5.**静态数据成员初始化与一般数据成员初始化不同。静态数据成员初始化的<code>格式为</code>：</p>
+<p>静态数据成员初始化与一般数据成员初始化不同。静态数据成员初始化的格式为：<br><code>＜数据类型＞＜类名＞::＜静态数据成员名＞=＜值＞  </code>如果静态数据成员的访问权限允许的话（即public的成员），可在程序中，按上述格式来引用静态数据成员 ； </p>
+<p>调用静态成员函数，可以用成员访问操作符(.)和(-&gt;)为一个类的对象或指向类对象的指针调用静态成员函数,也可以用类名::函数名调用(因为他本来就是属于类的，用类名调用很正常)</p>
+<p>​</p>
+<ul>
+<li><p><strong>6.</strong> 静态数据成员主要用在各个对象都有相同的某项属性的时候。比如对于一个存款类，每个实例的利息都是相同的。所以，应该把利息设为存款类的静态数据成员。这有两个好处，第一，不管定义多少个存款类对象，利息数据成员都共享分配在全局数据区的内存，所以节省存储空间。第二，一旦利息需要改变时，只要改变一次，则所有存款类对象的利息全改变过来了；的 </p>
+<ul>
+<li><p>**7.**同全局变量相比，使用静态数据成员有两个优势： </p>
+<p>（1） 静态数据成员没有进入程序的全局名字空间，因此不存在与程序中其它全局名字冲突的可能性；<br>（2）可以实现信息隐藏。静态数据成员可以是private成员，而全局变量不能；</p>
+<p>​</p>
+<h2 id="2-2-静态成员函数"><a href="#2-2-静态成员函数" class="headerlink" title="2.2 静态成员函数"></a>2.2 静态成员函数</h2><p>​    与静态数据成员一样，我们也可以创建一个静态成员函数，*<strong><u>它为类的全部服务而不是为某一个类的具体对象服务</u>*<strong>。静态成员函数与静态数据成员一样，都是类的</strong>内部实现<strong>，属于类定义的一部分。</strong><u>普通的成员函数一般都隐含了一个this指针</u><strong>，this指针指向类的对象本身，因为普通成员函数总是具体的属于某个类的具体对象的。通常情况下，this是</strong>缺省*<em>的。如函数fn()实际上是this-&gt;fn()。但是与普通函数相比，</em></strong><u>静态成员函数由于不是与任何的对象相联系，因此它不具有this指针</u>***。从这个意义上讲，它无法访问属于类对象的非静态数据成员，也无法访问非静态成员函数，它只能调用其余的静态成员函数（<code>静态成员函数不能访问非静态(包括成员函数和数据成员)，但是非静态可以访问静态.因为静态是属于类的，它是不知道你创建了10个还是100个对象</code>，所以它对你对象的函数或者数据是一无所知的，所以它没办法调用，而反过来，<code>你创建的对象是对类一清二楚的(不然你怎么从它那里实例化呢)，所以你是可以调用类函数和类成员的</code>，就像不管是不是static，都可以调用static的变量一样）。下面举个静态成员函数的例子。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">class Myclass &#123;</span><br><span class="line">public:</span><br><span class="line">    Myclass(int a, int b, int c);</span><br><span class="line">    static void GetSum();</span><br><span class="line">private:</span><br><span class="line">    int a, b, c;</span><br><span class="line">    static int Sum;&#x2F;&#x2F;声明一个静态数据成员</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int Myclass::Sum &#x3D; 0;&#x2F;&#x2F;定义并初始化静态数据成员</span><br><span class="line"></span><br><span class="line">Myclass::Myclass(int a, int b, int c) &#123;</span><br><span class="line">    this-&gt;a &#x3D; a;</span><br><span class="line">    this-&gt;b &#x3D; b;</span><br><span class="line">    this-&gt;c &#x3D; c;</span><br><span class="line">    Sum+&#x3D; a + b + c;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Myclass::GetSum() &#123;</span><br><span class="line">    cout &lt;&lt; &quot;Sum&#x3D;&quot; &lt;&lt; Sum &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">    Myclass M(1, 2, 3);</span><br><span class="line">    M.GetSum();</span><br><span class="line">    Myclass N(4, 5, 6);</span><br><span class="line">    N.GetSum();</span><br><span class="line">    Myclass::GetSum();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> <img src="/2017/04/10/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97%5CC++%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0.png" alt="C++静态函数"></p>
+<h3 id="关于静态成员变量，可以总结为以下几点："><a href="#关于静态成员变量，可以总结为以下几点：" class="headerlink" title="关于静态成员变量，可以总结为以下几点："></a>关于静态成员变量，可以总结为以下几点：</h3><ul>
+<li><p>1.出现在类体外的函数定义不能指定关键字static</p>
+</li>
+<li><p>2.静态成员之间可以互相访问，包括静态成员函数访问静态数据成员和访问静态成员函数</p>
+</li>
+<li><p>3.非静态成员函数可以任意地访问静态成员函数和静态数据成员</p>
+</li>
+<li><p>4.静态成员函数不能访问非静态成员函数和非静态数据成员</p>
+</li>
+<li><p>5.由于没有this指针的额外开销，因此静态成员函数与类的全局函数相比速度上会有少许的增长（这个我下面会用例子来说明）</p>
+<p><code>在这里补充一点</code>：由于静态成员函数没有this指针，所以就差不多等同于nonmember函数，结果就产生了一个意想不到的好处：成为一个callback函数，使得我们得以将C++和C-based X Window系统结合，同时也成功的应用于线程函数身上。</p>
+</li>
+<li><p>6.静态成员函数，可以用成员访问操作符(.)和（-&gt;）为一个类的对象或指向类对象的指针调用静态成员函数，也可以直接使用如下格式：</p>
+<p>&lt;类名&gt;::&lt;静态成员函数名&gt;(&lt;参数表&gt;)调用类的静态成员函数</p>
+</li>
+</ul>
+<p>下面的这个例子用来说明上述中的第五点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;注意这两个头文件不要顺序颠倒，不然无法编译过去，你可以自己试一试</span><br><span class="line">#include &quot;stdafx.h&quot;</span><br><span class="line">#include&lt;iostream&gt; </span><br><span class="line">using namespace std;</span><br><span class="line">class Rectangle</span><br><span class="line">&#123;</span><br><span class="line">private:</span><br><span class="line">    int m_w, m_h;</span><br><span class="line">    static int s_sum;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    Rectangle(int w, int h)</span><br><span class="line">    &#123;</span><br><span class="line">        this-&gt;m_w &#x3D; w;</span><br><span class="line">        this-&gt;m_h &#x3D; h;</span><br><span class="line">        s_sum +&#x3D; (this-&gt;m_w * this-&gt;m_h);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">void GetSum()</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; &quot;sum &#x3D; &quot; &lt;&lt; s_sum &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int Rectangle::s_sum &#x3D; 0;  &#x2F;&#x2F;初始化  </span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    cout &lt;&lt; &quot;sizeof(Rectangle)&#x3D;&quot; &lt;&lt; sizeof(Rectangle) &lt;&lt; endl;</span><br><span class="line">    Rectangle *rect1 &#x3D; new Rectangle(3, 4);</span><br><span class="line">    rect1-&gt;GetSum();</span><br><span class="line">    cout &lt;&lt; &quot;sizeof(rect1)&#x3D;&quot; &lt;&lt; sizeof(*rect1) &lt;&lt; endl;</span><br><span class="line">    Rectangle rect2(2, 3);</span><br><span class="line">    rect2.GetSum();</span><br><span class="line">    cout &lt;&lt; &quot;sizeof(rect2)&#x3D;&quot; &lt;&lt; sizeof(rect2) &lt;&lt; endl;</span><br><span class="line">    system(&quot;pause&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> <img src="/2017/04/10/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97%5C%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E8%8A%82%E7%BA%A6%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4.png" alt="静态变量节约内存空间"></p>
+<p>由图可知：sizeof(Rectangle)=8bytes=sizeof(m_w)+sizeof(m_h)。也就是说 <code>static 并不占用Rectangle的内存空间</code>。</p>
+<p>那么static在哪里分配内存的呢？是的，<code>全局数据区(静态区)</code>。</p>
+<p>再看看GetSum()，第一次12=3<em>4，第二次18=12+2</em>3。由此可得，static只会被初始化一次，于实例无关。</p>
+<h3 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h3><p>对于非静态数据成员，每个类对象(实例)都有自己的拷贝。而静态数据成员被当作是类的成员，由该类型的所有对象共享访问,对该类的多个对象来说，静态数据成员只分配一次内存。</p>
+<p>静态数据成员存储在全局数据区。<code>静态数据成员定义时要分配空间</code>，所以不能在类声明中定义。</p>
+<p>也就是说，你每new一个Rectangle，并不会为static int s_sum的构建一份内存拷贝，它是不管你new了多少Rectangle的实例，因为它<code>只与类Rectangle挂钩</code>，而跟你每一个Rectangle的对象没关系。</p>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2017/04/10/C-%E4%B8%ADstatic%E5%85%B3%E9%94%AE%E5%AD%97/" class="leancloud-visitors view" data-flag-title="C++中static关键字">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2017/04/11/Java中main中的static/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2017/04/05/初识指针/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-04-10 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/static/">static<span>3</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/C/">C++<span>6</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

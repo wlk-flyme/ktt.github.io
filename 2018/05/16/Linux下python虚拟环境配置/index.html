@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Linux下python虚拟环境配置 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Linux下python虚拟环境配置"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Linux下python虚拟环境配置</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="Virtualenv"><a href="#Virtualenv" class="headerlink" title="Virtualenv"></a><center>Virtualenv</center></h1><p>系统中的多个python混用会导致<code>$PYTHONPATH</code>混乱，或者各个工程对于package的版本要求不同等等情况。有一个简单的解决方案就是用virtualenv来隔离多个python，其本质只是实现隔离不同python中<code>$PYTHONPATH</code>的路径，当然也可以衍生到隔离多个<code>$PATH</code>。 </p>
+<a id="more"></a>
+
+<h2 id="安装和使用virtualenv"><a href="#安装和使用virtualenv" class="headerlink" title="安装和使用virtualenv"></a>安装和使用virtualenv</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install virtualenv</span><br><span class="line">virtualenv  虚拟环境名称</span><br><span class="line">source  虚拟环境的路径/bin/activate</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/16/Linux%E4%B8%8Bpython%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/Image.png"></p>
+<h1 id="virtualenvwrapper"><a href="#virtualenvwrapper" class="headerlink" title="virtualenvwrapper"></a><center>virtualenvwrapper</center></h1><blockquote>
+<p><strong>注意：安装的顺序不能颠倒，virtualenvwrapper必须依赖于virtualenv</strong> .</p>
+</blockquote>
+<h2 id="安装virtualenvwrapper"><a href="#安装virtualenvwrapper" class="headerlink" title="安装virtualenvwrapper"></a>安装virtualenvwrapper</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install virtualenvwrapper</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置workhome"><a href="#配置workhome" class="headerlink" title="配置workhome"></a>配置workhome</h2><p>把下面几行加入~/.bashrc </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2<span class="number">.7</span> <span class="comment"># 这句是为了防止环境变量$PATH中已有其它环境的python</span></span><br><span class="line">export WORKON_HOME=$HOME/.virtualenvs    <span class="comment"># 放所有虚拟环境的地方</span></span><br><span class="line">source /usr/local/bin/virtualenvwrapper.sh</span><br></pre></td></tr></table></figure>
+
+<p>在终端输入<code>source ~/.bashrc</code> </p>
+<h2 id="新建Virtualenv"><a href="#新建Virtualenv" class="headerlink" title="新建Virtualenv"></a>新建Virtualenv</h2><p>新建虚拟环境的指令由原来的<code>virtualenv vpath</code>更换为<code>mkvirtualenv vname</code>，默认把路径放到了<code>$WORKON_HOME</code>下，并且原来的<code>--system-site-packages</code>和<code>--no-site-packages</code>等选项都还是可以用的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv VirtalenvName1</span><br></pre></td></tr></table></figure>
+
+<p>建好之后默认就已经进入这个虚拟环境了（命令行前会有一个括号+环境名的提示），退出是<code>deactivate</code></p>
+<h2 id="Virtualenvwrapper常用指令"><a href="#Virtualenvwrapper常用指令" class="headerlink" title="Virtualenvwrapper常用指令"></a>Virtualenvwrapper常用指令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv 创建环境</span><br><span class="line">workon 切换到环境</span><br><span class="line">deactivate 注销当前环境</span><br><span class="line">lsvirtualenv 列出所有环境</span><br><span class="line">rmvirtualenv 删除环境</span><br><span class="line">cpvirtualenv 复制环境</span><br><span class="line">cdsitepackages cd到当前环境的site-packages目录</span><br><span class="line">lssitepackages 列出当前环境中site-packages内容</span><br><span class="line">setvirtualenvproject 绑定现存的项目和环境</span><br><span class="line">wipeenv 清除环境内所有第三方包</span><br></pre></td></tr></table></figure>
+
+<h1 id="指定python版本的安装"><a href="#指定python版本的安装" class="headerlink" title="指定python版本的安装"></a><center>指定python版本的安装</center></h1><blockquote>
+<p>默认安装的是系统自带的版本2.7，但是我们想要安装版本3.做法如下</p>
+</blockquote>
+<h2 id="更新源信息并安装"><a href="#更新源信息并安装" class="headerlink" title="更新源信息并安装"></a>更新源信息并安装</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-<span class="built_in">get</span> update</span><br><span class="line">apt-<span class="built_in">get</span> install python3<span class="number">.4</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="指定版本创建虚拟环境"><a href="#指定版本创建虚拟环境" class="headerlink" title="指定版本创建虚拟环境"></a>指定版本创建虚拟环境</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkvirtualenv -p python路径 虚拟环境名称  </span><br></pre></td></tr></table></figure>
+
+<p>上面的命令执行时，系统会创建默认的python版本的开发环境，一般大家的电脑会同时安装python2和python3版本，有时需要不同的版本创建虚拟环境。 </p>
+<p>例如：    <code>mkvirtualenv -p /usr/bin/python3 mywork</code></p>
+<p>-p 指的是path的简写Py安装的路径，默认安装在/usr/bin/目录下； </p>
+<p>如果一时间找不到，使用命令： </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> whereis python3  </span><br></pre></td></tr></table></figure>
+
+<p>在终端命令行搜索，会出现想要的路径。 </p>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2018/05/16/Linux%E4%B8%8Bpython%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="leancloud-visitors view" data-flag-title="Linux下python虚拟环境配置">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2018/05/17/Centos下mysql操作/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/05/14/阿里云ECS服务器无法通过公网ip地址访问/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-05-16 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Python/">Python<span>5</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Python/">Python<span>5</span></a></li> <li><a href="/tags/虚拟环境/">虚拟环境<span>2</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

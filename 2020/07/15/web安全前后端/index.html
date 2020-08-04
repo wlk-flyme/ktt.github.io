@@ -1,0 +1,895 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>web安全前后端 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="web安全前后端"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> web安全前后端</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <ul>
+<li>web安全三个层面：代码层面、架构层面、运维层面</li>
+<li>安全问题：用户身份被盗取、用户密码泄露、用户资料被盗取、网站数据库泄露、其他</li>
+</ul>
+<a id="more"></a>
+
+<h1 id="1-前端XSS"><a href="#1-前端XSS" class="headerlink" title="1 前端XSS"></a>1 前端XSS</h1><p><strong>环境配置：</strong>这里主要使用的是nodejs</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/1569167191375.png" alt="1569167191375"></p>
+<p>安装一个全局模块，监视我们代码，一旦代码改变就会自动重启，非常方便</p>
+<p><code>nodemon</code>中的<code>mon</code>就是monitor监视，注意需要全局安装，需要一个参数<code>-g</code>。由于下载慢，我们需要一个镜像源<code>--registry=http://registry.npm.taobao.org</code></p>
+<p><code>npm install nodemon -g --registry=http://registry.npm.taobao.org</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/1569168044931.png" alt="1569168044931"></p>
+<p>安装成功后可以直接使用这个模块了</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/1569168164136.png" alt="1569168164136"></p>
+<p>另外还需要安装mysql</p>
+<p>看一下项目结构，其中<code>package.json</code>会包含项目的一些信息</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/1569169127276.png" alt="1569169127276"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/1569169421010.png" alt="1569169421010"></p>
+<ul>
+<li>start：将我们的应用跑起来</li>
+<li>dev：指定开发环境，调用之前的nodemon模块（前面说了其作用）</li>
+<li>devDependencies：依赖的内容</li>
+<li>koa：项目的框架</li>
+<li>koa-pug：模板</li>
+</ul>
+<p><code>server.js</code>中的中间件</p>
+<ol>
+<li>静态文件的服务器，即static目录，可直接被前端访问到</li>
+</ol>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/1569169724390.png" alt="1569169724390"></p>
+<ol start="2">
+<li><code>bodyParser</code>：当post请求发送过来的时候，我们可以直接从node中获取到用户提交的 数据。否则，我们需要自己去解析body</li>
+<li><code>Pug</code>：模板引擎，它是定义到views目录下的。在views下的pug文件都是用缩进的方式来定义HTML的元素结构，明了的看清层级结构</li>
+<li><code>routes</code>：路由</li>
+<li><code>controlers</code>：主要的业务逻辑</li>
+<li>models：数据库</li>
+</ol>
+<p>安转一下<code>jspm</code>，这是一个包管理工具：<code>npm install --g jspm --registry=http://registry.npm.taobao.org</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/1569170404872.png" alt="1569170404872"></p>
+<p>然后安装<code>前端</code>的依赖：<code>jspm install</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/1569170467498.png" alt="1569170467498"></p>
+<p>最后安装一下<code>后端</code>的依赖:<code>npm install --registry=http://registry.npm.taobao.org</code></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/1569170588639.png" alt="1569170588639"></p>
+<p>如何将项目跑起来：<code>npm run dev</code>，进入到该项目文件夹下，进行这个命令的执行</p>
+<p>浏览器输入<code>localhost:1521</code></p>
+<ul>
+<li>npm start（）</li>
+<li><code>npm run dev</code></li>
+</ul>
+<h2 id="1-XSS介绍"><a href="#1-XSS介绍" class="headerlink" title="1 XSS介绍"></a>1 XSS介绍</h2><p>跨站脚本攻击：Cross Site Scripting</p>
+<p><strong>原理：</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430125423527.png" alt="image-20200430125423527"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430125519205.png" alt="image-20200430125519205"></p>
+<p><strong>xss能干啥？</strong></p>
+<ul>
+<li>获取页面数据</li>
+<li>获取cookies</li>
+<li>劫持前端逻辑</li>
+<li>发送请求</li>
+<li>…………</li>
+<li>偷取网站任意数据</li>
+<li>偷取用户资料</li>
+<li>偷取用户密码和登录态</li>
+<li>欺骗用户</li>
+<li>……….</li>
+</ul>
+<h2 id="2-XSS攻击类型"><a href="#2-XSS攻击类型" class="headerlink" title="2 XSS攻击类型"></a>2 XSS攻击类型</h2><ul>
+<li>反射型：url参数<code>直接注入</code></li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430135433970.png" alt="image-20200430135433970"></p>
+<ul>
+<li>存储型：存储到DB后<code>读取时注入</code></li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430140137849.png" alt="image-20200430140137849"></p>
+<p>此时重新刷新页面，就会出现kttme内容的弹窗<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430140217015.png" alt="image-20200430140217015"></p>
+<h3 id="xss攻击注入点"><a href="#xss攻击注入点" class="headerlink" title="xss攻击注入点"></a><strong>xss攻击注入点</strong></h3><ul>
+<li><p>HTML节点内容：</p>
+<ul>
+<li><pre><code class="javascript">&lt;div&gt;
+    #&#123;content&#125;
+&lt;/div&gt;
+
+------------------------------------------------
+
+&lt;div&gt;
+    &lt;script&gt;
+    &lt;/script&gt;
+&lt;/div&gt;
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- HTML属性:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  - &amp;#96;&amp;#96;&amp;#96;JavaScript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;img src&amp;#x3D;&amp;quot;#&amp;#123;image&amp;#125;&amp;quot;&amp;#x2F; &amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;lt;img src&amp;#x3D;&amp;quot;1&amp;quot;  onerror&amp;#x3D;&amp;quot;alert(1)&amp;gt;                #note：   1&amp;quot;  onerror&amp;#x3D;&amp;quot;alert(1)    这些是用户输入的内容&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+
+
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>JavaScript代码：</p>
+<ul>
+<li><pre><code>&lt;script&gt;
+    var data = &quot;#&#123;content&#125;&quot;;
+    var data = &quot;hello&quot;;alert(1);&quot;&quot;;                # note:        hello&quot;;alert(1);&quot;是输入的内容
+&lt;/script&gt;
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ![image-20200430145451036](web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF&amp;#x2F;image-20200430145451036.png)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    url中输入：&amp;#96;[http:&amp;#x2F;&amp;#x2F;localhost:8090&amp;#x2F;?from&amp;#x3D;google%22;alert(1);%22](http:&amp;#x2F;&amp;#x2F;localhost:8090&amp;#x2F;?from&amp;#x3D;google&amp;quot;;alert(1);&amp;quot;)&amp;#96;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ![image-20200430145709011](web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF&amp;#x2F;image-20200430145709011.png)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 富文本：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  - 富文本得保留html&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  - HTML有xss攻击风险&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;### **防御**&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- &amp;#96;浏览器自带防御(X-Xss-Protection)&amp;#96;：参数出现在html内容和属性（但是并非所有的浏览器都是有这种防御能力的）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- ![image-20200430150713098](web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF&amp;#x2F;image-20200430150713098.png)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-  &amp;#96;HTML内容和属性转义&amp;#96;：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  - &amp;#96;内容转义&amp;#96;&amp;lt; &amp;amp;lt ; 和 &amp;gt;   &amp;amp; gt;   :&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    - 转义的时机可以分为：进入数据数据库之前将其转义，还有就是展示给用户的时候转义&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    - &amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;*        文件：site.js---controllers        *&amp;#x2F;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      const bluebird &amp;#x3D; require(&amp;#39;bluebird&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      const connectionModel &amp;#x3D; require(&amp;#39;..&amp;#x2F;models&amp;#x2F;connection&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F;------------------添加内容：转义字符---------------------------------&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      var escapeHtml &amp;#x3D; function(str)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#x2F;&amp;#x2F; 需要将下面的from（即网页显示来自哪里的用户）进行转义&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          str &amp;#x3D; str.replace(&amp;#x2F;&amp;lt;&amp;#x2F;g, &amp;#39;&amp;lt;&amp;#39;); &amp;#x2F;&amp;#x2F;全局替换&amp;lt;为&amp;amp;lt&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          str &amp;#x3D; str.replace(&amp;#x2F;&amp;gt;&amp;#x2F;g, &amp;#39;&amp;gt;&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          return str&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#x2F;&amp;#x2F;---------------------------------------------------------------&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      exports.index &amp;#x3D; async function(ctx, next)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          const connection &amp;#x3D; connectionModel.getConnection();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          const query &amp;#x3D; bluebird.promisify(connection.query.bind(connection));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          const posts &amp;#x3D; await query(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                  &amp;#39;select post.*,count(comment.id) as commentCount from post left join comment on post.id &amp;#x3D; comment.postId group by post.id limit 10&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          const comments &amp;#x3D; await query(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                  &amp;#39;select comment.*,post.id as postId,post.title as postTitle,user.username as username from comment left join post on comment.postId &amp;#x3D; post.id left join user on comment.userId &amp;#x3D; user.id order by comment.id desc limit 10&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;              );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          &amp;#x2F;&amp;#x2F; ctx.render(&amp;#39;index&amp;#39;, &amp;#123;posts, comments, from:ctx.query.from || &amp;#39;&amp;#39;, avatarId:ctx.query.avatarId || &amp;#39;&amp;#39;&amp;#125;);  &amp;#x2F;&amp;#x2F;这是修改前的&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          ctx.render(&amp;#39;index&amp;#39;, &amp;#123;posts, comments, from:escapeHtml(ctx.query.from) || &amp;#39;&amp;#39;, avatarId:ctx.query.avatarId || &amp;#39;&amp;#39;&amp;#125;); &amp;#x2F;&amp;#x2F;这是转义后的代码&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;          connection.end();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+
+
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>- 显示的效果如下![image-20200430152648893](web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430152648893.png)</code></pre>
+<ul>
+<li><p><code>属性转义</code>：转义 “  为&amp;quto；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;img class&#x3D;&quot;#&#123;class&#125;&quot;&#x2F;&gt;</span><br><span class="line">&lt;img class&#x3D;&quot;hello&quot; onload&#x3D;&quot;alert(1)&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>转义函数的编写：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; escapeProperty():转义html属性</span><br><span class="line">&#x2F;&#x2F;Note：所在的文件位置和上面的一样的</span><br><span class="line">var escapeProperty &#x3D; function(str)&#123;</span><br><span class="line">    if(!str) return &#39;&#39;;</span><br><span class="line">    str &#x3D; str.replace(&#x2F;&quot;&#x2F;g, &#39;&amp;quto;&#39;);</span><br><span class="line">    str &#x3D; str.replace(&#x2F;&#39;&#x2F;g, &#39;&#39;&#39;);</span><br><span class="line">    str &#x3D; str.replace(&#x2F; &#x2F;g, &#39;&amp;#32;&#39;);</span><br><span class="line">    return str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ctx.render(&#39;index&#39;, &#123;posts, comments, from:escapeHtml(ctx.query.from) || &#39;&#39;, avatarId:escapeProperty(ctx.query.avatarId) || &#39;&#39;&#125;); &#x2F;&#x2F;这是转义后的代码</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<pre><code>**Note:**双引号、单引号和没有引号都能够引起xss攻击的
+
+技巧：将两个函数合并成一个函数，然后使用者一个函数进行转义，这样代码量更少了</code></pre>
+<ul>
+<li><p><code>js转义</code>：转义<code>&quot; \&quot;</code>（即引号转义。因为引号被用户的数据或者数据库中的数据被提前结束了）或者<code>转换成json</code></p>
+<ul>
+<li><pre><code>&lt;script&gt;
+    var data = &quot;#&#123;content&#125;&quot;;
+    var data = &quot;hello&quot;;alert(1);&quot;&quot;;                # note:        hello&quot;;alert(1);&quot;是输入的内容
+&lt;/script&gt;
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;我们将js中from和HTML中的from做一个区分![image-20200430163216035](web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF&amp;#x2F;image-20200430163216035.png)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+// escapeProperty():转义html属性
+var escapeProperty = function(str)&#123;
+    if(!str) return &#39;&#39;;
+    str = str.replace(/&quot;/g, &#39;&amp;quto;&#39;);
+    str = str.replace(/&#39;/g, &#39;&amp;#39;&#39;);
+    str = str.replace(/ /g, &#39;&amp;#32;&#39;);
+    return str;
+&#125;
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;55&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    - 更好的做法是&amp;#96;json&amp;#96;做法：    &amp;#96;    fromForJs:JSON.stringify(ctx.query.from),&amp;#96;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- &amp;#96; 富文本防御&amp;#96;:按白名单保留部分标签和属性，黑名单的话难以预防各种变种，只要不是黑名单中的就可以成功的XSS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  - 黑名单：在评论处发表如下的内容&amp;#96;&amp;lt;font color&amp;#x3D;\&amp;quot;red\&amp;quot;&amp;gt;这是红色字&amp;lt;&amp;#x2F;br&amp;gt;&amp;lt;script&amp;gt;document.write(&amp;#39;XSS&amp;#39;)&amp;lt;&amp;#x2F;script&amp;gt;&amp;#96;，显示结果如下。前面说过，对于数据的过滤可以是输入的时候也可以是输出的是，而对富文本的的防御一般是输入的时候过滤，因为输入是一个一次性的行为，而过滤的行为比较耗时，影响性能，要是每次输出的时候来进行过滤会造成性能问题的。于是我们对site.js---controllers中的post的comments 做一个过滤&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  - ![image-20200430165937779](web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF&amp;#x2F;image-20200430165937779.png)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  - &amp;#96;&amp;#96;&amp;#96;javascript&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#x2F;&amp;#x2F;黑名单&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    var xssFilter &amp;#x3D; function(html)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        if(!html) return &amp;#39;&amp;#39;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        html &amp;#x3D; html.replace(&amp;#x2F;&amp;lt;\s*\&amp;#x2F;?script\s*&amp;gt;&amp;#x2F;g, &amp;#39;&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        return html;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    exports.post &amp;#x3D; async function(ctx, next)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        try&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            console.log(&amp;#39;enter post&amp;#39;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            const id &amp;#x3D; ctx.params.id;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            const connection &amp;#x3D; connectionModel.getConnection();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            const query &amp;#x3D; bluebird.promisify(connection.query.bind(connection));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            const posts &amp;#x3D; await query(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#96;select * from post where id &amp;#x3D; &amp;quot;$&amp;#123;id&amp;#125;&amp;quot;&amp;#96;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            let post &amp;#x3D; posts[0];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            const comments &amp;#x3D; await query(&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                &amp;#96;select comment.*,user.username from comment left join user on comment.userId &amp;#x3D; user.id where postId &amp;#x3D; &amp;quot;$&amp;#123;post.id&amp;#125;&amp;quot; order by comment.createdAt desc&amp;#96;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            );&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#x2F;&amp;#x2F;post处增添的内容为----------------------------------------&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            comments.forEach(function(comment)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                 comment.content&amp;#x3D;xssFilter(comment.content);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;           &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;           &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &amp;#x2F;&amp;#x2F;-----------------------------------------------------      &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;           &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            if(post)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                ctx.render(&amp;#39;post&amp;#39;, &amp;#123;post, comments&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;else&amp;#123; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                ctx.status &amp;#x3D; 404;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            connection.end();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;catch(e)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            console.log(&amp;#39;[&amp;#x2F;site&amp;#x2F;post] error:&amp;#39;, e.message, e.stack);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            ctx.body &amp;#x3D; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                status: e.code || -1,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                body: e.message&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+
+此时的效果如下![image-20200430171932110](web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430171932110.png)
+
+但是这样并不能解决所有的问题，因为xss变种太多了，例如你发表如下的内容`&lt;a href=\&quot;javascript:alert(1)\&quot;&gt;你好&lt;/a&gt;`和`&lt;img src=\&quot;abc\&quot; onerror=\&quot;alert(123456)\&quot;/&gt;`，其效果分别如下。于是我们又要修改代码
+
+![image-20200430172409719](web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430172409719.png)![image-20200430172826994](web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430172826994.png)
+
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; xssFilter = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;html&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(!html) &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    html = html.replace(&lt;span class=&quot;regexp&quot;&gt;/&amp;lt;\s*\/?script\s*&amp;gt;/g&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    html = html.replace(&lt;span class=&quot;regexp&quot;&gt;/javascript:[^&amp;#x27;&amp;quot;]*/g&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    html = html.replace(&lt;span class=&quot;regexp&quot;&gt;/onerror\s*=\s*[&amp;#x27;&amp;quot;]?[^&amp;#x27;&amp;quot;]*[&amp;#x27;&amp;quot;&amp;#x27;]?/g&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; html;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+
+此时点击刚刚那两个就不会有任何的反应的了，我们可以点击源码看一下
+
+![image-20200430173828013](web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430173828013.png)
+
+
+
+
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>- `白名单防御`:我们面临一个解析HTML的问题，此时我们安装一个库就行了即`cheerio`，使用如下的命令安装：`npm install cheerio --registry=http://registry.npm.taobao.org -S`
+
+以下的截图是`        console.log(&#39;this is elem:&#39;, elem); //针对评论的elem 的输出`的执行结果，主要看`name和attribs`两个字段
+
+![image-20200430175539367](web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430175539367.png)
+
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// 白名单&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; xssFilter = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;html&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(!html) &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&amp;#x27;&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; cheerio = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;cheerio&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; $ = cheerio.load(html);   &lt;span class=&quot;comment&quot;&gt;//使用的是类似jQuery的语法&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// 白名单&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; whiteList = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&amp;#x27;img&amp;#x27;&lt;/span&gt;: [&lt;span class=&quot;string&quot;&gt;&amp;#x27;src&amp;#x27;&lt;/span&gt;],&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&amp;#x27;font&amp;#x27;&lt;/span&gt;: [&lt;span class=&quot;string&quot;&gt;&amp;#x27;color&amp;#x27;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&amp;#x27;size&amp;#x27;&lt;/span&gt;],&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;string&quot;&gt;&amp;#x27;a&amp;#x27;&lt;/span&gt;: [&lt;span class=&quot;string&quot;&gt;&amp;#x27;href&amp;#x27;&lt;/span&gt;]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    $(&lt;span class=&quot;string&quot;&gt;&amp;#x27;*&amp;#x27;&lt;/span&gt;).each(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;index, elem&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;comment&quot;&gt;// console.log(&amp;#x27;this is elem:&amp;#x27;, elem); //针对评论的elem 的输出,其输出的内容会截图出来的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(!whiteList[elem.name])&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            $(elem).remove();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; attr &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt; elem.attribs) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(whiteList[elem.name].indexOf(attr) === &lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                $(elem).attr(attr, &lt;span class=&quot;literal&quot;&gt;null&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(html, $.html());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; $.html();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+
+![image-20200430203231659](web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430203231659.png)</code></pre>
+<h3 id="CSP"><a href="#CSP" class="headerlink" title="CSP"></a>CSP</h3><ul>
+<li>Content Security Policy</li>
+<li>内容安全策略</li>
+<li>用于指定哪些内容可执行</li>
+</ul>
+<p>他有这些内容，如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">child-src connect-src <span class="keyword">default</span>-src</span><br><span class="line">font-src frame-src img-src </span><br><span class="line">manifest-src media-src object-src </span><br><span class="line">script-src style-src worker-src</span><br><span class="line"></span><br><span class="line">&lt;host-source&gt; <span class="xml"><span class="tag">&lt;<span class="name">scheme-source</span>&gt;</span> &#x27;self&#x27;</span></span><br><span class="line"><span class="xml">&#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;none&#x27; </span></span><br><span class="line">&#x27;nonce-cbase64-value&gt;&#x27; &lt;chash-source&gt; </span><br><span class="line">&#x27;strict-dynamic&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>在输入栏输入<code>http://localhost:8090/?from=alert(&#39;google&#39;)google</code>，会正常的攻击（把之前写的防御代码注释掉）</p>
+<p>此时的运行如下，有些内容不显示</p>
+<p>在<code>site.js--routes</code>文件中添加代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">router.all(<span class="string">&#x27;/*&#x27;</span>, <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params">ctx, next</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;enter site.js&#x27;</span>);</span><br><span class="line">    ctx.set(<span class="string">&#x27;X-XSS-Protection&#x27;</span>, <span class="number">0</span>);  <span class="comment">//0表示xss防御关闭，1表示默认即开启xss防御</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//--增加内容---------------</span></span><br><span class="line">    ctx.set(<span class="string">`Content-Security-Policy`</span>, <span class="string">`default-src &#x27;self&#x27;`</span>);</span><br><span class="line">    <span class="comment">//------------------</span></span><br><span class="line">    <span class="keyword">await</span> next();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430210442123.png" alt="image-20200430210442123"></p>
+<h3 id="PHP-XSS"><a href="#PHP-XSS" class="headerlink" title="PHP-XSS"></a>PHP-XSS</h3><p>防御方法</p>
+<ul>
+<li>内置函数转义</li>
+<li>DOM解析白名单</li>
+<li>解析库</li>
+<li>CSP</li>
+</ul>
+<p>测试的开始的代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="keyword">if</span>(strtolower($_SERVER[<span class="string">&#x27;REQUEST_METHOD&#x27;</span>]) == <span class="string">&#x27;post&#x27;</span>)&#123;</span><br><span class="line">    $content = $_POST[<span class="string">&#x27;content&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;div&gt;<span class="meta">&lt;?php</span> <span class="keyword">echo</span> $content; <span class="meta">?&gt;</span>&lt;/div&gt;</span><br><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;form method=<span class="string">&quot;post&quot;</span>&gt;</span><br><span class="line">    &lt;textarea name=<span class="string">&quot;content&quot;</span>&gt;hello&lt;/textarea&gt;</span><br><span class="line">    &lt;button type=<span class="string">&quot;submit&quot;</span>&gt;提交&lt;/button&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+<p>增加几行代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">header(<span class="string">&#x27;X-Xss-Protection: 0&#x27;</span>);   <span class="comment">// 关闭浏览器的默认XSS拦截防御</span></span><br><span class="line"><span class="keyword">if</span>(strtolower($_SERVER[<span class="string">&#x27;REQUEST_METHOD&#x27;</span>]) == <span class="string">&#x27;post&#x27;</span>)&#123;</span><br><span class="line">    $content = $_POST[<span class="string">&#x27;content&#x27;</span>];</span><br><span class="line">    <span class="comment">// $content = strip_tags($content);  //最终的content是去掉标签的</span></span><br><span class="line">    <span class="comment">//原样输出，可对指定的字符进行转义的</span></span><br><span class="line">    $content = htmlspecialchars($content);</span><br><span class="line">    </span><br><span class="line">   <span class="comment">// 剩下的都不变</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200430213409049.png" alt="image-20200430213409049"></p>
+<h1 id="2-前端CSRF"><a href="#2-前端CSRF" class="headerlink" title="2 前端CSRF"></a>2 前端CSRF</h1><h2 id="1-CSRF攻击简介和演示"><a href="#1-CSRF攻击简介和演示" class="headerlink" title="1 CSRF攻击简介和演示"></a>1 CSRF攻击简介和演示</h2><p><code>CSRF</code>：Cross site request forgy 即 跨站请求伪造</p>
+<p>在XSS攻击中： 本网站运行了其他网站的脚本，即非本网站的脚本</p>
+<p>在CSRF攻击中: 其他的网站对本网站产生了影响，即其他网站对本网站发出了一些请求，这些请求是在用户不知情的情况下完成的</p>
+<p>我们选择一条没有评论的新闻作为演示：<code>http://localhost:8090/post/13</code></p>
+<p>目前我是以匿名用户进行登录的，我们可以在cookie中进行查看。</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501100307532.png" alt="image-20200501100307532"></p>
+<p>现在我们去登录一下页面<code>http://localhost:8090/user/login</code>,用户名TooBug，密码123456，此时多了一条cookie信息，且评论带有用户名信息的</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501112617664.png" alt="image-20200501112617664"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501112705493.png" alt="image-20200501112705493"></p>
+<p>此时我们来看一下CSRF攻击的一个页面，该页面可以部署到任何的网站，属于第三方网页，可以不放在自己的网站中的，其代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;文件在other中的csrf.html中</span><br><span class="line"></span><br><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset&#x3D;&quot;utf-8&quot;&#x2F;&gt;</span><br><span class="line">        &lt;title&gt;csrf demo&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;&#x2F;head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        hello，这里什么也没有。     &#x2F;&#x2F;这是唯一可视化 的内容</span><br><span class="line">        &lt;script&gt;                 &#x2F;&#x2F;脚本发表评论到网站中</span><br><span class="line">            document.write(&#96;    &#x2F;&#x2F;创建一个表单，</span><br><span class="line">                &lt;form name&#x3D;&quot;commentForm&quot; target&#x3D;&quot;csrf&quot; method&#x3D;&quot;post&quot;     action&#x3D;&quot;http:&#x2F;&#x2F;localhost:1521&#x2F;post&#x2F;addComment&quot;&gt;                    &#x2F;&#x2F;该&#x2F;post&#x2F;addComment就是添加评论的接口</span><br><span class="line">                    &lt;input name&#x3D;&quot;postId&quot; type&#x3D;&quot;hidden&quot; value&#x3D;&quot;13&quot;&gt;  &#x2F;&#x2F;参数postId&#x3D;13即我们刚刚发表评论的那个页面  </span><br><span class="line">                    &lt;textarea name&#x3D;&quot;content&quot;&gt;来自CSRF！&lt;&#x2F;textarea&gt;   &#x2F;&#x2F;content的内容就是发表的内容</span><br><span class="line">                &lt;&#x2F;form&gt;&#96;</span><br><span class="line">            );</span><br><span class="line"></span><br><span class="line">            var iframe &#x3D; document.createElement(&#39;iframe&#39;);</span><br><span class="line">            iframe.name &#x3D; &#39;csrf&#39;;</span><br><span class="line">            iframe.style.display &#x3D; &#39;none&#39;;     &#x2F;&#x2F;创建一个iframe后将其隐藏</span><br><span class="line">            document.body.appendChild(iframe);</span><br><span class="line"></span><br><span class="line">            setTimeout(function()&#123;</span><br><span class="line">                document.querySelector(&#39;[name&#x3D;commentForm]&#39;).submit();    </span><br><span class="line">                &#x2F;&#x2F;name&#x3D;commentForm即找到form中name为从commentForm的表单，我们知道提交表单的时候，会发生页面跳转（即重新导航）但是我们这里并没有发生跳转。其原因是 ：表单form支持target的，如果该target指向iframe.name,我们这里target&#x3D;&quot;csrf&quot;、iframe.name &#x3D; &#39;csrf&#39;,即都是csrf，则当两个相等的时候这个表单会在iframe中进行提交、跳转的。而我们的iframe设置的是隐藏，所以我们看不见了</span><br><span class="line">           </span><br><span class="line">            &#125;,1000);</span><br><span class="line">        &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>打开csrf.html页面的展示如下，注意此时在你打开的postId=13的网页中添加了一条信息，内容为<code>来自CSRF</code>，并且用的是你刚刚在网站中登录的信息作为发表的，即该信息由用户TooBug发表的，这些工作都是脚本替你完成这个评论的</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501113046179.png" alt="image-20200501113046179"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501113404742.png" alt="image-20200501113404742"></p>
+<p>我们可以看出来，用户任意打开一个网站后，那么会有一些操作在另一个网站上中在执行。例如上面的例子中你打开csrf.html的网站，你却在另一个网站中进行了评论操作。我们这里发表评论用的是<code>post</code>请求的，而post是需要构造一个表单的。如果我们用的是<code>get</code>方式，那么就会更加容易的多。我们在<code>router</code>下的<code>sites.js中添加一个路径</code>即<code>router.get(&#39;/ajax/addComment&#39;, site.addComment);</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Router = <span class="keyword">require</span>(<span class="string">&#x27;koa-router&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> router = <span class="keyword">new</span> Router(&#123;</span><br><span class="line">    prefix: <span class="string">&#x27;&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> site = <span class="keyword">require</span>(<span class="string">&#x27;../controllers/site&#x27;</span>);</span><br><span class="line"></span><br><span class="line">router.all(<span class="string">&#x27;/*&#x27;</span>, async <span class="function"><span class="keyword">function</span>(<span class="params">ctx, next</span>)</span>&#123;</span><br><span class="line">    console.log(<span class="string">&#x27;enter site.js&#x27;</span>);</span><br><span class="line">    ctx.set(<span class="string">&#x27;X-XSS-Protection&#x27;</span>, <span class="number">0</span>);  <span class="comment">//0表示xss防御关闭，1表示默认即开启xss防御</span></span><br><span class="line">    <span class="comment">// ctx.set(`Content-Security-Policy`, `default-src &#x27;self&#x27;`);</span></span><br><span class="line">    await next();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">&#x27;/&#x27;</span>, site.index);</span><br><span class="line">router.get(<span class="string">&#x27;/post/:id&#x27;</span>, site.post);</span><br><span class="line">router.post(<span class="string">&#x27;/post/addComment&#x27;</span>, site.addComment);</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加的路径</span></span><br><span class="line">router.get(<span class="string">&#x27;/ajax/addComment&#x27;</span>, site.addComment);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">module.exports = router;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在<code>controllers</code>下的<code>site.js</code>文件中，有关于<code>addComment</code>的一个逻辑</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">exports.addComment = async <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> data;</span><br><span class="line">        <span class="keyword">if</span>(ctx.request.method.toLowerCase() ===<span class="string">&#x27;post&#x27;</span>)&#123;    <span class="comment">//post请求</span></span><br><span class="line">            data = ctx.request.body;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            data = ctx.request.query;                    <span class="comment">//从get请求中获得，即query</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们在url中输入<code>localhost:1521/ajax/addComment?postid=13&amp;content=我是来自get的评论</code>同样会产生评论，如下</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501120140671.png" alt="image-20200501120140671"></p>
+<p>我们将script中脚本注释掉，在<code>        hello，这里什么也没有。</code>后面添加代码（<code>localhost:1521/ajax/addComment?postid=13&amp;content=我是来自get的评论</code>是下面href中的内容），如下所示</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello，这里什么也没有。</span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;localhost%3A1521%2Fajax%2FaddComment%3Fpostid%3D13%26content%3D%E6%88%91%E6%98%AF%E6%9D%A5%E8%87%AAget%E7%9A%84%E8%AF%84%E8%AE%BA&quot;</span>&gt;</span>点击这里有钱拿<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>重新加载<code>csrf.html</code>，显示如下，然后点击<code>蓝色字体</code>,就会跳转到之前postid=13的页面中，并且评论了内容</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501120538805.png" alt="image-20200501120538805"></p>
+<p>CSRF攻击有一个别称，叫做<code>one click attck</code>即一点就爆炸。刚刚那个是点击蓝色字体才能功能生效，能够不用点击就可以实现呢？毕竟点击的转化率比较低。我们可以使用图片标签，将之前的内容替换成这个</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello，这里什么也没有。</span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;localhost%3A1521%2Fajax%2FaddComment%3Fpostid%3D13%26content%3D%E6%88%91%E6%98%AF%E6%9D%A5%E8%87%AAget%E7%9A%84%E8%AF%84%E8%AE%BA&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>显示效果如下，图片加载失败，同时增加了一条评论</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501130844036.png" alt="image-20200501130844036"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501130929093.png" alt="image-20200501130929093"></p>
+<p>我们还可以将其变种，如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello，这里什么也没有。</span><br><span class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;localhost:1521/ajax/addComment?postid=13&amp;content=&lt;a href=file:///E:/%E4%B8%8B%E8%BD%BD/%E8%85%BE%E8%AE%AF%E5%A4%A7%E7%89%9B%E4%BA%B2%E6%8E%88%20Web%20%E5%89%8D%E5%90%8E%E7%AB%AF%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90%E4%B8%8E%E9%98%B2%E5%BE%A1%E6%8A%80%E5%B7%A7/project/t1eexx/other/csrf.html&gt;点击这里有钱拿&lt;/a&gt;&quot;</span>/&gt;</span>   //content内容为一个超链接</span><br></pre></td></tr></table></figure>
+
+<p>此时点击<code>csrf.html</code>后，会在页面中添加一个带有超链接的评论的，如下所示，点击这个链接会跳到csrf.html页面中去（这种链接如果发给很多人，都点击后相当于一个蠕虫了，危害很大的，影响面很大）</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501131450349.png" alt="image-20200501131450349"></p>
+<h2 id="2-CSRF攻击原理和危害"><a href="#2-CSRF攻击原理和危害" class="headerlink" title="2 CSRF攻击原理和危害"></a>2 CSRF攻击原理和危害</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501140628044.png" alt="image-20200501140628044"></p>
+<p>csrf<strong>危害</strong></p>
+<ul>
+<li>利用用户登录态</li>
+<li>用户不知情 </li>
+<li>完成业务请求</li>
+<li>盗取用户资金(转账、消费)</li>
+<li>冒充用户发帖背锅</li>
+<li>损坏网站名誉</li>
+<li>…….</li>
+</ul>
+<h2 id="3-CSRF防御"><a href="#3-CSRF防御" class="headerlink" title="3 CSRF防御-"></a>3 CSRF防御-</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501144143209.png" alt="image-20200501144143209"></p>
+<h3 id="措施"><a href="#措施" class="headerlink" title="措施"></a><strong>措施</strong></h3><ul>
+<li><p>防御1——添加<code>sameSite</code>的value为<code>strict</code>.具体为在<code>controllers</code>中的<code>user.js</code>的<code>exports.doLogin = async function(ctx, next)&#123;</code>添加</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(results.length)&#123;</span><br><span class="line">            let user = results[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 登录成功，设置cookie</span></span><br><span class="line">            ctx.cookies.set(<span class="string">&#x27;userId&#x27;</span>, user.id, &#123;</span><br><span class="line">                httpOnly:<span class="literal">false</span>,</span><br><span class="line">                sameSite:<span class="string">&#x27;strict&#x27;</span>      <span class="comment">//添加的内容</span></span><br><span class="line">            &#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>前面说过：<strong>不访问A网站的前端</strong>，那么我们可以在前端进行验证信息呢？即 只有获得了前端特有的信息才算认证通过</p>
+</li>
+<li><p>防御2——在前端页面加入验证信息：有两种方案</p>
+<ul>
+<li>1、使用验证码：验证码需要前后端都要改造的，前端加入验证码的输入框，然后有一个对应的验证码，后端提供验证码，并记住是多少，下次当你提交的时候进行验证。因为csrf攻击不访问前端页面，也就无法获取到验证码，故而无法攻击完成。这里使用一个叫ccap 的生成验证码的模块，首先我们进行安装：<code>npm install ccap --registry=http://registry.npm.taobao.org --save</code>,然后在<code>site.js(routes)</code>中添加如下的代码</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> site = <span class="keyword">require</span>(<span class="string">&#x27;../controllers/site&#x27;</span>);</span><br><span class="line"><span class="comment">// 添加的模块</span></span><br><span class="line"><span class="keyword">const</span> captcha = <span class="keyword">require</span>(<span class="string">&#x27;../tools/captcha&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加的</span></span><br><span class="line">router.get(<span class="string">&#x27;/captcha&#x27;</span>,captcha.captcha);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后新建一个<code>tools</code>文件，创建一个名为<code>captcha.js</code>,其内容为</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> captcha =&#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cache = &#123;&#125;;</span><br><span class="line">captcha.captcha = async <span class="function"><span class="keyword">function</span>(<span class="params">ctx,next</span>)</span>&#123;  <span class="comment">//生成验证码的函数</span></span><br><span class="line">    <span class="keyword">var</span> ccap = <span class="keyword">require</span>(<span class="string">&#x27;ccap&#x27;</span>);        <span class="comment">//模块引进</span></span><br><span class="line">    <span class="keyword">var</span> capt = ccap();                <span class="comment">//调用函数得到实例</span></span><br><span class="line">    <span class="keyword">var</span> data = capt.get();</span><br><span class="line">    </span><br><span class="line">    captcha.setCache(ctx.cookies.get(<span class="string">&#x27;userId&#x27;</span>,), data[<span class="number">0</span>]);</span><br><span class="line">    <span class="comment">// data[0];                  //代表文本</span></span><br><span class="line">    ctx.body = data[<span class="number">1</span>];        <span class="comment">//代表验证码</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">captcha.setCache = <span class="function"><span class="keyword">function</span>(<span class="params">uid, data</span>)</span>&#123;</span><br><span class="line">    console.log(uid, data);</span><br><span class="line">    cache[uid] = data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断用户输入的验证码是否正确</span></span><br><span class="line">captcha.validCache = <span class="function"><span class="keyword">function</span>(<span class="params">uid, data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> cache[uid] === data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">module.exports = captcha;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>我们需要在前端给验证码添加一个位置，故需要在<code>view下的post.pug</code>中添加如下内容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//- .input-field</span></span><br><span class="line">                                                input(name=<span class="string">&quot;username&quot;</span>,placeholder=<span class="string">&quot;名字&quot;</span>)</span><br><span class="line">                                            .input-field</span><br><span class="line">                                                textarea(placeholder=&quot;内容&quot;,name=&quot;content&quot;,class=&quot;materialize-textarea&quot;)</span><br><span class="line">                                            .input-field  <span class="comment">//为添加的内容</span></span><br><span class="line">                                                input(name=<span class="string">&quot;captcha&quot;</span>,placeholder=<span class="string">&quot;验证码&quot;</span>)</span><br><span class="line">                                                img(src=<span class="string">&quot;/captcha&quot;</span>)</span><br><span class="line">                                            .input-field</span><br><span class="line">                                                button.waves-effect.waves-light.btn 发表</span><br></pre></td></tr></table></figure>
+
+<p>前端输入的验证码内容我们要在后端进行一个验证，我们在<code>controllers中site.js</code>中的<code>addComment</code>里面添加如下的代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">exports.addComment = async <span class="function"><span class="keyword">function</span>(<span class="params">ctx, next</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data;</span><br><span class="line">        <span class="keyword">if</span>(ctx.request.method.toLowerCase() ===<span class="string">&#x27;post&#x27;</span>)&#123;</span><br><span class="line">            data = ctx.request.body;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            data = ctx.request.query;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        console.log(data.captcha);</span><br><span class="line">        <span class="keyword">if</span>(!data.captcha)&#123;     <span class="comment">//如果验证码未提交，进行验证。</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;验证码错误&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> captcha = <span class="keyword">require</span>(<span class="string">&#x27;../tools/captcha&#x27;</span>);    <span class="comment">// 引入模块</span></span><br><span class="line">        <span class="keyword">var</span> captchaResult = captcha.validCache(ctx.cookies.get(<span class="string">&#x27;userId&#x27;</span>), data.captcha);  <span class="comment">//验证</span></span><br><span class="line">        console.log(<span class="string">&#x27;result&#x27;</span>, captchaResult);</span><br><span class="line">        <span class="keyword">if</span>(!captchaResult)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;验证码错误&#x27;</span>);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>2、token（每次都输入验证码其实用户的体验感不是很好的）：攻击者直接发起请求的时候，无法获取该字符串，只有经过我们目标网站的前端才有可能获取到这个token。攻击者尝试攻击的时候，不会经过目标网站的前端，所以无法获取到token，从而导致请求失败（我们将之前写的那些验证码的代码删除掉）</p>
+<p><code>第一步</code>:首先我们要生成<code>csrf-token</code>，其实这是一个随机的字符串，使用<code>Math.random（函数）</code>，得到token后，我们需要将其放在两个地方，一个在页面的表单中，第二个地方是我们的cookies中。这样后端第一步生成token后，并给到页面就完成了。一个给到页面的变量以便放到表单中，一个放在cookies。而cookie不需要页面关心，所以我们在<code>post.pug</code>页面中放一个表单。</p>
+<p>在<code>controllers-site.js的post中</code>生成token并将其放到上述的两个位置：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">exports.post = async <span class="function"><span class="keyword">function</span> (<span class="params">ctx, next</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        console.log(<span class="string">&#x27;enter post&#x27;</span>);</span><br><span class="line">        </span><br><span class="line">    <span class="comment">//使用random来生成token（本质是随机的字符串），因为随机的范围是0~1，所以我们乘上一个比较大的数字，然后取整</span></span><br><span class="line">        <span class="keyword">var</span> csrfToken = parseInt(Math.random() * <span class="number">9999999</span>,<span class="number">10</span>);  </span><br><span class="line">        ctx.cookies.set(<span class="string">&#x27;csrfToken&#x27;</span>,csrfToken);   <span class="comment">// token放置的位置1：放在cookies中</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> id = ctx.params.id;</span><br><span class="line">        <span class="keyword">const</span> connection = connectionModel.getConnection();</span><br><span class="line">        <span class="keyword">const</span> query = bluebird.promisify(connection.query.bind(connection));</span><br><span class="line">        <span class="keyword">const</span> posts = await query(</span><br><span class="line">            `select * <span class="keyword">from</span> post where id = <span class="string">&quot;$&#123;id&#125;&quot;</span>`</span><br><span class="line">        );</span><br><span class="line">        let post = posts[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">const</span> comments = await query(</span><br><span class="line">            `select comment.*,user.username <span class="keyword">from</span> comment left join user on comment.userId = user.id where postId = <span class="string">&quot;$&#123;post.id&#125;&quot;</span> order by comment.createdAt desc`</span><br><span class="line">        );</span><br><span class="line">        comments.<span class="keyword">forEach</span>(<span class="function"><span class="keyword">function</span> (<span class="params">comment</span>) </span>&#123;</span><br><span class="line">            comment.content = xssFilter(comment.content);</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">if</span> (post) &#123;</span><br><span class="line">            ctx.render(<span class="string">&#x27;post&#x27;</span>, &#123;</span><br><span class="line">                post,</span><br><span class="line">                comments,          </span><br><span class="line">                csrfToken     <span class="comment">//token放置的位置2：在页面的表单中</span></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ctx.status = <span class="number">404</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>post.pug</code>中表单设置</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//- .input-field</span></span><br><span class="line">                                                input(name=<span class="string">&quot;username&quot;</span>,placeholder=<span class="string">&quot;名字&quot;</span>)</span><br><span class="line">                                            .input-field</span><br><span class="line">                                                textarea(placeholder=&quot;内容&quot;,name=&quot;content&quot;,class=&quot;materialize-textarea&quot;)</span><br><span class="line">                                            .input-field</span><br><span class="line">                                                input(name=<span class="string">&quot;csrfToken&quot;</span>,value=csrfToken)   <span class="comment">//添加的内容</span></span><br><span class="line">                                            .input-field</span><br><span class="line">                                                button.waves-effect.waves-light.btn 发表</span><br></pre></td></tr></table></figure>
+
+<p><code>第二步</code>：当第一步中csrf-token下发完成，并我们提交了内容后，我们第二步就需要<strong>校验</strong><code>cookies中csrf-token</code>和<code>表单中提交的csrf-token</code>是否一样.我们在<code>controller-site.js的addComment</code>中添加如下的代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// ------此处为csrf-token代码校验部分</span></span><br><span class="line"><span class="comment">//判断传递过来的数据是否含有token</span></span><br><span class="line"><span class="keyword">if</span>(!data.csrfToken)&#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span>  <span class="built_in">Error</span>(<span class="string">&#x27;CSRF Token为空&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment">//判断传递的token 是否和cookies里面的token一致</span></span><br><span class="line"><span class="keyword">if</span>(data.csrfToken !== ctx.cookies.get(<span class="string">&#x27;csrfToken&#x27;</span>))&#123;</span><br><span class="line">     <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;CSRF Token错误&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501184123145.png" alt="image-20200501184123145"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501184225364.png" alt="image-20200501184225364"></p>
+<p>如果表单和cookies中的一样就会通过，如下</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501184447651.png" alt="image-20200501184447651"></p>
+</li>
+</ul>
+<p><strong>注意</strong>：如果是ajax请求如何获取该token呢？可以在<code>post.pug</code>表单中的<code>head</code>添加<code>meta(name=&quot;csrf_token&quot;, content=csrfToken)</code>，那么在网页的meta中会显示出来。于是我们在ajax请求之前可以通过js把meta中token的值取出来，然后发到后台。这样通过meta我们就可以获得到提交的值</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501191158713.png" alt="image-20200501191158713"></p>
+<p><strong>问题：</strong>用户打开了很多的页面和窗口，每打开一个会生成一个token，如果用户不在最后一个打开的页面中提交表单而是在之前的页面中进行提交，则会出现错误。因为每打开一个页面，就会生成一个token会将之前的产生的 给覆盖掉。这种问题该如何解决呢？</p>
+<ul>
+<li>防御3——<code>验证referer(正确的是referrer)</code>：禁止第三方网站的请求。我们将之前的<code>csrfToken</code>的相关东西删除掉    </li>
+</ul>
+<p>此时我们添加依据代码，然后添加一条评论，我们观察输出</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">exports.addComment = async <span class="function"><span class="keyword">function</span>(<span class="params">ctx, next</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data;</span><br><span class="line">        <span class="keyword">if</span>(ctx.request.method.toLowerCase() ===<span class="string">&#x27;post&#x27;</span>)&#123;</span><br><span class="line">            data = ctx.request.body;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            data = ctx.request.query;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//--------添加部分-----------------  </span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">var</span> referer = ctx.request.headers.referer;<span class="comment">//取出referer</span></span><br><span class="line">        <span class="keyword">if</span>(!/^https?:\/\/localhost/.test(referer))&#123;   <span class="comment">//正则表达式更加安全</span></span><br><span class="line">        <span class="comment">// if(referer.indexOf(&#x27;localhost&#x27;)  === -1)&#123;    //只判断是否有localhost是不安全的，因为127。0.0.1:8090/csrf.html？content=localhost也是可以通过的，因为它含有了localhost这个字符，所以不安全</span></span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;非法请求&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        console.log(ctx.request.headers);</span><br><span class="line"><span class="comment">//-----------------------------------</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501214219611.png" alt="image-20200501214219611"></p>
+<h2 id="4-PHP-CSRF"><a href="#4-PHP-CSRF" class="headerlink" title="4  PHP-CSRF"></a>4  PHP-CSRF</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501221213804.png" alt="image-20200501221213804"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200501221444977.png" alt="image-20200501221444977"></p>
+<ul>
+<li><p>1 <code>cookie samesite</code>属性：<code>header(&#39;Set-Cookie: test=12345; SameSite=Lax&#39;);</code></p>
+</li>
+<li><p>2<code> HTTP referer头</code>：首先获取到该referer头，第二如何进行判断</p>
+<ul>
+<li><pre><code class="php">if($_SERVER[&#39;HTTP_REFERER&#39;])&#123;
+    $isLegal = strpos($_SERVER[&#39;HTTP_REFERER&#39;], &#39;http://websecurity.local/&#39;) === 0 ;
+    var_dump($isLegal);
+&#125;
+&lt;!--hexoPostRenderEscape:&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 3 &amp;#96;token&amp;#96;：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# 3 前端cookies问题&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;## 1 cookies特性&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 前端数据存储&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 后端通过HTTP头设置&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 请求时通过HTTP头传给后端&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 前端可读写&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 遵守同源策略&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cookie是有结构的&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 域名&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 有效期&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- 路径（url层级）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- &amp;#96;http-only&amp;#96;：表示只能被https协议使用，可以在请求和发送中使用cookie，而此时JavaScript是不能使用的&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- &amp;#96;secure&amp;#96;：表示cookies只能在https的网站汇中使用，在http协议中无法使用&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- &amp;#96;samesite&amp;#96;：表示第三方网站的请求是否可以使用cookies（目前好像只有Chrome中支持samesite）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;- &amp;#96;session&amp;#96;：表示会话，一般其关闭页面即消失。我们可以使用Expires（删除cookie是用这个来操作的，即设置为过期时间）来设置session存在的时间&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#96;&amp;#96;&amp;#96;php&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 后端使用&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ctx.cookies.set(&amp;#39;userId&amp;#39;, user.id, &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                httpOnly:false,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                sameSite:&amp;#39;strict&amp;#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;            &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#x2F;&amp;#x2F; 前端使用&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;document.cookie     &amp;#x2F;&amp;#x2F;能够获取cookie&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;document.cookie &amp;#x3D; &amp;#39;value&amp;#39;    &amp;#x2F;&amp;#x2F;设置cookie&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;:hexoPostRenderEscape--&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-cookies作用"><a href="#2-cookies作用" class="headerlink" title="2 cookies作用"></a>2 cookies作用</h2><p>其作用有以下方面</p>
+<ul>
+<li>存储个性化设置</li>
+<li>存储未登录时用户唯一标识（虽然我不知道你是谁，但是我知道你是那个人）</li>
+<li>存储已登录用户的凭证</li>
+<li>存储其他业务数据（缓存数据等）</li>
+</ul>
+<p><strong>如何写用户的凭证</strong></p>
+<ul>
+<li>用户id（能够被篡改，如果之前cookies中userID=1，我把它篡改为userID=2，此时如果我评论的话，将是以用户2的身份评论的）</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">            登录成功，设置cookie</span><br><span class="line">            ctx.cookies.set(<span class="string">&#x27;userId&#x27;</span>, user.id, &#123;</span><br><span class="line">                httpOnly:<span class="literal">false</span>,</span><br><span class="line">                sameSite:<span class="string">&#x27;strict&#x27;</span></span><br><span class="line">            &#125;);</span><br><span class="line"><span class="comment">//在开发者工具中，我们这样写，加入之前的UserId=1（正常用户）</span></span><br><span class="line">document.cookie=<span class="string">&quot;userId=2&quot;</span>;   <span class="comment">//我们将cookie设置为userId=2(黑客用户)，如果我们此时评论的话，将会用用户2的身份评论</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>用户ID+签名（保证这个签名只有我能够算出来，其他人算不出来）</li>
+</ul>
+<p>去登陆的地方把userID换掉，即在user.js中将使用用户id的那段cookies设置方法换成如下的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//模块的引入</span></span><br><span class="line"><span class="keyword">const</span> crypt = <span class="keyword">require</span>(<span class="string">&#x27;../tools/crypt.js&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 登录成功，设置cookie</span></span><br><span class="line">            ctx.cookies.set(<span class="string">&#x27;userId&#x27;</span>, crypt.cryptUserId(user.id), &#123;</span><br><span class="line">                httpOnly:<span class="literal">false</span>,</span><br><span class="line">                sameSite:<span class="string">&#x27;strict&#x27;</span></span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>此时登录之后，userID的value将是一个字符串，但是此时有一个<strong>问题</strong>：当我把这个值带到后台后，后台该如何知道他是谁？</p>
+<p><code>签名</code>：是一个不可逆的算法，即不可能通过签名的值倒推出签名的明文是多少</p>
+<p>所以我们需要做一件事，就是将明文透出来，修改如下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 登录成功，设置cookie</span></span><br><span class="line">ctx.cookies.set(<span class="string">&#x27;sign&#x27;</span>, crypt.cryptUserId(user.id), &#123;</span><br><span class="line">    httpOnly:<span class="literal">false</span>,</span><br><span class="line">    sameSite:<span class="string">&#x27;strict&#x27;</span></span><br><span class="line">&#125;);</span><br><span class="line">         ctx.cookies.set(<span class="string">&#x27;userId&#x27;</span>, user.id, &#123;</span><br><span class="line">    httpOnly:<span class="literal">false</span>,</span><br><span class="line">    sameSite:<span class="string">&#x27;strict&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200502172441973.png" alt="image-20200502172441973"></p>
+<p>此时我们可以看出来，签名是一个字符串，而id是一个明文</p>
+<ul>
+<li>sessionId：是一个字符串，与用户相关的信息没有任何关系，就是一个包豪斯</li>
+</ul>
+<h2 id="3-cookies与XSS-CSRF的关系与案例"><a href="#3-cookies与XSS-CSRF的关系与案例" class="headerlink" title="3 cookies与XSS CSRF的关系与案例"></a>3 cookies与XSS CSRF的关系与案例</h2><h2 id="4-cookies安全策略"><a href="#4-cookies安全策略" class="headerlink" title="4 cookies安全策略"></a>4 cookies安全策略</h2><ul>
+<li>签名防篡改：其数据仍然是明文给的，但是我可以通过签名来验证我有没有修改过</li>
+<li>私有变换（加密）：不是明文，而是加密的，同时避免信息泄露，因为不知道它是什么含义（密文+秘钥）<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503002538661.png" alt="image-20200503002538661"></li>
+<li>http-only（防止xss）：防止js读取cookie</li>
+<li>secure：只能在https请求中才能读取cookie</li>
+<li>same-site：防止csrf攻击 </li>
+</ul>
+<h1 id="4-前端点击劫持问题"><a href="#4-前端点击劫持问题" class="headerlink" title="4 前端点击劫持问题"></a>4 前端点击劫持问题</h1><h2 id="1-点击劫持演示"><a href="#1-点击劫持演示" class="headerlink" title="1 点击劫持演示"></a>1 点击劫持演示</h2><p><strong>危害</strong>：</p>
+<ul>
+<li>用户亲手操作</li>
+<li>用户不知情</li>
+<li>盗取用户资金 （转账、消费）</li>
+<li>获取用户敏感信息</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset=<span class="string">&quot;utf-8&quot;</span>/&gt;</span><br><span class="line">        &lt;title&gt;csrf demo&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body style=<span class="string">&quot;background:url(clickhijack.png) no-repeat&quot;</span>&gt;</span><br><span class="line">        &lt;iframe style=<span class="string">&quot;opacity:0&quot;</span> src=<span class="string">&quot;http://localhost:1521/post/1&quot;</span> width=<span class="string">&quot;800&quot;</span> height=<span class="string">&quot;600&quot;</span>&gt;&lt;/iframe&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-点击劫持防御"><a href="#2-点击劫持防御" class="headerlink" title="2 点击劫持防御"></a>2 点击劫持防御</h2><p><code>点击劫持原理：</code>将目标网站做一个iframe嵌入到我们攻击者网站中，将iframe从视觉将其隐藏，即透明度设置为零，但是仍然在目标网站上进行操作<br><code>防御：</code>目标网站不能够被其他网站内嵌  </p>
+<p><strong>方法：</strong></p>
+<ul>
+<li><code>JavaScript禁止内嵌：</code>top是外面的，而window是内嵌的那个iframe，当<code>if(top.location !=window.location)   top.location = window.location</code>,当我们访问clickhack.html时，我们会跳转到iframe中的网站，而不会进入攻击者的网站，从而被点击劫持。即我们利用JavaScript做了一个页面的跳转，但是这能够解决问题吗<strong>？</strong><br>如果攻击者网站禁止 了JavaScript了，就不可以了<br>例如，我们添加一个属性，<code>sandbox=“allow-forms”</code>，这个属性禁止了很多功能包括JavaScript，但是允许表单提交</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;body style=<span class="string">&quot;background:url(clickhijack.png) no-repeat&quot;</span>&gt;</span><br><span class="line">    &lt;iframe style=<span class="string">&quot;opacity:0&quot;</span> sandbox=“allow-forms” src=<span class="string">&quot;http://localhost:1521/post/1&quot;</span> width=<span class="string">&quot;800&quot;</span> height=<span class="string">&quot;600&quot;</span>&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503100604764.png" alt="image-20200503100604764">此时我们仍然能够点解劫持，我们之前做的JavaScript的功能就失效了</p>
+<ul>
+<li><code>X-FRAME-OPTIONS 禁止内嵌</code>：之前我们是利用header的方法，后续可以改变的，不科学。而是应该一开始就已经决定好其特性，即页面在加载的时候就已经指定好了关于<code>iframe</code>的策略，这个网站是否允许内嵌<br><code>ctx.set(&#39;X-Frame-Option&#39;, &#39;DENY&#39;)</code>:它的值有三种，<br><code>DENY</code>:禁止内嵌<br><code>SAME-ORIGIN:</code>表示嵌入页和被嵌入页处于同一个网站时可以使用<br><code>SAMEORIGIN:</code>同一个域时才可以使用<br><code>ALLOW-FROM:</code>在这后面填上允许的网址</li>
+<li>其他辅助手段（增加用户的操作难度）：验证码</li>
+</ul>
+<h2 id="3-PHP-点击劫持"><a href="#3-PHP-点击劫持" class="headerlink" title="3 PHP-点击劫持"></a>3 PHP-点击劫持</h2><p>使用上面一样的</p>
+<h1 id="5-传输安全"><a href="#5-传输安全" class="headerlink" title="5 传输安全"></a>5 传输安全</h1><h2 id="1-HTTP窃听"><a href="#1-HTTP窃听" class="headerlink" title="1 HTTP窃听"></a>1 HTTP窃听</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503105716835.png" alt="image-20200503105716835"></p>
+<p>traceroute（Linux）可以查看数据经过哪些节点<br>tracert（windows下）</p>
+<ul>
+<li>窃听用户密码</li>
+<li>窃听传输敏感信息</li>
+<li>非法获取个人资料</li>
+</ul>
+<p><strong>HTTP篡改</strong></p>
+<ul>
+<li>插入广告</li>
+<li>重定向网站</li>
+<li>无法预防的xss和csrf攻击</li>
+</ul>
+<h2 id="2-HTTPS原理"><a href="#2-HTTPS原理" class="headerlink" title="2 HTTPS原理"></a>2 HTTPS原理</h2><p>发送：明文变换到密文</p>
+<p>接受：密文变明文</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503114552059.png" alt="image-20200503114552059"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503114752576.png" alt="image-20200503114752576"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503123407681.png" alt="image-20200503123407681"></p>
+<h2 id="3-HTTPS部署"><a href="#3-HTTPS部署" class="headerlink" title="3 HTTPS部署"></a>3 HTTPS部署</h2><h2 id="4-真实服务器申请部署HTTPS"><a href="#4-真实服务器申请部署HTTPS" class="headerlink" title="4 真实服务器申请部署HTTPS"></a>4 真实服务器申请部署HTTPS</h2><h1 id="6-密码安全"><a href="#6-密码安全" class="headerlink" title="6 密码安全"></a>6 密码安全</h1><h2 id="1-密码的作用"><a href="#1-密码的作用" class="headerlink" title="1 密码的作用"></a>1 密码的作用</h2><p>证明你就是你</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503135335326.png" alt="image-20200503135335326"></p>
+<h2 id="2-密码的存储"><a href="#2-密码的存储" class="headerlink" title="2 密码的存储"></a>2 密码的存储</h2><p><strong>密码-泄露渠道</strong></p>
+<ul>
+<li>数据库被偷</li>
+<li>服务器被入侵</li>
+<li>通讯被窃听</li>
+<li>内部人员泄露数据</li>
+<li>其他网站（撞库）：拿着该用户和密码去其他的网站上去尝试</li>
+</ul>
+<p>**密码-存储</p>
+<ul>
+<li>严禁明文存储（防泄露）</li>
+<li>单向变换（防泄露）：无法逆推</li>
+<li>变换复杂度要求（防猜解）</li>
+<li>密码复杂度要求（防猜解）</li>
+<li>加盐（防猜解）</li>
+</ul>
+<p><strong>密码-哈希算法（信息摘要算法）</strong></p>
+<ul>
+<li>明文-密文一一对应</li>
+<li>雪崩效应</li>
+<li>密文-明文  无法反推</li>
+<li>密文固定长度</li>
+<li>常见哈希算法：md5、sha1 、sha256</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503140546312.png" alt="image-20200503140546312"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503140653758.png" alt="image-20200503140653758"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503140849995.png" alt="image-20200503140849995"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503141035016.png" alt="image-20200503141035016"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503141140736.png" alt="image-20200503141140736"></p>
+<h2 id="3-密码不安全的案例"><a href="#3-密码不安全的案例" class="headerlink" title="3 密码不安全的案例"></a>3 密码不安全的案例</h2><h2 id="4-密码加固"><a href="#4-密码加固" class="headerlink" title="4 密码加固"></a>4 密码加固</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503145256145.png" alt="image-20200503145256145"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503145532661.png" alt="image-20200503145532661"></p>
+<h2 id="5-密码传输安全"><a href="#5-密码传输安全" class="headerlink" title="5 密码传输安全"></a>5 密码传输安全</h2><p>切记不要密码明文传输</p>
+<p><strong>密码传输的安全性</strong></p>
+<ul>
+<li>https传输</li>
+<li>频率限制</li>
+<li>前端加密意义有限：明文密码不会泄露，但是攻击者仍然可以登录，因为攻击者也可以拿这个加密后的密码去登录</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503153243548.png" alt="image-20200503153243548">同时后台也是需要修改的，因为之前后台接收到的是明文，做的也是明文的处理。而现在是密文传输过来的，所以后端的代码需要修改</p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503153621341.png" alt="image-20200503153621341"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503153813962.png" alt="image-20200503153813962"></p>
+<h2 id="6-生物密码"><a href="#6-生物密码" class="headerlink" title="6 生物密码"></a>6 生物密码</h2><ul>
+<li>指纹（唇纹）</li>
+<li>声纹</li>
+<li>虹膜</li>
+<li>人脸</li>
+</ul>
+<p><strong>问题：</strong></p>
+<ul>
+<li>私密性——容易泄露</li>
+<li>安全性（基于相似性，概率做的而不是类似于哈希中一一对应的）——碰撞</li>
+<li>唯一性——终身唯一，无法修改</li>
+</ul>
+<h2 id="7-PHP-密码加固"><a href="#7-PHP-密码加固" class="headerlink" title="7 PHP-密码加固"></a>7 PHP-密码加固</h2><h1 id="7-接入层注入问题"><a href="#7-接入层注入问题" class="headerlink" title="7 接入层注入问题"></a>7 接入层注入问题</h1><h2 id="1-关系型数据库和SQL介绍"><a href="#1-关系型数据库和SQL介绍" class="headerlink" title="1 关系型数据库和SQL介绍"></a>1 关系型数据库和SQL介绍</h2><ul>
+<li><p>存放结构化数据</p>
+</li>
+<li><p>可高效操作大量数据</p>
+</li>
+<li><p>方便处理数据之间的关联关系</p>
+<p>SQL语言：类似自然语言的描述性语言</p>
+</li>
+</ul>
+<h2 id="2-SQL注入前置知识"><a href="#2-SQL注入前置知识" class="headerlink" title="2 SQL注入前置知识"></a>2 SQL注入前置知识</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503172913207.png" alt="image-20200503172913207"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503174004645.png" alt="image-20200503174004645"></p>
+<p><strong>解释如下：</strong></p>
+<p>1：会产生错误，帮助我们进行下一步<br>2: 前置条件失效<br>3：mid（version(),1,1）函数有三个参数，version()返回版本号，然后从第一位开始截取一位，即5；可用于数据库信息的探测<br>4：没指定列的名字，而是1,2,3，可以列出有多少个字段<br>5：类似上面的<br>6：union表示联合，把后面的语句结果附加到前面语句的结果上面<br>7：把username的第一位拿出来，等于t的数据查询出来，类似于3,做一个信息探测</p>
+<p><strong>演示如下</strong></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503173727028.png" alt="image-20200503173727028"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503173747707.png" alt="image-20200503173747707"></p>
+<h2 id="3-SQL注入演示和危害"><a href="#3-SQL注入演示和危害" class="headerlink" title="3  SQL注入演示和危害"></a>3  SQL注入演示和危害</h2><p><strong>危害：</strong></p>
+<ul>
+<li>猜解密码</li>
+<li>获取数据</li>
+<li>删库删表</li>
+<li>拖库</li>
+</ul>
+<h2 id="4-SQL注入案例"><a href="#4-SQL注入案例" class="headerlink" title="4 SQL注入案例"></a>4 SQL注入案例</h2><h2 id="5-SQL注入防御上"><a href="#5-SQL注入防御上" class="headerlink" title="5 SQL注入防御上"></a>5 SQL注入防御上</h2><ul>
+<li><p>关闭错误输出<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503180307298.png" alt="image-20200503180307298"></p>
+</li>
+<li><p>检查数据类型</p>
+</li>
+<li><p>对数据进行转义：将可能变为程序的字符进行转义<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503180722497.png" alt="image-20200503180722497"></p>
+<p>或者参数化查询<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503180807173.png" alt="image-20200503180807173" style="zoom:25%;"></p>
+</li>
+<li><p>使用参数化查询：作为一个占位符</p>
+</li>
+<li><p>使用ORM（对象关系映射）<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200503185310376.png" alt="image-20200503185310376"></p>
+</li>
+</ul>
+<h2 id><a href="#" class="headerlink" title></a></h2><h2 id="6-NoSQL注入和防御"><a href="#6-NoSQL注入和防御" class="headerlink" title="6 NoSQL注入和防御"></a>6 NoSQL注入和防御</h2><ul>
+<li>检查数据类型</li>
+<li>类型转换</li>
+<li>写完整条件</li>
+</ul>
+<h2 id="7-PHP-SQL注入"><a href="#7-PHP-SQL注入" class="headerlink" title="7 PHP-SQL注入"></a>7 PHP-SQL注入</h2><ul>
+<li>检查数据类型</li>
+<li>对数据进行转义</li>
+<li>使用参数化查询</li>
+<li>使用ORM</li>
+</ul>
+<h1 id="8-接入层上传问题"><a href="#8-接入层上传问题" class="headerlink" title="8 接入层上传问题"></a>8 接入层上传问题</h1><h2 id="1-上传漏洞简介"><a href="#1-上传漏洞简介" class="headerlink" title="1 上传漏洞简介"></a>1 上传漏洞简介</h2><ul>
+<li>上传文件：由用户提供，无法预知用户上传的是什么内容</li>
+<li>再次访问上传</li>
+<li>上传的文件被当成程序解析</li>
+</ul>
+<h2 id="2-上传漏洞演示"><a href="#2-上传漏洞演示" class="headerlink" title="2 上传漏洞演示"></a>2 上传漏洞演示</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504091838051.png" alt="image-20200504091838051"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504092107292.png" alt="image-20200504092107292"></p>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504092725775.png" alt="image-20200504092725775"></p>
+<h2 id="3-上传漏洞案例"><a href="#3-上传漏洞案例" class="headerlink" title="3 上传漏洞案例"></a>3 上传漏洞案例</h2><h2 id="4-上传漏洞防御"><a href="#4-上传漏洞防御" class="headerlink" title="4 上传漏洞防御"></a>4 上传漏洞防御</h2><ul>
+<li>限制上传后缀</li>
+<li>文件类型检查</li>
+<li>文件内容检查</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504094647393.png" alt="image-20200504094647393"></p>
+<ul>
+<li>程序输出</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504094738532.png" alt="image-20200504094738532"></p>
+<ul>
+<li>权限控制-可写可执行互斥</li>
+</ul>
+<h2 id="5-PHP-文件上传"><a href="#5-PHP-文件上传" class="headerlink" title="5 PHP-文件上传"></a>5 PHP-文件上传</h2><p>防御跟上述的一样</p>
+<ul>
+<li><p>1：<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504100008505.png" alt="image-20200504100008505"></p>
+</li>
+<li><p>2：<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504100204121.png" alt="image-20200504100204121"></p>
+</li>
+<li><p>3：<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504100330627.png" alt="image-20200504100330627"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504100357030.png" alt="image-20200504100357030"></p>
+</li>
+<li><p>4：<img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504100648104.png" alt="image-20200504100648104"></p>
+</li>
+</ul>
+<h1 id="9-社会工程学和信息泄露"><a href="#9-社会工程学和信息泄露" class="headerlink" title="9 社会工程学和信息泄露"></a>9 社会工程学和信息泄露</h1><h2 id="1-信息泄露和社会工程学"><a href="#1-信息泄露和社会工程学" class="headerlink" title="1 信息泄露和社会工程学"></a>1 信息泄露和社会工程学</h2><p><strong>信息泄露</strong></p>
+<ul>
+<li>泄露系统敏感信息</li>
+<li>泄露用户敏感信息</li>
+<li>泄露用户密码</li>
+</ul>
+<p><strong>信息泄露途径</strong></p>
+<ul>
+<li>错误信息失控</li>
+<li>SQL注入</li>
+<li>水平权限控制不当</li>
+<li>XSS/CSRF</li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504104750027.png" alt="image-20200504104750027"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504110526536.png" alt="image-20200504110526536"></p>
+<h2 id="2-社会工程学案例"><a href="#2-社会工程学案例" class="headerlink" title="2 社会工程学案例"></a>2 社会工程学案例</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504111012630.png" alt="image-20200504111012630"></p>
+<h2 id="3-OAuth思想介绍"><a href="#3-OAuth思想介绍" class="headerlink" title="3 OAuth思想介绍"></a>3 OAuth思想介绍</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504111229014.png" alt="image-20200504111229014"></p>
+<ul>
+<li>一切行为由用户授权</li>
+<li>授权行为不泄露敏感信息</li>
+<li>授权会过期</li>
+</ul>
+<h2 id="4-利用OAuth思想保护用户资料"><a href="#4-利用OAuth思想保护用户资料" class="headerlink" title="4 利用OAuth思想保护用户资料"></a>4 利用OAuth思想保护用户资料</h2><p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504112408517.png" alt="image-20200504112408517"><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504115136167.png" alt="image-20200504115136167"></p>
+<h1 id="10-其他安全问题"><a href="#10-其他安全问题" class="headerlink" title="10 其他安全问题"></a>10 其他安全问题</h1><h2 id="1-DOS（拒绝服务）攻击"><a href="#1-DOS（拒绝服务）攻击" class="headerlink" title="1 DOS（拒绝服务）攻击"></a>1 DOS（拒绝服务）攻击</h2><ul>
+<li>模拟正常用户</li>
+<li>大量占用服务器资源</li>
+<li>无法服务正常用户</li>
+</ul>
+<p><strong>类型：</strong></p>
+<ul>
+<li>TCP半连接</li>
+<li>HTTP连接</li>
+<li>DNS</li>
+</ul>
+<p><strong>大规模分布式拒绝服务供给DDOS</strong></p>
+<ul>
+<li>流量可达几十到上百G</li>
+<li>分布式（肉鸡、代理）</li>
+<li>极难防御</li>
+<li></li>
+</ul>
+<p><img src="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/image-20200504120038860.png" alt="image-20200504120038860"></p>
+<p><strong>防御：</strong> </p>
+<ul>
+<li>防火墙</li>
+<li>交换机、路由器</li>
+<li>流量清洗</li>
+<li>高防IP</li>
+</ul>
+<p><strong>预防</strong></p>
+<ul>
+<li>避免重逻辑业务</li>
+<li>快速失败快速返回</li>
+<li>防雪崩机制</li>
+<li>有损服务</li>
+<li>CDN：静态文件不放在服务器上面，而是访问CDN</li>
+</ul>
+<h2 id="2-重放攻击"><a href="#2-重放攻击" class="headerlink" title="2 重放攻击"></a>2 重放攻击</h2><ul>
+<li>请求被窃听或记录</li>
+<li>再次发起相同的请求</li>
+<li>产生意外的结果：用户被多次消费；用户登录态被盗取；多次抽奖</li>
+</ul>
+<p><strong>防御</strong></p>
+<ul>
+<li>加密（HTTPS）：防止被窃听</li>
+<li>时间戳：超过时间的请求失效</li>
+<li>token（session）：</li>
+<li>nonce（一次性数据）：<br>注意：时间戳和nonce 都要防止被篡改，于是需要签名</li>
+<li>签名：</li>
+</ul>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2020/07/15/web%E5%AE%89%E5%85%A8%E5%89%8D%E5%90%8E%E7%AB%AF/" class="leancloud-visitors view" data-flag-title="web安全前后端">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2020/07/15/渗透测试之信息收集/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2020/07/15/web安全黑客白帽子/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2020-07-15 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/web安全/">web安全<span>2</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/web安全/">web安全<span>2</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+		   <span class="toc-title">Contents</span>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#1-%E5%89%8D%E7%AB%AFXSS"><span class="toc-article-text">1 前端XSS</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-XSS%E4%BB%8B%E7%BB%8D"><span class="toc-article-text">1 XSS介绍</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-XSS%E6%94%BB%E5%87%BB%E7%B1%BB%E5%9E%8B"><span class="toc-article-text">2 XSS攻击类型</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#xss%E6%94%BB%E5%87%BB%E6%B3%A8%E5%85%A5%E7%82%B9"><span class="toc-article-text">xss攻击注入点</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#CSP"><span class="toc-article-text">CSP</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#PHP-XSS"><span class="toc-article-text">PHP-XSS</span></a></li></ol></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#2-%E5%89%8D%E7%AB%AFCSRF"><span class="toc-article-text">2 前端CSRF</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-CSRF%E6%94%BB%E5%87%BB%E7%AE%80%E4%BB%8B%E5%92%8C%E6%BC%94%E7%A4%BA"><span class="toc-article-text">1 CSRF攻击简介和演示</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-CSRF%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86%E5%92%8C%E5%8D%B1%E5%AE%B3"><span class="toc-article-text">2 CSRF攻击原理和危害</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#3-CSRF%E9%98%B2%E5%BE%A1"><span class="toc-article-text">3 CSRF防御-</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#%E6%8E%AA%E6%96%BD"><span class="toc-article-text">措施</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#4-PHP-CSRF"><span class="toc-article-text">4  PHP-CSRF</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-cookies%E4%BD%9C%E7%94%A8"><span class="toc-article-text">2 cookies作用</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#3-cookies%E4%B8%8EXSS-CSRF%E7%9A%84%E5%85%B3%E7%B3%BB%E4%B8%8E%E6%A1%88%E4%BE%8B"><span class="toc-article-text">3 cookies与XSS CSRF的关系与案例</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#4-cookies%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5"><span class="toc-article-text">4 cookies安全策略</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#4-%E5%89%8D%E7%AB%AF%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81%E9%97%AE%E9%A2%98"><span class="toc-article-text">4 前端点击劫持问题</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81%E6%BC%94%E7%A4%BA"><span class="toc-article-text">1 点击劫持演示</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81%E9%98%B2%E5%BE%A1"><span class="toc-article-text">2 点击劫持防御</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#3-PHP-%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81"><span class="toc-article-text">3 PHP-点击劫持</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#5-%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8"><span class="toc-article-text">5 传输安全</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-HTTP%E7%AA%83%E5%90%AC"><span class="toc-article-text">1 HTTP窃听</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-HTTPS%E5%8E%9F%E7%90%86"><span class="toc-article-text">2 HTTPS原理</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#3-HTTPS%E9%83%A8%E7%BD%B2"><span class="toc-article-text">3 HTTPS部署</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#4-%E7%9C%9F%E5%AE%9E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%94%B3%E8%AF%B7%E9%83%A8%E7%BD%B2HTTPS"><span class="toc-article-text">4 真实服务器申请部署HTTPS</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#6-%E5%AF%86%E7%A0%81%E5%AE%89%E5%85%A8"><span class="toc-article-text">6 密码安全</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-%E5%AF%86%E7%A0%81%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-article-text">1 密码的作用</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-%E5%AF%86%E7%A0%81%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-article-text">2 密码的存储</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#3-%E5%AF%86%E7%A0%81%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E6%A1%88%E4%BE%8B"><span class="toc-article-text">3 密码不安全的案例</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#4-%E5%AF%86%E7%A0%81%E5%8A%A0%E5%9B%BA"><span class="toc-article-text">4 密码加固</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#5-%E5%AF%86%E7%A0%81%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8"><span class="toc-article-text">5 密码传输安全</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#6-%E7%94%9F%E7%89%A9%E5%AF%86%E7%A0%81"><span class="toc-article-text">6 生物密码</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#7-PHP-%E5%AF%86%E7%A0%81%E5%8A%A0%E5%9B%BA"><span class="toc-article-text">7 PHP-密码加固</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#7-%E6%8E%A5%E5%85%A5%E5%B1%82%E6%B3%A8%E5%85%A5%E9%97%AE%E9%A2%98"><span class="toc-article-text">7 接入层注入问题</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8CSQL%E4%BB%8B%E7%BB%8D"><span class="toc-article-text">1 关系型数据库和SQL介绍</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-SQL%E6%B3%A8%E5%85%A5%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-article-text">2 SQL注入前置知识</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#3-SQL%E6%B3%A8%E5%85%A5%E6%BC%94%E7%A4%BA%E5%92%8C%E5%8D%B1%E5%AE%B3"><span class="toc-article-text">3  SQL注入演示和危害</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#4-SQL%E6%B3%A8%E5%85%A5%E6%A1%88%E4%BE%8B"><span class="toc-article-text">4 SQL注入案例</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#5-SQL%E6%B3%A8%E5%85%A5%E9%98%B2%E5%BE%A1%E4%B8%8A"><span class="toc-article-text">5 SQL注入防御上</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link"><span class="toc-article-text"></span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#6-NoSQL%E6%B3%A8%E5%85%A5%E5%92%8C%E9%98%B2%E5%BE%A1"><span class="toc-article-text">6 NoSQL注入和防御</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#7-PHP-SQL%E6%B3%A8%E5%85%A5"><span class="toc-article-text">7 PHP-SQL注入</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#8-%E6%8E%A5%E5%85%A5%E5%B1%82%E4%B8%8A%E4%BC%A0%E9%97%AE%E9%A2%98"><span class="toc-article-text">8 接入层上传问题</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E7%AE%80%E4%BB%8B"><span class="toc-article-text">1 上传漏洞简介</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E6%BC%94%E7%A4%BA"><span class="toc-article-text">2 上传漏洞演示</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#3-%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E6%A1%88%E4%BE%8B"><span class="toc-article-text">3 上传漏洞案例</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#4-%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E9%98%B2%E5%BE%A1"><span class="toc-article-text">4 上传漏洞防御</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#5-PHP-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-article-text">5 PHP-文件上传</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#9-%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6%E5%92%8C%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="toc-article-text">9 社会工程学和信息泄露</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2%E5%92%8C%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6"><span class="toc-article-text">1 信息泄露和社会工程学</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-%E7%A4%BE%E4%BC%9A%E5%B7%A5%E7%A8%8B%E5%AD%A6%E6%A1%88%E4%BE%8B"><span class="toc-article-text">2 社会工程学案例</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#3-OAuth%E6%80%9D%E6%83%B3%E4%BB%8B%E7%BB%8D"><span class="toc-article-text">3 OAuth思想介绍</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#4-%E5%88%A9%E7%94%A8OAuth%E6%80%9D%E6%83%B3%E4%BF%9D%E6%8A%A4%E7%94%A8%E6%88%B7%E8%B5%84%E6%96%99"><span class="toc-article-text">4 利用OAuth思想保护用户资料</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#10-%E5%85%B6%E4%BB%96%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-article-text">10 其他安全问题</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1-DOS%EF%BC%88%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%EF%BC%89%E6%94%BB%E5%87%BB"><span class="toc-article-text">1 DOS（拒绝服务）攻击</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2-%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB"><span class="toc-article-text">2 重放攻击</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

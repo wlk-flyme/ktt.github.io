@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>-神奇的指针- | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="-神奇的指针-"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> -神奇的指针-</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h3 id="什么是指针？"><a href="#什么是指针？" class="headerlink" title="什么是指针？"></a>什么是指针？</h3><ul>
+<li><p>指针就是一个变量，所有变量拥有的类型指针都一样拥有的</p>
+<a id="more"></a>
+
+<h3 id="指针既然是变量，那么它可以存储什么内容"><a href="#指针既然是变量，那么它可以存储什么内容" class="headerlink" title="指针既然是变量，那么它可以存储什么内容"></a>指针既然是变量，那么它可以存储什么内容</h3></li>
+<li><p>指针可以存储地址—–没错就是地址（操作系统中用来 标识RAM存储单元的二进制，就好像个人的地址标识他居住地一样）</p>
+<h3 id="准备接受一个思想"><a href="#准备接受一个思想" class="headerlink" title="准备接受一个思想"></a>准备接受一个思想</h3></li>
+</ul>
+<ul>
+<li><p>我们知道，定义为内存中某个位置的变量，它的值可以由程序员改变。当在x上使用取地址运算符（即&amp;x）时，它实际上指的是内存中保存x的位置的地址</p>
+<h3 id="给几个概念来撸个串"><a href="#给几个概念来撸个串" class="headerlink" title="给几个概念来撸个串"></a>给几个概念来撸个串</h3></li>
+</ul>
+<p>这里将介绍变量名称、位置、某位置处的值和位置的地址这些概念。因为这些都通过结合图形更好的理解</p>
+<p> <img src="/2017/04/05/%E5%88%9D%E8%AF%86%E6%8C%87%E9%92%88/%E5%88%9D%E8%AF%86%E6%8C%87%E9%92%88%5CRAM.png" alt="RAM"></p>
+<p> <img src="/2017/04/05/%E5%88%9D%E8%AF%86%E6%8C%87%E9%92%88/%E5%88%9D%E8%AF%86%E6%8C%87%E9%92%88%5C%E6%8C%87%E9%92%88%E6%A6%82%E5%BF%B5.png" alt="指针概念"></p>
+<h3 id="大家一定要记住指针就是位置"><a href="#大家一定要记住指针就是位置" class="headerlink" title="大家一定要记住指针就是位置"></a>大家一定要记住指针就是位置</h3><p>当在代码中使用位置时，他们的行为取决于它们位于代码的什么地方。如果它们出现在=复制运算符的左边，那么它们的行为和出现在其他地方的行为大相径庭。如果它们*<strong><u>没有出现在赋值运算符的左边</u>**<em>，那么这个位置将被该位置上的值取代。例如，如果x为3，那么在表达式：<code>y=x + 5</code>中，x被它的位置（或者内存单元）上的值取代，即3，然后得到结果8并赋予y。但是，</em></strong><u>如果位置出现在赋值运算符的左边</u>***，它就不应该被该位置上的值取代。例如，若y为10，那么表达式：y=x+5；将不会替换为10=x+5</p>
+<h3 id="取址运算符"><a href="#取址运算符" class="headerlink" title="取址运算符 *"></a>取址运算符 *</h3><ul>
+<li>该运算符可以应用于指针（或者能够产生地址的表达式）。该运算的结果是一个位置。大多数运算的结果是某种类型的值。结果位置是解析地址的位置。因此，如果将x的地址赋予ptr，即：<code>ptr = &amp; x；</code>那么*ptr将是为x保留的位置。<ul>
+<li>既然取指针内容运算符*可以获得位置作为结果，所以它的行为取决于它在代码中的位置。请看下述示例：    </li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int x,*ptr;</span><br><span class="line">x &#x3D; 3;</span><br><span class="line">ptr &#x3D; &amp;x;</span><br></pre></td></tr></table></figure>
+
+<p>在这一段代码之后，如果 不在赋值运算符的左边使用<em>ptr，那么它仅是一个变量（位置），提供在结果位置处存储的值。在表达式：<code>y = *ptr + 5</code>中，运算</em>ptr得到保存x的位置。因此，运算*ptr将被值3（之前赋给x的值）取代.如果</p>
+<p>*ptr出现在赋值运算符的左边，如表达式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* ptr &#x3D; 10 + z;</span><br></pre></td></tr></table></figure>
+
+<p>所示，那么它就只是赋值左边的一个变量（位置）：它只被用作一个位置，而10+z的结果将存储在为x保留在位置上。但是这里要注意：通过指针，x的值可以由前面的代码修改。如果z为5，那么x的值变为15</p>
+<p>  <img src="/2017/04/05/%E5%88%9D%E8%AF%86%E6%8C%87%E9%92%88/%E5%88%9D%E8%AF%86%E6%8C%87%E9%92%88%5C%E5%8F%96%E6%8C%87%E9%92%88%E5%86%85%E5%AE%B9%E7%BB%93%E6%9E%9C.png" alt="取指针内容结果"></p>
+<h4 id="思考一个问题，我们都知道数组名存储的是地址，而且还是第一个元素的地址，所以数组的名称是否是指针呢？"><a href="#思考一个问题，我们都知道数组名存储的是地址，而且还是第一个元素的地址，所以数组的名称是否是指针呢？" class="headerlink" title="思考一个问题，我们都知道数组名存储的是地址，而且还是第一个元素的地址，所以数组的名称是否是指针呢？"></a>思考一个问题，我们都知道数组名存储的是地址，而且还是第一个元素的地址，所以数组的名称是否是指针呢？</h4><ul>
+<li>回答：不是。虽然它是地址。原因在于指针定义为一个存储地址的变量。名称“变量”就暗含着它的值是可以变的。但是我们不能在数组中存储一个不同地址</li>
+</ul>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2017/04/05/%E5%88%9D%E8%AF%86%E6%8C%87%E9%92%88/" class="leancloud-visitors view" data-flag-title="-神奇的指针-">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2017/04/10/C-中static关键字/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2017/04/05/const限定符/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2017-04-05 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/指针/">指针<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/C/">C++<span>6</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

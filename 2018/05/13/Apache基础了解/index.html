@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Apache基础了解 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Apache基础了解"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Apache基础了解</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="Apache基本操作"><a href="#Apache基本操作" class="headerlink" title="Apache基本操作"></a><center>Apache基本操作</center></h1><a id="more"></a>
+
+<table>
+<thead>
+<tr>
+<th align="center">安装</th>
+<th align="center">yum install httpd</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">启动</td>
+<td align="center">service httpd start</td>
+</tr>
+<tr>
+<td align="center">停止</td>
+<td align="center">service httpd stop</td>
+</tr>
+<tr>
+<td align="center">查看状态</td>
+<td align="center">sudo netstat -anpl | grep ‘http’</td>
+</tr>
+</tbody></table>
+<p>具体如图所示</p>
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8741.png"></p>
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8742.png"></p>
+<p>此时我们在浏览器中去访问看一下</p>
+<p>输入虚拟机的ip地址（默认端口号为80，当然你也可以加上端口号）</p>
+<p>我们发现访问失败了</p>
+<blockquote>
+<p>解决办法：将防火墙关闭了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service firewalld stop</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8743.png"></p>
+<h1 id="虚拟主机配置"><a href="#虚拟主机配置" class="headerlink" title="虚拟主机配置"></a><center>虚拟主机配置</center></h1><p>首先有个了解 ,进入配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;httpd&#x2F;conf&#x2F;httpd.conf</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8744.png"></p>
+<li>配置一下虚拟主机</li>注意几个关键词
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServerName</span><br><span class="line">DocumentRoot</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8745.png"></p>
+<li>重启服务器</li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service httpd restart</span><br></pre></td></tr></table></figure>
+
+<li>建立DocumentRoot目录</li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p &#x2F;data&#x2F;www  # -p 表示循环建立目录</span><br></pre></td></tr></table></figure>
+
+<li>写一个首页面index.html</li>
+
+<p>准备在/data/www写一个页面，发现无法写入</p>
+<blockquote>
+<p><strong>原因</strong>：www是属于root账户下，普通用户无法再改目录下写index.html</p>
+<p>办法：改变权限</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R wlk:wlk &#x2F;data</span><br></pre></td></tr></table></figure>
+
+<p>此时www属于wlk用户的，就可以编写一个index.html页面了</p>
+<li>访问页面</li>
+
+<p>此时去访问我们刚刚写入的虚拟域名（<a target="_blank" rel="noopener" href="http://www.imooc.test)是无法访问的,因为你没有绑定域名,站点无法访问./">www.imooc.test）是无法访问的，因为你没有绑定域名，站点无法访问。</a></p>
+<blockquote>
+<p>办法：在windows下找到<code>hosts</code>文件将 192.168.1.115 <a target="_blank" rel="noopener" href="http://www.imooc.test/">www.imooc.test</a> 这样即使是虚拟的我们任然可以测试访问</p>
+</blockquote>
+<p>这时候我们<code>ping</code>这个虚拟域名，看是否成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.imooc.test</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8746.png"></p>
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8747.png"></p>
+<blockquote>
+<p><strong>问题：</strong>发现首页面并不是我们写好的页面</p>
+<p><strong>解决办法：</strong>查看日志log</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;etc&#x2F;httpd&#x2F;logs</span><br><span class="line">发现权限不够</span><br><span class="line">方法：sudo su - 或者 sudo su -root</span><br><span class="line">ll</span><br><span class="line">输出有两个日志：&#96;access_log&#96;和&#96;error_log&#96;</span><br><span class="line">tail -f access_log   # 访问日志</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看错误日志，解决问题</p>
+</blockquote>
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8748.png"></p>
+<blockquote>
+<p>问题解决：</p>
+</blockquote>
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8749.png"></p>
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8750.png"></p>
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8751.png"></p>
+<blockquote>
+<p><strong>插播：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setenfore</span><br></pre></td></tr></table></figure>
+
+<p>0:  宽松模式</p>
+<p>1:  强迫模式</p>
+<li>如何修改</li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;selinux&#x2F;config</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8752.png"></p>
+<p><img src="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/%E5%9B%BE%E7%89%8753.png"></p>
+<h1 id="伪静态操作"><a href="#伪静态操作" class="headerlink" title="伪静态操作"></a><center>伪静态操作<center></center></center></h1>
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2018/05/13/Apache%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/" class="leancloud-visitors view" data-flag-title="Apache基础了解">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2018/05/14/nginx启动失败/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/05/13/Linux各目录了解知多少/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-05-13 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Apache/">Apache<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Linux/">Linux<span>7</span></a></li> <li><a href="/tags/Apache/">Apache<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

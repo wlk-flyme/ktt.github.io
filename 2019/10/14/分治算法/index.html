@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>分治算法 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="分治算法"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> 分治算法</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>分治算法的<strong>基本思想</strong>是：将一个计算复杂的问题分为规模较小,计算简单的小问题求解,然后综合各个小问题,而得到最终问题的答案。分治算法的执行过程如下:<a id="more"></a></p>
+<p> （1）<strong>分解</strong>：将原问题分解为若干个规模较小，相互独立，与原问题形式相同的子问题。<br> （2）<strong>求解</strong>：若子问题规模较小而容易被解决则直接解，否则递归地解各个子问题。<br> （3）<strong>合并</strong>：将各个子问题的解合并为原问题的解。</p>
+<p>当我们将 大问题分解成子问题后，经常会发现子问题与大问题本质上是相同的问题，因此可以利用<strong>递 归方法</strong>来设计算法。所以，分治法常常与递归法结合起来使用。</p>
+<p><img src="/2019/10/14/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95/1570960847570.png"></p>
+<blockquote>
+<p>分治算法通常以数学归纳法来验证。而它的计算成本则多数以解递归关系式来判定。</p>
+</blockquote>
+<p>在使用分治法时,使用递归算法是解决问题的利器.下面我们用二分搜索,这个最典型的分治问题来举例,看看分治算法是如何进行工作的.</p>
+<h2 id="二分搜索——猜数问题"><a href="#二分搜索——猜数问题" class="headerlink" title="二分搜索——猜数问题"></a>二分搜索——猜数问题</h2><p>我们一定都玩过猜数游戏,现在我们两个人玩这个游戏,我在我的手心写一个100以内的整数,并且只能给你大了或小了的提示,并且只有三次机会,那如何才能以最快的速度猜出来呢?</p>
+<p><strong>解题思路:</strong><br>从问题的描述来看,如果是n个数,最坏的情况我们得猜n次才可以成功,其实我们没有必要非得一个个的去猜,这显然是一个笨方法。因为这些数是有序的,我们可以按照<strong>折半查找</strong>的方式,每次和中间的元素去比较,如果每次比中间的部分大,去后半部分找,比中间部分小,去后半部分找.</p>
+<p>那我们现在思路有了,可以将<strong>问题抽象描述</strong>出来:</p>
+<p><code>给定n个元素,假设这些元素是有序的,从中查找特定元素x.</code></p>
+<p><strong>解题思想:</strong></p>
+<p>将有序序列先大致分为数目相等的两组,然后取<strong>中间</strong>的元素与<strong>特定</strong>的查找元素进行比较</p>
+<ul>
+<li>如果x<strong>等于</strong>中间元素,查找<strong>成功</strong></li>
+<li>如果x<strong>小于</strong>中间元素,在前半部分继续执行分解和治理操作</li>
+<li>如果x<strong>大于</strong>中间元素,去后半部分进行分解和治理.</li>
+</ul>
+<p><strong>算法设计:</strong><br>使用一维数组S[]放置该<strong>有序序列</strong>,设置变量low和high表示查找的上下界,middle表示中间的位置,x为特定的查找元素.</p>
+<p>1:初始化.令<code>low=0</code>(S[]中的第一位数),<code>high=n-1</code>(S[]中最后一位数).</p>
+<p>2:<code>middle = (low+high)/2</code>,表示中间的查找范围.</p>
+<p>3:判断<code>low&lt;high</code>是否成立,如果成立,继续下一步,否则结束.</p>
+<p>4:判断x与S[middle]的关系,如果两者相同,算法结束,输出结果,否则,如果<code>x&gt;S[middle],low = middle+1</code>,如果<code>x&lt;S[middle]</code>,则<code>high = middle-1.</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span>cpp    </span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">10000</span>;</span><br><span class="line"><span class="keyword">int</span> x, n, i;</span><br><span class="line"><span class="keyword">int</span> s[M];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> s[], <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    * @file:本文件</span></span><br><span class="line"><span class="comment">    * </span></span><br><span class="line"><span class="comment">    * briedf: 非递归方法的二分查找方法</span></span><br><span class="line"><span class="comment">    * @params:s[] 存储数字的数组；</span></span><br><span class="line"><span class="comment">    * @params:n 数列中元素的个数</span></span><br><span class="line"><span class="comment">    * @params:x 指定查找的数</span></span><br><span class="line"><span class="comment">    * @return: 成功返回查找到的位置，否则返回-1</span></span><br><span class="line"><span class="comment">    * @see:</span></span><br><span class="line"><span class="comment">    * @note:</span></span><br><span class="line"><span class="comment">    * @calls: 被本函数调用的函数清单</span></span><br><span class="line"><span class="comment">    * @calledBy: 调用本函数的函数清单</span></span><br><span class="line"><span class="comment">    * @TableAccessed: 被访问的表（此项仅对于牵扯到数据库操作的程序）</span></span><br><span class="line"><span class="comment">    * @TableUpdated:  被修改的表（此项仅对于牵扯到数据库操作的程序）</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> high = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(low &lt; high)&#123;</span><br><span class="line">        <span class="keyword">int</span> middle = (low + high) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(x == s[middle])&#123;</span><br><span class="line">            <span class="keyword">return</span> middle;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (x &lt; s[middle])</span><br><span class="line">        &#123;</span><br><span class="line">            high = middle - <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            low = middle + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">recurionBS</span><span class="params">(<span class="keyword">int</span> s[], <span class="keyword">int</span> x, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    * @ brief: 非递归的二分查找方法 </span></span><br><span class="line"><span class="comment">    * @ return: 失败返回-1 </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">if</span>(low &gt; high)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> middle = (low + high) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span>(x == s[middle])&#123;</span><br><span class="line">        <span class="keyword">return</span> middle;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(x &lt; s[middle]) &#123;</span><br><span class="line">        <span class="keyword">return</span> recurionBS(s, x, low, middle <span class="number">-1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> recurionBS(s, x, middle + <span class="number">1</span>, high);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入数列中元素的个数n&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请依次输入数列的元素&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;s[i];</span><br><span class="line">        &#125;</span><br><span class="line">        sort(s, s + n);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;排列后的数组为：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;s[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入要查找的元素：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;x;</span><br><span class="line">        <span class="comment">// i = BinarySearch(n, s, x);</span></span><br><span class="line">        i = recurionBS(s, x, <span class="number">0</span>, n<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;该数列中没有符合要求的元素&quot;</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;要查找的元素在第&quot;</span>&lt;&lt;i + <span class="number">1</span>&lt;&lt;<span class="string">&quot;位&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/10/14/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95/1570960394633.png" alt="1570960394633"></p>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2019/10/14/%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95/" class="leancloud-visitors view" data-flag-title="分治算法">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2020/07/13/sqlo-labs/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2019/10/13/线性表/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2019-10-14 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/分治算法/">分治算法<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/分治算法/">分治算法<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+		   <span class="toc-title">Contents</span>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E2%80%94%E2%80%94%E7%8C%9C%E6%95%B0%E9%97%AE%E9%A2%98"><span class="toc-article-text">二分搜索——猜数问题</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

@@ -1,0 +1,699 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>须知道的服务器Linux知识 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="须知道的服务器Linux知识"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> 须知道的服务器Linux知识</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h1 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a><center>SSH</center></h1><a id="more"></a>
+
+<table>
+<thead>
+<tr>
+<th align="center"><center>解释</center></th>
+<th align="center"><center>命令</center></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><center>安装</center></td>
+<td align="center"><center>yum install openssh-server</center></td>
+</tr>
+<tr>
+<td align="center"><center>启动</center></td>
+<td align="center"><center>service sshd start</center></td>
+</tr>
+<tr>
+<td align="center"><center>开机运行</center></td>
+<td align="center"><center>chkconfig ssd on</center></td>
+</tr>
+<tr>
+<td align="center">客户端软件</td>
+<td align="center">yum install openssh-clients</td>
+</tr>
+</tbody></table>
+<h1 id="yum"><a href="#yum" class="headerlink" title="yum"></a><center>yum</center></h1><p>yum是centos中的安装包管理器</p>
+<table>
+<thead>
+<tr>
+<th align="center">解释解释</th>
+<th align="center">命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">安装</td>
+<td align="center">yum install xxx</td>
+</tr>
+<tr>
+<td align="center">卸载</td>
+<td align="center">yum remove xxx</td>
+</tr>
+<tr>
+<td align="center">搜索</td>
+<td align="center">yum search xxx</td>
+</tr>
+<tr>
+<td align="center">列出已安装</td>
+<td align="center">yum list</td>
+</tr>
+<tr>
+<td align="center">软件包信息</td>
+<td align="center">yum info xxx</td>
+</tr>
+<tr>
+<td align="center">清理缓存</td>
+<td align="center">yum clean</td>
+</tr>
+</tbody></table>
+<h1 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a><center>硬件</center></h1><table>
+<thead>
+<tr>
+<th>解释</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内存</td>
+<td>free -m</td>
+</tr>
+<tr>
+<td>硬盘</td>
+<td>df -h</td>
+</tr>
+<tr>
+<td>负载</td>
+<td>w/top</td>
+</tr>
+<tr>
+<td>cpu个数和核数</td>
+<td>cat/proc/cpuinfo</td>
+</tr>
+<tr>
+<td>格式化磁盘</td>
+<td>fdisk</td>
+</tr>
+</tbody></table>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%873.png"></p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%874.png"></p>
+<br>
+
+<h1 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h1><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">tail</td>
+<td align="center">从文件尾部开始读</td>
+</tr>
+<tr>
+<td align="center">head</td>
+<td align="center">从文件头部读</td>
+</tr>
+<tr>
+<td align="center">pwd</td>
+<td align="center">显示路径</td>
+</tr>
+<tr>
+<td align="center">cat</td>
+<td align="center">读取整个文件（注意 cat读取整个文件到内存中去，如何是文件比较大，如3G，那么就崩溃了， 所以读取之前要查看一下它的大小）-h</td>
+</tr>
+<tr>
+<td align="center">more</td>
+<td align="center">分页读取</td>
+</tr>
+<tr>
+<td align="center">less</td>
+<td align="center">可控分页</td>
+</tr>
+<tr>
+<td align="center">grep</td>
+<td align="center">搜索关键字</td>
+</tr>
+<tr>
+<td align="center">find</td>
+<td align="center">查找文件</td>
+</tr>
+<tr>
+<td align="center">wc</td>
+<td align="center">统计个数</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">touch</td>
+<td align="center">新建文件</td>
+</tr>
+<tr>
+<td align="center">mkdir</td>
+<td align="center">新建文件夹</td>
+</tr>
+<tr>
+<td align="center">cp</td>
+<td align="center">复制</td>
+</tr>
+<tr>
+<td align="center">rm</td>
+<td align="center">删除文件和目录</td>
+</tr>
+<tr>
+<td align="center">mv</td>
+<td align="center">移动</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">find . -type f  (文件）</span><br><span class="line"></span><br><span class="line">find . -type d (目录）</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%875.png"></p>
+<h1 id="系统用户操作"><a href="#系统用户操作" class="headerlink" title="系统用户操作"></a><center>系统用户操作</center></h1><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">useradd</td>
+<td align="center">添加用户</td>
+</tr>
+<tr>
+<td align="center">adduser</td>
+<td align="center">添加用户</td>
+</tr>
+<tr>
+<td align="center">userdel</td>
+<td align="center">删除用户</td>
+</tr>
+<tr>
+<td align="center">passwd</td>
+<td align="center">密码设置</td>
+</tr>
+</tbody></table>
+<h1 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a><center>防火墙</center></h1><h2 id="前奏"><a href="#前奏" class="headerlink" title="前奏"></a>前奏</h2><p> <strong><li>作用:保护服务器安全</li></strong></p>
+<table>
+<thead>
+<tr>
+<th>解释</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>安装</td>
+<td>yum install firewalld</td>
+</tr>
+<tr>
+<td>启动</td>
+<td>service firewalld start</td>
+</tr>
+<tr>
+<td>检查状态</td>
+<td>service firewalld status</td>
+</tr>
+<tr>
+<td>关闭或者禁闭</td>
+<td>service firewalld stop/disable</td>
+</tr>
+</tbody></table>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%876.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service firewalld status # 查看状态</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%877.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --version</span><br><span class="line">firewall-cmd --help</span><br><span class="line">firewall-cmd --state</span><br></pre></td></tr></table></figure>
+
+<p><strong><li>区域和端口分解</li></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --get-zones</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%878.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-all-zone</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%879.png"></p>
+<p>**<li>查找某一个区域</li></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone&#x3D;public   查找public区域</span><br></pre></td></tr></table></figure>
+
+<p><strong><li>查看端口号</li></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-ports  </span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8710.png"></p>
+<p><strong><li>查找某一个服务</li></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --query-service&#x3D;&#x3D;ssh  </span><br></pre></td></tr></table></figure>
+
+<p>**<li>移除某一个服务</li></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --remove-service&#x3D;&#x3D;ssh</span><br></pre></td></tr></table></figure>
+
+<p><strong><li>添加某一个服务</li></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-service&#x3D;&#x3D;ssh</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果这里移除了ssh服务，那么就无法连接ssh</p>
+<p>通过添加ssh服务有可以重新连接ssh</p>
+</blockquote>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8711.png"></p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8712.png"></p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8713.png"></p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8714.png"></p>
+<p><strong><li>查看有哪些服务</li></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-services</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8715.png"></p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8716.png"></p>
+<p><strong><li>添加端口号</li></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;22&#x2F;tcp</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8717.png"></p>
+<blockquote>
+<p>firewall-cmd –get-all-zones  就会看到新添加的端口号来了</p>
+</blockquote>
+<p>（服务和端口添加其中一个就可以了，一般服务方便一些）</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="配置firewalld-cmd"><a href="#配置firewalld-cmd" class="headerlink" title="配置firewalld-cmd"></a>配置firewalld-cmd</h3><table>
+<thead>
+<tr>
+<th align="center">解释</th>
+<th align="center">命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">查看版本</td>
+<td align="center">firewall-cmd –version</td>
+</tr>
+<tr>
+<td align="center">查看帮助</td>
+<td align="center">firewall-cmd –help</td>
+</tr>
+<tr>
+<td align="center">显示状态</td>
+<td align="center">firewall-cmd –state</td>
+</tr>
+<tr>
+<td align="center">列出所有状态</td>
+<td align="center">firewall-cmd –get-zones</td>
+</tr>
+<tr>
+<td align="center">列出默认区域</td>
+<td align="center">firewall-cmd –get-default-zone</td>
+</tr>
+<tr>
+<td align="center">列出所有区域配置</td>
+<td align="center">firewall-cmd –list-all-zone</td>
+</tr>
+<tr>
+<td align="center">查看所有打开的端口</td>
+<td align="center">firewall-cmd –zone=public –list-ports</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">查看规则</th>
+<th align="center">iptables -L -n</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">更新防火墙规则</td>
+<td align="center">firewall-cmd –reload</td>
+</tr>
+<tr>
+<td align="center">查看区域信息</td>
+<td align="center">firewall-cmd –get-active-zones</td>
+</tr>
+<tr>
+<td align="center">查看指定接口所属区域</td>
+<td align="center">firewall-cmd –get-zone-of-interface=eth0</td>
+</tr>
+</tbody></table>
+<h3 id="添加服务"><a href="#添加服务" class="headerlink" title="添加服务"></a>添加服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd –add-service&#x3D;ssh</span><br><span class="line">firewall-cmd –query-service&#x3D;ssh</span><br><span class="line">firewall-cmd –remove-service&#x3D;ssh</span><br></pre></td></tr></table></figure>
+
+<h3 id="开启端口"><a href="#开启端口" class="headerlink" title="开启端口"></a>开启端口</h3><table>
+<thead>
+<tr>
+<th>添加</th>
+<th>firewall-cmd –zone=public –add-port=80/tcp</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>重新载入</td>
+<td>firewall-cmd –reload</td>
+</tr>
+<tr>
+<td>查看</td>
+<td>firewall-cmd –zone=public –query-port=80/tcp</td>
+</tr>
+<tr>
+<td>删除/html&gt;</td>
+<td>firewall-cmd –zone=public –remove-port=80/tcp</td>
+</tr>
+</tbody></table>
+<h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a><center>提权</center></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo</span><br><span class="line">visudo</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8718.png"></p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8719.png"></p>
+<blockquote>
+<p><strong>解决办法：</strong>使用<code>visudo</code>  使用大写的<code>G</code>跑到文件的底部</p>
+<p>​    进行提权操作</p>
+</blockquote>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8720.png"></p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8721.png"></p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8722.png"></p>
+<blockquote>
+<p>问题解决</p>
+</blockquote>
+<h1 id="上传和下载"><a href="#上传和下载" class="headerlink" title="上传和下载"></a><li>上传和下载</li></h1><h2 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget</span><br><span class="line">curl</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8723.png"></p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8724.png"></p>
+<p>打开下载的文件，我们来查看一下</p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8725.png"></p>
+<h2 id="上传"><a href="#上传" class="headerlink" title="上传"></a>上传</h2><h3 id="Linux下的操作"><a href="#Linux下的操作" class="headerlink" title="Linux下的操作"></a>Linux下的操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8726.png"></p>
+<h3 id="windows下"><a href="#windows下" class="headerlink" title="windows下"></a>windows下</h3><p>需要安装一个<code>lrzsz  </code>,中间会使用<code>rz</code>和<code>sz</code>两个命令</p>
+<p><strong><li>安装lrzsz</li></strong></p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8727.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rz</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8728.png"></p>
+<blockquote>
+<p>这时候会弹出上传窗口的</p>
+</blockquote>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8729.png"></p>
+<p>选择文件上传就ok了，上传到你当前路径下。 </p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8730.png"></p>
+<h4 id="Note-一种方便的方法"><a href="#Note-一种方便的方法" class="headerlink" title="Note:一种方便的方法"></a>Note:一种方便的方法</h4><p>在windows下使用客户端<code>FileZilla Client</code>,具体的使用如图所示</p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/34.png"></p>
+<p>在服务器再次确认，发现上传成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@ktt:~# cd &#x2F;var&#x2F;www&#x2F;</span><br><span class="line">root@ktt:&#x2F;var&#x2F;www# ls</span><br><span class="line">1.html  1.txt  env27  librepaht</span><br><span class="line">root@ktt:&#x2F;var&#x2F;www# </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="文件下载-1"><a href="#文件下载-1" class="headerlink" title="文件下载"></a>文件下载</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sz 文件名</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8731.png"></p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8732.png"></p>
+<p><img src="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/%E5%9B%BE%E7%89%8733.png"></p>
+<blockquote>
+<p>于是windows桌面中就出现了1.txt文件</p>
+</blockquote>
+<h1 id="vim小知识"><a href="#vim小知识" class="headerlink" title="vim小知识"></a><center>vim小知识</center></h1><blockquote>
+<p>1输入内容:<code>insert</code>模式，敲入小写<code>i</code>就会进入insert模式</p>
+<p>2删除.<code>delete</code>键可以删除内容</p>
+<p>3移动：pagedown和pageup可以上下滑动，方向键可以移动光标</p>
+<p>4保存退出：<code>:wq</code>w表示write， q表示quit</p>
+<p>5非保存退出：<code>q!</code></p>
+<p>6删除：连续敲键盘字母<code>d</code>两次，可以删除一行内容</p>
+<p>7搜索：<code>命令模式</code>下，输入<code>/user</code>,<code>/</code>要搜索的字符串或者字符</p>
+<p>8行号：<code>:set number</code></p>
+</blockquote>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2018/05/13/%E9%A1%BB%E7%9F%A5%E9%81%93%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8Linux%E7%9F%A5%E8%AF%86/" class="leancloud-visitors view" data-flag-title="须知道的服务器Linux知识">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2018/05/13/SSH学习/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/05/13/linux中查看软件文件安装路径/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-05-13 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Linux/">Linux<span>13</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Linux/">Linux<span>7</span></a></li> <li><a href="/tags/服务器/">服务器<span>4</span></a></li> <li><a href="/tags/CentOs/">CentOs<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

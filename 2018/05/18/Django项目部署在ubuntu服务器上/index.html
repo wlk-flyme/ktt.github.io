@@ -1,0 +1,562 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>Django项目部署在ubuntu服务器上 | Flyme</title>
+  <meta name="author" content="西伯利亚狼">
+  
+  <meta name="description" content="奋斗小青年的逆袭之路一直进行中">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Django项目部署在ubuntu服务器上"/>
+  <meta property="og:site_name" content="Flyme"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="Flyme" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Flyme</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> Django项目部署在ubuntu服务器上</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <p>本人用到是阿里云ubuntu14.04的服务器，需要在Ubuntu中配置好自己的Django运行环境，然后用uwsgi和nginx帮助完成网站的部署。</p>
+<a id="more"></a>
+
+<blockquote>
+<p><strong>要注意alias和root的区别</strong></p>
+<p><code>root /path</code>相当于访问static的时候是访问<code>/path/static</code></p>
+<p><code>alias /path</code>相当于访问static时是访问<code>/path/</code> </p>
+</blockquote>
+<h1 id="建立运行环境"><a href="#建立运行环境" class="headerlink" title="建立运行环境"></a><center>建立运行环境</center></h1><h2 id="建立Python虚拟环境"><a href="#建立Python虚拟环境" class="headerlink" title="建立Python虚拟环境"></a>建立Python虚拟环境</h2><p>关于Ubuntu下建立Python的虚拟环境的操作，详细查看此篇文章</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://wuliekun.me/2018/05/16/Linux%E4%B8%8Bpython%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">http://wuliekun.me/2018/05/16/Linux%E4%B8%8Bpython%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/</a></p>
+</blockquote>
+<p><strong>说明：</strong>本人用到 是Python3.4与DJango1.9.1</p>
+<blockquote>
+<p>系统各种库和插件的安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># pip show 插件名称       #可以显示插件信息</span><br><span class="line"></span><br><span class="line">pip install django&#x3D;&#x3D;1.9.1</span><br><span class="line">pip install pycharm</span><br><span class="line">pip install xadmin</span><br><span class="line">pip install future</span><br><span class="line">pip install six</span><br><span class="line">pip install httplib2</span><br><span class="line">pip install django-import-export</span><br><span class="line">pip install pillow</span><br><span class="line">pip install requests</span><br><span class="line">pip install django-simple-captcha</span><br><span class="line">pip install django-pure-pagination</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>DjangoUeditor 目前官方的不支持Python3,所以要去github中去下载Pyhton3的。</p>
+<p>由于我widows下已经安装好了这个包。</p>
+<p>所以我的做法是将我windows下的<code>F:\Tools\python3.4\Lib\site-packages\DjangoUeditor</code>所有的文件上传到Ubuntu虚拟环境<code>env3.4</code>对应的<code>/root/.virtualenvs/env3.4/lib/python3.4/site-packages</code>中，这样就大功告成</p>
+</blockquote>
+<h2 id="MySQL的安装和配置"><a href="#MySQL的安装和配置" class="headerlink" title="MySQL的安装和配置"></a>MySQL的安装和配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br><span class="line">apt-get isntall mysql-client</span><br><span class="line">sudo apt-get install libmysqlclient-dev</span><br><span class="line"></span><br><span class="line"># 安装过程中会提示设置密码什么的，注意设置了不要忘了，安装完成之后可以使用如下命令来检查是否安装成功：</span><br><span class="line"></span><br><span class="line">sudo netstat -tap | grep mysql</span><br><span class="line"></span><br><span class="line"># 通过上述命令检查之后，如果看到有mysql 的socket处于 listen 状态则表示安装成功。</span><br><span class="line"></span><br><span class="line"># 登陆mysql数据库可以通过如下命令：</span><br><span class="line"></span><br><span class="line">mysql -u root -p</span><br><span class="line"></span><br><span class="line"># -u 表示选择登陆的用户名， -p 表示登陆的用户密码，上面命令输入之后会提示输入密码，此时输入密码就可以登录到mysql。</span><br><span class="line"></span><br><span class="line"># 启动MySQL服务</span><br><span class="line"># 启动文件在&#x2F;usr&#x2F;sbin&#x2F;mysqld</span><br><span class="line">service mysqld start</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置MySQL的root用户设置密码"><a href="#设置MySQL的root用户设置密码" class="headerlink" title="设置MySQL的root用户设置密码"></a><strong>设置MySQL的root用户设置密码</strong></h3><blockquote>
+<p>登录数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root </span><br></pre></td></tr></table></figure>
+
+<p>查看数据库用户名和密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select user,host,password from mysql.user;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到用户名root的密码为空，用下面的命令设置root的密码为root </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set password for root@localhost&#x3D;password(&#39;root&#39;);  </span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+<p>然后用新密码登录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p  </span><br><span class="line">Enter password: </span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h3 id="查看mysql默认存储引擎-保证储引擎是InnoDB，因为InnoDB引擎才支持事务"><a href="#查看mysql默认存储引擎-保证储引擎是InnoDB，因为InnoDB引擎才支持事务" class="headerlink" title="查看mysql默认存储引擎,保证储引擎是InnoDB，因为InnoDB引擎才支持事务"></a><strong>查看mysql默认存储引擎,保证储引擎是InnoDB，因为InnoDB引擎才支持事务</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p  </span><br><span class="line">Enter password:   </span><br><span class="line">show variables like &#39;storage_engine&#39;;  </span><br></pre></td></tr></table></figure>
+
+<h3 id="开放-修改3306端口、开放访问权限"><a href="#开放-修改3306端口、开放访问权限" class="headerlink" title="开放/修改3306端口、开放访问权限"></a>开放/修改3306端口、开放访问权限</h3><blockquote>
+<p>查看是否开放了3306端口号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nestat -an | grep 3306</span><br></pre></td></tr></table></figure>
+
+<p>然后进入<code>/etc/mysql/my.cnf </code>中将</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind-address    &#x3D;127.0.0.1 # 这行代码注释掉</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>这个时候准备在windows下远程登录Ubuntu下的mysql，出现了错误（我靠）,我以为防火墙原因，<code>service ufw status</code>显示<code>ufw stop/waiting</code></p>
+<blockquote>
+<p><strong>1130-host . is not allowed to connect to this MySql server,</strong> </p>
+<p>其实这个问题的主要原因是没有授予远程登录权限</p>
+</blockquote>
+<h3 id="mysql远程登录配置"><a href="#mysql远程登录配置" class="headerlink" title="mysql远程登录配置"></a>mysql远程登录配置</h3><h4 id="创建新用户aliyun，远程登录mysql"><a href="#创建新用户aliyun，远程登录mysql" class="headerlink" title="创建新用户aliyun，远程登录mysql"></a><strong>创建新用户aliyun，远程登录mysql</strong></h4><blockquote>
+<p><strong>create user ‘用户名‘@’IP地址’ identified by ‘密码’;  创建一个用户</strong></p>
+<p><strong>%表示任意ip</strong></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create user &#39;aliyun&#39;@&#39;%&#39; identified by &#39;123456&#39;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="给新用户授权登陆外部和本地"><a href="#给新用户授权登陆外部和本地" class="headerlink" title="给新用户授权登陆外部和本地"></a><strong>给新用户授权登陆外部和本地</strong></h4><blockquote>
+<p><strong>grant all privileges(除授权外的所有权限) on *.*(表示所有数据库的所有表) to ‘test_user(授权的用户名)‘@’localhost(授权ip)’ identified by ‘test_user(用户密码)’;</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to &#39;aliyun&#39;@&#39;localhost&#39; identified by &#39;123456&#39;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>grant all privileges(除授权外的所有权限) on <em>.</em>(表示所有数据库的所有表) to ‘test_user(授权的用户名)‘@’%(所有ip)’identified by ‘test_user(用户密码)’;</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to &#39;aliyun&#39;@&#39;%&#39; identified by &#39;123456&#39;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="查看用户授权后的情况"><a href="#查看用户授权后的情况" class="headerlink" title="查看用户授权后的情况"></a><strong>查看用户授权后的情况</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user,host,password from mysql.user;</span><br><span class="line">+-----------+-----------------+-------------------------------------------+</span><br><span class="line">| user      | host            | password                                  |</span><br><span class="line">+-----------+-----------------+-------------------------------------------+</span><br><span class="line">| root      | localhost       | *81F5E21E35407D884A6CD4A731AEBFB6AF209E1B |</span><br><span class="line">| root      | 192.168.158.128 |                                           |</span><br><span class="line">| root      | 127.0.0.1       |                                           |</span><br><span class="line">| root      | ::1             |                                           |</span><br><span class="line">|           | localhost       |                                           |</span><br><span class="line">|           | 192.168.158.128 |                                           |</span><br><span class="line">| aliyun | %               | *8A447777509932F0ED07ADB033562027D95A0F17 |</span><br><span class="line">| aliyun | localhost       | *8A447777509932F0ED07ADB033562027D95A0F17 |</span><br><span class="line">+-----------+-----------------+-------------------------------------------+</span><br><span class="line">8 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用授权用户远程登陆"><a href="#使用授权用户远程登陆" class="headerlink" title="使用授权用户远程登陆"></a><strong>使用授权用户远程登陆</strong></h4><p><img src="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/Image.png"></p>
+<p> 可以远程登陆了 </p>
+<h1 id="网站数据库创建"><a href="#网站数据库创建" class="headerlink" title="网站数据库创建"></a><center>网站数据库创建</center></h1><h2 id="创建mxonline数据库"><a href="#创建mxonline数据库" class="headerlink" title="创建mxonline数据库"></a>创建<code>mxonline</code>数据库</h2><p><img src="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/1.png"></p>
+<h2 id="数据库数据传输"><a href="#数据库数据传输" class="headerlink" title="数据库数据传输"></a>数据库数据传输</h2><p>选中<code>mxonline</code>，右击选择<code>数据传输</code></p>
+<p><img src="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/Image3.png"></p>
+<blockquote>
+<p><strong>如果在传输数据时，怎么都传输不了，老报错误，有可能是传输数据太大，要在软件设置一下，改一个变量，将参数调大</strong> </p>
+</blockquote>
+<p><img src="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/2.png"></p>
+<h2 id="Django项目上传"><a href="#Django项目上传" class="headerlink" title="Django项目上传"></a>Django项目上传</h2><p><strong>数据库数据传输好后，将开发环境里的整个Django项目，上传到Linux系统里准备好的python虚拟环境里的网站安装目录里，</strong></p>
+<p><strong>在虚拟环境里创建一个网站目录，目录里包含两个文件夹，一个是Django项目，一个是创建来专门放配置文件的目录</strong></p>
+<p><img src="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/3.png"></p>
+<p><strong>上传好项目后，检查Django项目里的<code>settings.py</code>配置文件，配置数据库相关信息链接刚才导入的数据库，检查用户名密码是否正确，连接数据库的用户名，必须有操作当前网站数据库的权限，和当前用户可以任意ip访问数据库权限</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># mysql数据库</span><br><span class="line"></span><br><span class="line">DATABASES &#x3D; &#123;</span><br><span class="line">    &#39;default&#39;: &#123;</span><br><span class="line">        &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;,</span><br><span class="line">        &#39;NAME&#39;: &quot;mxonline&quot;,</span><br><span class="line">        &#39;USER&#39;: &#39;aliyun&#39;,</span><br><span class="line">        &#39;PASSWORD&#39;: &#39;123456&#39;,</span><br><span class="line">        &#39;HOST&#39;: &#39;127.0.0.1&#39;,</span><br><span class="line">        &#39;OPTIONS&#39;: &#123;</span><br><span class="line">            &quot;init_command&quot;: &quot;SET foreign_key_checks &#x3D; 0;&quot;,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意：**</strong>在Linux系统的opt目录创建Python虚拟环境，一般虚拟环境创建在opt目录不然会有权限问题** </p>
+</blockquote>
+<h2 id="测试Django项目项目是否能够运行"><a href="#测试Django项目项目是否能够运行" class="headerlink" title="测试Django项目项目是否能够运行"></a><strong>测试Django项目项目是否能够运行</strong></h2><li>**执行命令进入虚拟环境** </li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">workon env3.4</span><br><span class="line"></span><br><span class="line"># 在虚拟环境里cd到Django根项目</span><br><span class="line"></span><br><span class="line">cd &#x2F;var&#x2F;www&#x2F;Python_project&#x2F;StudyOnline&#x2F;</span><br><span class="line">ls</span><br><span class="line">apps  courses  extra_apps  manage.py  media  static  StudyOnline  templates</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<li>**执行命令，从manage.py启动Django项目** </li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">python manage.py runserver</span><br><span class="line"></span><br><span class="line">Performing system checks...</span><br><span class="line"></span><br><span class="line">System check identified no issues (0 silenced).</span><br><span class="line"></span><br><span class="line">You have 1 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): reversion.</span><br><span class="line">Run &#39;python manage.py migrate&#39; to apply them.</span><br><span class="line"></span><br><span class="line">October 07, 2017 - 01:07:13</span><br><span class="line">Django version 1.10, using settings &#39;MxOnline.settings&#39;</span><br><span class="line">Starting development server at http:&#x2F;&#x2F;127.0.0.1:8000&#x2F;</span><br><span class="line">Quit the server with CONTROL-C.</span><br></pre></td></tr></table></figure>
+
+<p><strong>可以看到项目已经启动，可以访问<a target="_blank" rel="noopener" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></strong> </p>
+<blockquote>
+<p>服务器中没有服务器，怎么才能证明运行没有问题呢？</p>
+</blockquote>
+<p>使用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -i http:&#x2F;&#x2F;127.0.0.1:8000&#x2F;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果返回<code>HTTP/1.1 200 OK</code>,说明是成功的</p>
+</blockquote>
+<p><img src="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/4.png"></p>
+<blockquote>
+<p><strong>以上测试Django项目可以远行，这只是测试一下，正真的生产中不是从manage.py启动Django项目，而是用uwsgi模块来启动，所以以上只是为uwsgi做准备，至此在终端按ctrl+c键停止Django项目</strong> </p>
+</blockquote>
+<h1 id="uwsgi-nginx【主题】"><a href="#uwsgi-nginx【主题】" class="headerlink" title="uwsgi+nginx【主题】"></a>uwsgi+nginx【主题】</h1><p>这是一张关系图</p>
+<p><img src="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/5.png"></p>
+<blockquote>
+<p>采用<code>uwsgi+nginx</code>来部署Django。</p>
+<p>这种方式是将<code>nginx</code>作为服务器<code>前端</code>，将接受web所有的请求，统一管理。Nginx把所有的静态请求自己处理（静态文件处理是nginx强项）,然后把所有<code>非静态</code>请求通过<code>uwsgi</code>传递给<code>Django</code>，由Django来处理，从而完成一次web请求。</p>
+</blockquote>
+<h2 id="uwsgi"><a href="#uwsgi" class="headerlink" title="uwsgi"></a>uwsgi</h2><p>uwsgi.jpg</p>
+<p>uwsgi的启动可以把参数加载命令行中，也可以是配置文件 .ini, .xml, .yaml 配置文件中，个人用的比较多得是 .ini 文件。<br> 通过<code>uwsgi --help</code>可以查看得到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-x|--xmlconfig                         load config from xml file</span><br><span class="line">-x|--xml                               load config from xml file</span><br><span class="line">--ini                                  load config from ini file</span><br><span class="line">-y|--yaml                              load config from yaml file</span><br><span class="line">-y|--yml                               load config from yaml file</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep -i uwsgi              #查看uwsgi启动进程</span><br><span class="line">pkill -9 nginx                   #杀掉uwsgi启动进程</span><br><span class="line">uwsgi                            # 启动uwsgi</span><br><span class="line"></span><br><span class="line">uwsgi --ini uwsgi.ini             # 启动</span><br><span class="line">uwsgi --reload uwsgi.pid          # 重启</span><br><span class="line">uwsgi --stop uwsgi.pid            # 关闭</span><br><span class="line"></span><br><span class="line">uwsgi --connect-and-read uwsgi&#x2F;uwsgi.status  # 读取uwsgi实时状态</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="uwsgi常用选项"><a href="#uwsgi常用选项" class="headerlink" title="uwsgi常用选项"></a>uwsgi常用选项</h3><p><code>socket</code>: 地址和端口号，例如：socket = 127.0.0.1:50000 </p>
+<p><code>processes</code>： 开启的进程数量 </p>
+<p><code>workers</code>：开启的进程数量，等同于processes（官网的说法是spawn the specified number of  <strong>workers / processes</strong>） </p>
+<p><code>ckdir</code> ：指定运行目录（chdir to specified directory before apps loading） </p>
+<p><code>wsgi-file</code> :载入wsgi-file（load .wsgi file） 表示要运行的wsgi应用程序文件 </p>
+<p><code>stats</code> :  在指定的地址上，开启状态服务（enable the stats server on the specified address） </p>
+<p><code>threads</code>:  运行线程。由于GIL的存在，我觉得这个真心没啥用。（run each worker in prethreaded mode with the specified number of threads） </p>
+<p><code>master</code> :  允许主进程存在（enable master process） </p>
+<p><code>daemonize</code>:  使进程在后台运行，并将日志打到指定的日志文件或者udp服务器（daemonize uWSGI）。实际上最常用的，还是把运行记录输出到一个本地文件上。 </p>
+<p><code>log-maxsize</code>: 以固定的文件大小（单位KB），切割日志文件。 例如：log-maxsize = 50000000  就是50M一个日志文件。 </p>
+<p><code>pidfile</code> : 指定pid文件的位置，记录主进程的pid号。 </p>
+<p><code>vacuum</code> : 当服务器退出的时候自动清理环境，删除unix socket文件和pid文件（try to remove all of the generated file/sockets） </p>
+<p><code>disable-logging</code> : 不记录请求信息的日志。只记录错误以及uWSGI内部消息到日志中。如果不开启这项，那么你的日志中会大量出现这种记录</p>
+<p><code> static</code> :做一个映射,指定静态文件</p>
+<p><code>max-requests</code> ： 一个工作进程最大请求数</p>
+<p><code>harakiri</code>: 一个请求超时时间</p>
+<p><code>set</code> : 设置一个占位符 </p>
+<p><code>include</code> : 包含指定的文件作为立即配置 </p>
+<p><code>module</code> : 加载一个WSGI模块 </p>
+<p><code>wsgi</code> : 加载一个WSGI模块 </p>
+<h3 id="虚拟环境中安装uwsgi"><a href="#虚拟环境中安装uwsgi" class="headerlink" title="虚拟环境中安装uwsgi"></a>虚拟环境中安装uwsgi</h3><p><strong><code>uwsgi</code>是Python写的一个模块，能启动Django项目，它的角色就是处理网站的<code>动态请求</code></strong> </p>
+<center>**uwsgi的主要特点如下：**</center>
+
+<p>1：<strong>超快的性能。</strong></p>
+<p>2：<strong>低内存占用（实测apache的mod_wsgi的一半左右）</strong></p>
+<p>3：<strong>多app管理</strong></p>
+<p>4：<strong>详尽的日志功能（可以用来分析app性能和瓶颈）</strong></p>
+<p>5：<strong>高度可定制（内存大小限制，服务一定次数后重启等）</strong></p>
+<p><strong>安装：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install uwsgi</span><br></pre></td></tr></table></figure>
+
+
+
+<p>但是安装错误</p>
+<blockquote>
+<p>Failed building wheel for uwsgi</p>
+</blockquote>
+<p>解决办法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">apt-get install python3.5-dev</span><br><span class="line">pip install uwsgi</span><br><span class="line"># 这样问题就解决了</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="测试uWSGI是否安装成功并测试uwsgi启动Django项目"><a href="#测试uWSGI是否安装成功并测试uwsgi启动Django项目" class="headerlink" title="测试uWSGI是否安装成功并测试uwsgi启动Django项目"></a><strong>测试uWSGI是否安装成功并测试uwsgi启动Django项目</strong></h3><p> 在终端中输入以下命令查看uwsgi的版本号，如果输出正常，说明uswgi已安装成功 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --version</span><br><span class="line">2.0.15</span><br></pre></td></tr></table></figure>
+
+<p><strong>首先cd 进入到Django项目里，在此目录下执行命令</strong> </p>
+<blockquote>
+<p><strong>uwsgi –http 127.0.0.1:8000 –module StudyOnline.wsgi(wsgi.py路径) –static-map=/static=static(静态文件路径)</strong> </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --http 127.0.0.1:8000 --module StudyOnline.wsgi --static-map&#x3D;&#x2F;static&#x3D;static</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="使用配置文件启动uwsgi【ini】"><a href="#使用配置文件启动uwsgi【ini】" class="headerlink" title="使用配置文件启动uwsgi【ini】"></a>使用配置文件启动uwsgi【ini】</h3><p>在网站安装目录里与Django项目同级我们创建一个<code>peizhi</code>文件夹，来专门存放配置文件</p>
+<p><img src="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/6.png"></p>
+<p><strong>在配置文件夹下创建 网站名称_uwsgi.ini文件，来写uWSGI的配置文件</strong> </p>
+<p>创建<code>StudyOnline_uwsgi.ini</code>文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># uwsgi.ini</span><br><span class="line">[uwsgi]</span><br><span class="line"></span><br><span class="line"># 指定Django项目的根目录</span><br><span class="line">chdir           &#x3D; &#x2F;var&#x2F;www&#x2F;Python_project&#x2F;StudyOnline&#x2F;</span><br><span class="line"></span><br><span class="line"># 指定Django项目里的wsgi.py文件路径，上面已经指定了根目录，这里拼接根目录即可</span><br><span class="line">module          &#x3D; StudyOnline.wsgi</span><br><span class="line"></span><br><span class="line"># 启用主进程</span><br><span class="line">master          &#x3D; true</span><br><span class="line"></span><br><span class="line"># 设置启动进程最大数</span><br><span class="line">processes       &#x3D; 10</span><br><span class="line"></span><br><span class="line"># 设置监听端口</span><br><span class="line">socket          &#x3D; 127.0.0.1:8000</span><br><span class="line"></span><br><span class="line"># 自动移除unix Socket和pid文件当服务停止的时候</span><br><span class="line">vacuum          &#x3D; true</span><br><span class="line"></span><br><span class="line"># 设置python虚拟环境</span><br><span class="line">virtualenv &#x3D; &#x2F;root&#x2F;.virtualenvs&#x2F;env3.4</span><br><span class="line"></span><br><span class="line"># 设置uwsgi日志保存路径，一般设置到当前配置文件所在目录</span><br><span class="line">logto &#x3D; &#x2F;var&#x2F;www&#x2F;Python_project&#x2F;peizhi&#x2F;uwsgi.log</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>创建好uWSGI的配置文件后，cd 进入到当前<code>StudyOnline_uwsgi.ini</code>配置文件目录，执行启动uwsgi命令</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">uwsgi --ini StudyOnline_uwsgi.ini &amp;         启动uwsgi配置文件</span><br><span class="line">[uWSGI] getting INI configuration from jxiou_uwsgi.ini</span><br><span class="line"> ps -ef|grep -i uwsgi　　　　　　　　　　查看uwsgi启动进程</span><br><span class="line"> root     43159     1  1 03:50 ?        00:00:01 uwsgi --ini jxiou_uwsgi.ini</span><br><span class="line">root     43164 43159  0 03:50 ?        00:00:00 uwsgi --ini jxiou_uwsgi.ini</span><br><span class="line">root     43165 43159  0 03:50 ?        00:00:00 uwsgi --ini jxiou_uwsgi.ini</span><br><span class="line">root     43166 43159  0 03:50 ?        00:00:00 uwsgi --ini jxiou_uwsgi.ini</span><br><span class="line">root     43167 43159  0 03:50 ?        00:00:00 uwsgi --ini jxiou_uwsgi.ini</span><br><span class="line">root     43168 43159  0 03:50 ?        00:00:00 uwsgi --ini jxiou_uwsgi.ini</span><br><span class="line">root     43185 14898  0 03:51 pts&#x2F;1    00:00:00 grep -i uwsgi</span><br></pre></td></tr></table></figure>
+
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><h3 id="安装并检查nginx是否安装、运行成功"><a href="#安装并检查nginx是否安装、运行成功" class="headerlink" title="安装并检查nginx是否安装、运行成功"></a>安装并检查nginx是否安装、运行成功</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">apt-get install nginx        #安装</span><br><span class="line">&#x2F;etc&#x2F;init.d&#x2F;nginx start        #启动</span><br><span class="line">[ ok ] Starting nginx (via systemctl): nginx.service.</span><br><span class="line"></span><br><span class="line">ps -ef|grep -i nginx         # 运行情况</span><br><span class="line">root       6961      1  0 03:56 ?        00:00:00 nginx: master process &#x2F;usr&#x2F;sbin&#x2F;nginx -g daemon on; master_process on;</span><br><span class="line">www-data   6962   6961  0 03:56 ?        00:00:00 nginx: worker process</span><br><span class="line">pala       6985   2090  0 03:57 pts&#x2F;0    00:00:00 grep --color&#x3D;auto -i nginx</span><br></pre></td></tr></table></figure>
+
+<p>Nginx安装好后，<strong>Nginx的启动文件在<code> /usr/sbin/nginx</code>    执行此文件即可启动Nginx。</strong></p>
+<p><img src="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/8.png"></p>
+<p><code>/etc/nginx/conf.d </code>  这个目录为Nginx配置文件启动目录，当Nginx启动时会自动启动目录里的conf文件** .</p>
+<p><img src="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/9.png"></p>
+<p> 然后打开浏览器，访问ip地址，出现如下页面即代表nginx安装完成且可以正常启动。 </p>
+<p><img src="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/7.png"></p>
+<blockquote>
+<p><strong>注意：设置配置文件时，在系统创建文件将代码复制到文件里，不可在系统外导入配置文件</strong> </p>
+</blockquote>
+<h3 id="Nginx常用命令"><a href="#Nginx常用命令" class="headerlink" title="Nginx常用命令"></a><strong>Nginx常用命令</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ &#x2F;etc&#x2F;init.d&#x2F;nginx start  #启动</span><br><span class="line">$ &#x2F;etc&#x2F;init.d&#x2F;nginx stop  #关闭</span><br><span class="line">$ &#x2F;etc&#x2F;init.d&#x2F;nginx restart  #重启</span><br><span class="line">$  killall nginx             # 杀死所有nginx</span><br><span class="line">$ps -ef|grep -i nginx     # 查看nginx启动进程</span><br><span class="line">$pkill -9 nginx                杀死nginx启动进程</span><br><span class="line"></span><br><span class="line"># 如果是生产环境的话Nginx正在运行，就不要直接stop start 或者 restart  直接reload就行了</span><br><span class="line"># 对线上影响最低</span><br><span class="line">$ &#x2F;etc&#x2F;init.d&#x2F;nginx reload</span><br></pre></td></tr></table></figure>
+
+<p><strong>在网站安装目录里与Django项目同级我们创建了一个peizhi文件夹，就是专门用来放配置文件的</strong> </p>
+<h3 id="创建StudyOnline-nginx-conf文件"><a href="#创建StudyOnline-nginx-conf文件" class="headerlink" title="创建StudyOnline_nginx.conf文件"></a>创建StudyOnline_nginx.conf文件</h3><p><strong>安装好nginx后在peizhi文件夹创建 网站名称_nginx.conf文件，来写nginxI的配置文件</strong> </p>
+<p><strong>创建 StudyOnline_nginx.conf 文件</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"># nginx配置文件</span><br><span class="line">upstream django &#123;</span><br><span class="line">    # 设置动态请求转发端口，要与uwsgi配置文件的socket监听端口一致</span><br><span class="line">    server 127.0.0.1:8000;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    # 设置监听端口</span><br><span class="line">    listen      80;</span><br><span class="line"></span><br><span class="line">    # 设置网站访问ip或者域名，域名要解析好</span><br><span class="line">    server_name www.poket.top;</span><br><span class="line"></span><br><span class="line">   # 设置编码</span><br><span class="line">    charset     utf-8;</span><br><span class="line"></span><br><span class="line">    # 设置网站最大上传限制</span><br><span class="line">    client_max_body_size 75M;</span><br><span class="line"></span><br><span class="line">    # 设置Django的media用户上传文件目录</span><br><span class="line">    location &#x2F;media  &#123;</span><br><span class="line">        alias &#x2F;var&#x2F;www&#x2F;Python_project&#x2F;StudyOnline&#x2F;media&#x2F;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   # 设置Django的static静态文件目录如js、css文件目录</span><br><span class="line">    location &#x2F;static &#123;</span><br><span class="line">        alias &#x2F;var&#x2F;www&#x2F;Python_project&#x2F;StudyOnline&#x2F;static&#x2F;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # 设置动态请求转发给uwsgi</span><br><span class="line">    location &#x2F; &#123;</span><br><span class="line">        # 动态请求时，执行upstream django的配置转发</span><br><span class="line">        uwsgi_pass  django;</span><br><span class="line">        # 通过nginx启动目录 &#x2F;etc&#x2F;nginx&#x2F;uwsgi_params 的uwsgi_params模块文件，与uwsgi交互</span><br><span class="line">        include     uwsgi_params; # the uwsgi_params file you installed</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # 指定日志存放路径，一般指定到网站配置文件目录</span><br><span class="line">    access_log  &#x2F;var&#x2F;www&#x2F;Python_project&#x2F;peizhi&#x2F;nginx.log;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>nginx的配置文件写好后，将配置文件软连接到<code> /etc/nginx/conf.d </code>目录，也就是nginxI的启动目录</strong> </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ln &#x2F;var&#x2F;www&#x2F;Python_project&#x2F;peizhi&#x2F;StudyOnline_nginx.conf</span><br><span class="line"> &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>软连接创建好后，启动nginx</strong> ，发生了错误</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(env3.4) root@ktt:&#x2F;var&#x2F;www&#x2F;Python_project&#x2F;peizhi# &#x2F;usr&#x2F;sbin&#x2F;nginxnginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)</span><br><span class="line">nginx: [emerg] still could not bind()</span><br></pre></td></tr></table></figure>
+
+<h3 id="80端口占用解决"><a href="#80端口占用解决" class="headerlink" title="80端口占用解决"></a>80端口占用解决</h3><li>查看80端口被哪个服务占用了</li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat -ant | grep 80</span><br><span class="line">或者使用</span><br><span class="line">lsof -i:80</span><br></pre></td></tr></table></figure>
+
+<li>关闭占用80端口的程序</li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fuser -k 80&#x2F;tcp</span><br></pre></td></tr></table></figure>
+
+<li>重新启动nginx</li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;nginx&#x2F;conf.d</span><br></pre></td></tr></table></figure>
+
+
+
+<p>###<strong>补充内容防盗链配置</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Nginx防盗链配置</span><br><span class="line">有些时候，大家不想让别人调用自己的图片，一是因为个人版权的问题，再一点就是会增加服务器的负载、还会产生一些没必要的流量。</span><br><span class="line"></span><br><span class="line">其实在Nginx里面，很容易就做到防盗链的，在nginx.conf文件加入一个localtion配置项。</span><br><span class="line"></span><br><span class="line">下面请看配置：</span><br><span class="line"></span><br><span class="line">location ~ .*\.(jpg|jpeg|JPG|png|gif|icon)$ &#123;</span><br><span class="line">        valid_referers blocked www.poket.top poket.top;</span><br><span class="line">        if ($invalid_referer) &#123;</span><br><span class="line">            return 404;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">gif|jpg|jpeg|….,这些是你想要屏蔽的文件类型，可以根据情况修改。</span><br><span class="line"></span><br><span class="line">只需要把文中 www.poket.top poket.top 修改为你允许显示你网站图片的其他网站域名，注意中间用空格分开，而不是逗号。</span><br><span class="line"></span><br><span class="line">这样直接返回的是404页面。也可以用http:&#x2F;&#x2F;domain.com&#x2F;404.jpg，显示给盗链者看到的图片，注意不要放到自己的域名上，因为放盗链的作用，那样对方是看不到的，可以上传到一些支持外联的网络相册上。</span><br><span class="line"></span><br><span class="line">当然了，也可以设置某个目录防盗链，只需把localtion匹配的改成一个目录就可以了，比如：</span><br><span class="line"></span><br><span class="line">location ~ ^&#x2F;images&#x2F; &#123;</span><br><span class="line">    valid_referers none blocked www.poket.top poket.top;</span><br><span class="line">    if ($invalid_referer) &#123;</span><br><span class="line">        return 404;</span><br><span class="line">    &#125;</span><br><span class="line">    #rewrite ^&#x2F; http:&#x2F;&#x2F;otherdomin.com&#x2F;404.jpg;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>启动nginx后访问nginx配置文件里设置的访问域名或者ip</strong> </p>
+<p><strong>当然此时网站可以启动了，但是后台和网站的一些样式和静态文件无法访问</strong></p>
+<p><strong>所以，我们需要拉取所有静态文件到static目录</strong></p>
+</blockquote>
+<h3 id="django静态文件收集"><a href="#django静态文件收集" class="headerlink" title="django静态文件收集"></a><strong>django静态文件收集</strong></h3><li>**在django的`setting`文件中，添加下面一行内容：**</li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">STATIC_URL &#x3D; &#39;&#x2F;static&#x2F;&#39;    # 设置静态文件前缀名称</span><br><span class="line"># 配置静态文件目录</span><br><span class="line">#STATICFILES_DIRS &#x3D; [</span><br><span class="line">#    os.path.join(BASE_DIR, &#39;static&#39;),   # 设置静态文件路径</span><br><span class="line">#]</span><br><span class="line"># 配置静态文件访问路径</span><br><span class="line">STATIC_ROOT &#x3D; os.path.join(BASE_DIR, &#39;static&#39;)</span><br></pre></td></tr></table></figure>
+
+<li>执行`collectstatic`命令 ,收集资源</li>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd 进入到网站项目根目录</span><br><span class="line">python manage.py collectstatic</span><br></pre></td></tr></table></figure>
+
+<p> <strong>此时网站部署完成</strong></p>
+<blockquote>
+<p><strong>注意：设置配置文件时，在系统创建文件将代码复制到文件里，不可在系统外导入配置文件</strong></p>
+<p><strong>此时部署完成，网站配置文件夹里会有如下文件</strong></p>
+</blockquote>
+<p><img src="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/10.png"></p>
+<h1 id="日后操作管理"><a href="#日后操作管理" class="headerlink" title="日后操作管理"></a><strong>日后操作管理</strong></h1><blockquote>
+<p><strong>停止网站服务</strong></p>
+</blockquote>
+<p><strong>首先进入虚拟环境</strong></p>
+<p><strong>1.pkill -9 uwsgi    　　 　　　　　　杀死uwsgi进程</strong></p>
+<p><strong>2.ps -ef|grep -i uwsgi　　　　　　 查看进程情况</strong></p>
+<p><strong>3.pkill -9 nginx　　　　　　　　     杀死nginx进程</strong></p>
+<p><strong>4.ps -ef|grep -i nginx　　　　　　 查看进程情况</strong></p>
+<blockquote>
+<p><strong>启动网站服务</strong></p>
+</blockquote>
+<p><strong>首先进入虚拟环境</strong></p>
+<p><strong>cd进入到uwsgi的配置文件目录</strong></p>
+<p><strong>1.uwsgi -i jxiou_uwsgi.ini &amp;　　　 启动uwsgi</strong></p>
+<p><strong>2.ps -ef|grep -i uwsgi　　　　　　 查看进程情况</strong></p>
+<p><strong>3./usr/sbin/nginx　　　　　　　　 启动nginx</strong></p>
+<p><strong>4.ps -ef|grep -i nginx　　　　　　 查看进程情况</strong></p>
+<p><strong>最后别忘了关闭Django调试模式</strong></p>
+<p><strong>就是在settings.py文件关闭调试模式，关闭后配置的404才能起作用，不至于大黄页</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># SECURITY WARNING: don&#39;t run with debug turned on in production!</span><br><span class="line">DEBUG &#x3D; False                                # 将调试模式关闭,关闭后访问页面出错不会显示错误(大黄页)</span><br><span class="line">ALLOWED_HOSTS &#x3D; [&#39;*&#39;]                        # 当关闭调试模式时，必须设置允许访问的ip，*代表所有以访问</span><br></pre></td></tr></table></figure>
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2018/05/18/Django%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2%E5%9C%A8ubuntu%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A/" class="leancloud-visitors view" data-flag-title="Django项目部署在ubuntu服务器上">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2018/05/24/数据结构大综合1/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2018/05/18/阿里云ECS云服务器学习/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xx","appKey":"xx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2018-05-18 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/服务器/">服务器<span>4</span></a></li> <li><a href="/categories/服务器/Django/">Django<span>1</span></a></li> <li><a href="/categories/服务器/Django/ubuntu/">ubuntu<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/nginx/">nginx<span>3</span></a></li> <li><a href="/tags/Django/">Django<span>3</span></a></li> <li><a href="/tags/uwsgi/">uwsgi<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2020 西伯利亚狼's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>
